@@ -915,22 +915,22 @@ body{
     <div class="tut-section">
       <div class="tut-section-title">🪖 기본 위장 시스템</div>
       <div class="tut-row"><div class="tut-icon">🎲</div><div class="tut-text">아무런 버프 없이도 <strong>매 공격마다 10% 확률로 자동 회피</strong>합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🪖</div><div class="tut-text">위장 강화 스킬을 쓰면 회피율이 추가 50% 상승해 최대 <span class="hl">60% 회피</span>가 됩니다!</div></div>
-      <div class="tut-tip">위장 강화 + 방어 콤보로 적의 공격을 최대한 흘려내세요. 저격수는 맞으면 위험합니다.</div>
+      <div class="tut-row"><div class="tut-icon">🥤</div><div class="tut-text">위장 강화 대신 <strong>에너지드링크(쿨4)</strong>로 HP를 회복할 수 있습니다. 최대 HP의 30% 즉시 회복!</div></div>
+      <div class="tut-tip">저격수는 회피가 10%뿐이라 맞으면 위험합니다. 에너지드링크로 체력을 관리하고 자주포로 강력한 한 방을 노리세요!</div>
     </div>
     <div class="tut-section">
       <div class="tut-section-title">🎯 헤드샷 시스템</div>
       <div class="tut-row"><div class="tut-icon">🔫</div><div class="tut-text"><strong>저격총</strong> 사용 시 매번 <span class="hl">30% 확률</span>로 헤드샷이 발동해 데미지가 <span class="hl">2배</span>가 됩니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">🔍</div><div class="tut-text"><strong>저격 조준</strong> 스킬 사용 후 다음 저격총은 <span class="hl-green">100% 헤드샷 보장</span>입니다.</div></div>
-      <div class="tut-tip">ATK 22 기준 저격총 기본 데미지 약 66, 헤드샷 시 약 132! 보스 앞에서 저격 조준 → 저격총 콤보를 노리세요.</div>
+      <div class="tut-row"><div class="tut-icon">🔥</div><div class="tut-text"><strong>자주포 지원</strong>은 ATK×6.0의 강력한 단발 포격입니다. 헤드샷과 별개로 <span class="hl-red">매우 높은 데미지</span>를 냅니다.</div></div>
+      <div class="tut-tip">ATK 22 기준 자주포 지원 약 130+! 보스 등장 시 자주포로 먼저 큰 피해를 주고 저격총 헤드샷으로 마무리하세요.</div>
     </div>
     <div class="tut-section">
       <div class="tut-section-title">🌟 저격수 스킬</div>
       <div class="tut-row"><div class="tut-icon">🔫</div><div class="tut-text"><strong>저격총</strong> (MP 14 · 쿨2) — ATK×3.0 강력 단일 공격. <span class="hl">30% 헤드샷 → 데미지 2배!</span></div></div>
-      <div class="tut-row"><div class="tut-icon">🪖</div><div class="tut-text"><strong>위장 강화</strong> (MP 12 · 쿨3) — 회피율 <span class="hl">+50% (3턴)</span>. 기본 10%와 합산되어 60%!</div></div>
+      <div class="tut-row"><div class="tut-icon">🥤</div><div class="tut-text"><strong>에너지드링크</strong> (MP 12 · 쿨4) — 최대 HP의 <span class="hl-green">30% 즉시 회복</span>. 위기 탈출용 스킬!</div></div>
       <div class="tut-row"><div class="tut-icon">✈️</div><div class="tut-text"><strong>공중지원</strong> (MP 20 · 쿨4) — 전체 ATK×1.6 공습. 다수의 적을 한번에 처리!</div></div>
-      <div class="tut-row"><div class="tut-icon">🔍</div><div class="tut-text"><strong>저격 조준</strong> (MP 18 · 쿨4) — 다음 저격총 공격이 <span class="hl-green">반드시 헤드샷</span>!</div></div>
-      <div class="tut-tip">저격 조준 → 저격총 콤보가 핵심 딜 패턴입니다. 쿨다운 관리를 잘 해서 보스전에서 폭딜을 넣으세요!</div>
+      <div class="tut-row"><div class="tut-icon">🔥</div><div class="tut-text"><strong>자주포 지원</strong> (MP 28 · 쿨6) — ATK×6.0 강력 단일 포격! 쿨타임이 길어 <span class="hl-red">타이밍이 중요</span>합니다.</div></div>
+      <div class="tut-tip">자주포 지원(쿨6)을 보스전에 맞춰 아껴두세요. 체력이 위험하면 에너지드링크(쿨4)로 회복 후 저격총으로 마무리하세요!</div>
     </div>
     <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
@@ -1168,9 +1168,9 @@ const CLASSES=[
     baseDodge:0.10, // 기본 10% 위장 회피
     skills:[
       {name:'저격총',    icon:'🔫',mp:14,cd:0,maxCd:1, type:'sniper_shot',  mult:3.0, headshotChance:0.30, desc:'ATK×3.0 (30% 헤드샷→×2)'},
-      {name:'위장 강화', icon:'🪖',mp:12,cd:0,maxCd:3, type:'sniper_camo',  camoBonus:0.50, t:3,          desc:'회피율 +50% (3턴)'},
+      {name:'에너지드링크', icon:'🥤',mp:12,cd:0,maxCd:4, type:'sniper_drink', healRatio:0.30,             desc:'최대 HP의 30% 즉시 회복'},
       {name:'공중지원',  icon:'✈️',mp:20,cd:0,maxCd:4, type:'all',          mult:1.6,                      desc:'전체 ATK×1.6 공습'},
-      {name:'저격 조준', icon:'🔍',mp:18,cd:0,maxCd:4, type:'sniper_aim',                                  desc:'다음 공격 헤드샷 100% 보장'},
+      {name:'자주포 지원', icon:'🔥',mp:28,cd:0,maxCd:6, type:'howitzer',  mult:6.0,                       desc:'ATK×6.0 강력 단일 포격 · 긴 쿨타임'},
     ]
   },
   // ══ 폭탄병 (버프됨) ══
@@ -1271,7 +1271,7 @@ const ACHIEVEMENTS = [
   // ── 저격수 전용 업적 ──
   { id:'sniper_headshot5', icon:'🎯', name:'헤드헌터',            desc:'한 게임에서 헤드샷을 5번 이상 성공하세요.',                tier:'rare',   check:()=> getGlobalStat('sniperHeadshotGame5')>=1 },
   { id:'sniper_clear',     icon:'🔫', name:'원거리 정복자',       desc:'저격수로 20스테이지를 클리어하세요.',                      tier:'epic',   check:()=> getClassStat('저격수','clears')>=1 },
-  { id:'meme_sniper_miss', icon:'💨', name:'30% 믿었는데...',     desc:'저격 조준(100% 보장) 없이 저격총을 10번 연속 헤드샷 미스.' , tier:'meme',  check:()=> getGlobalStat('sniperMissStreak')>=10 },
+  { id:'meme_sniper_miss', icon:'💨', name:'30% 믿었는데...',     desc:'저격총을 10번 연속으로 헤드샷 미스 하세요. 운이 없네요...' , tier:'meme',  check:()=> getGlobalStat('sniperMissStreak')>=10 },
 ];
 
 const TIER_LABEL = { common:'일반', rare:'희귀', epic:'에픽', legendary:'전설', meme:'😂 유머' };
@@ -1906,21 +1906,21 @@ function useSkill(idx){
     tryEndPlayerTurn();
     return;
 
-  } else if(sk.type==='sniper_camo'){
-    const bonus = sk.camoBonus || 0.50;
-    buffs.dodge = (buffs.dodge||0) + bonus;
-    buffs.turns = sk.t || 3;
-    const pc = document.getElementById('player-card');
-    pc.classList.add('camo-active');
-    setTimeout(()=>pc.classList.remove('camo-active'), (sk.t||3)*2000);
-    addLog(`🪖 위장 강화! 회피율 +${Math.round(bonus*100)}% (${sk.t}턴) — 현재 총 회피율: ${Math.round(((player.baseDodge||0)+(buffs.dodge||0))*100)}%`,'p');
+  } else if(sk.type==='sniper_drink'){
+    const heal = Math.floor(player.maxHp * (sk.healRatio||0.30));
+    player.hp = Math.min(player.maxHp, player.hp + heal);
+    showDrainFloat(heal);
+    addLog(`🥤 에너지드링크! HP +${heal} 회복!`,'h');
     updateHud(); renderSkills();
     tryEndPlayerTurn();
     return;
 
-  } else if(sk.type==='sniper_aim'){
-    sniperAimReady = true;
-    addLog(`🔍 저격 조준! — 다음 저격총 공격이 반드시 🎯헤드샷!`,'p');
+  } else if(sk.type==='howitzer'){
+    const en=getTarget(); if(!en) return;
+    const dmg=calcDmg(effAtk()*(sk.mult||6.0), en.def);
+    dealDmg(en, dmg);
+    showHeadshotFloat(en.id);
+    addLog(`🔥 자주포 지원! → ${en.name}에 ${dmg} 포격 데미지!`,'p');
     updateHud(); renderSkills();
     tryEndPlayerTurn();
     return;
@@ -2426,8 +2426,8 @@ function calcPreview(sk, en){
     const aimStr = sniperAimReady ? '🔍조준중→' : '30%→';
     return `${dmg} (${aimStr}헤드샷 ${hs})`;
   }
-  if(sk.type==='sniper_camo') return `회피+${Math.round((sk.camoBonus||0.5)*100)}%`;
-  if(sk.type==='sniper_aim') return sniperAimReady ? '✅조준완료!' : '다음 저격 헤드샷';
+  if(sk.type==='sniper_drink') return `HP+${Math.floor(player.maxHp*(sk.healRatio||0.30))}`;
+  if(sk.type==='howitzer'){ const dmg=calcDmg(effAtk()*(sk.mult||6.0),en.def); return `포격 DMG:${dmg}`; }
   if(sk.type==='bomb_all'||sk.type==='bomb_smoke'){
     const alive=enemies.filter(e=>e.hp>0);
     const perEn=alive.map(e=>calcDmg(atk*(sk.mult||1),e.def));
@@ -2524,7 +2524,7 @@ function renderSkills(){
     const isVampSkill=['drain','drain_all','blood_burst','blood_heal'].includes(sk.type);
     const isMkSkill=player.isMegaKnight;
     const isBombSkill=['bomb_all','bomb_smoke','bomb_chain'].includes(sk.type);
-    const isSniperSkill=['sniper_shot','sniper_camo','sniper_aim'].includes(sk.type);
+    const isSniperSkill=['sniper_shot','sniper_drink','howitzer'].includes(sk.type);
     const bloodReady=isVampSkill&&ok&&sk.bloodCost&&player.blood>=sk.bloodCost;
     const fuseReady=isBombSkill&&ok&&sk.fuseCost&&player.fuse>=sk.fuseCost;
     const noFuse=sk.fuseCost&&player.fuse<sk.fuseCost;
