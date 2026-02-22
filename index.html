@@ -9,6 +9,7 @@
   --bg:#0a0a12; --panel:#12121e; --border:#2a2a3e;
   --gold:#c9a84c; --gold2:#f0d080;
   --red:#e05050; --blue:#4a9eff; --green:#50c878; --purple:#9b59b6;
+  --crimson:#8b0000; --blood:#cc2244; --vampur:#6a0dad;
   --text:#e8e4d8; --muted:#7a7690;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -40,6 +41,8 @@ body{
 .btn-green{background:#1a7a3a;color:#fff;}
 .btn-gray{background:#1e1e2e;color:var(--muted);border:1px solid var(--border);}
 .btn-gray:hover:not(:disabled){border-color:var(--gold);color:var(--text);}
+.btn-blood{background:linear-gradient(135deg,var(--crimson),var(--blood));color:#fff;}
+.btn-blood:hover:not(:disabled){filter:brightness(1.15);}
 
 /* 바 */
 .bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
@@ -47,7 +50,9 @@ body{
 .bar-track{flex:1;height:7px;background:#1a1a28;border-radius:4px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:4px;transition:width .3s;}
 .bar-hp .bar-fill{background:linear-gradient(90deg,#8b1a1a,var(--red));}
+.bar-hp.vampire-bar .bar-fill{background:linear-gradient(90deg,var(--crimson),var(--blood));}
 .bar-mp .bar-fill{background:linear-gradient(90deg,#1a3a8b,var(--blue));}
+.bar-mp.vampire-bar .bar-fill{background:linear-gradient(90deg,#3a0a4a,var(--vampur));}
 .bar-exp .bar-fill{background:linear-gradient(90deg,#5a2080,var(--purple));}
 .bar-val{font-size:11px;color:var(--muted);width:58px;text-align:right;}
 
@@ -60,15 +65,18 @@ body{
   margin-bottom:4px;
 }
 .logo-sub{font-size:11px;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-bottom:36px;}
-.class-row{display:flex;gap:8px;margin-bottom:20px;}
+.class-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
 .cls-card{
-  flex:1;background:var(--panel);border:2px solid var(--border);
+  flex:1;min-width:80px;background:var(--panel);border:2px solid var(--border);
   border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:.2s;
 }
 .cls-card:hover{border-color:var(--gold);}
 .cls-card.sel{border-color:var(--gold);background:#1c1808;box-shadow:0 0 16px #c9a84c33;}
+.cls-card.vampire-card.sel{border-color:var(--blood);background:#1a0510;box-shadow:0 0 16px #cc224455;}
+.cls-card.vampire-card:hover{border-color:var(--blood);}
 .cls-icon{font-size:30px;}
 .cls-name{font-size:12px;font-weight:700;color:var(--gold);margin:6px 0 3px;}
+.cls-card.vampire-card .cls-name{color:var(--blood);}
 .cls-desc{font-size:10px;color:var(--muted);line-height:1.5;}
 
 /* ══ 전투 ══ */
@@ -106,7 +114,9 @@ body{
 .player-card{
   background:#0a0d18;border:1px solid #1e2a3a;
   border-radius:10px;padding:12px 14px;margin-bottom:10px;
+  transition:border-color .3s;
 }
+.player-card.vampire-theme{background:#0d0608;border-color:#2a1020;}
 .player-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .player-left{display:flex;align-items:center;gap:10px;}
 .p-avatar{font-size:30px;}
@@ -114,6 +124,24 @@ body{
 .p-lv{font-size:11px;color:var(--muted);}
 .p-stats-right{font-size:11px;color:var(--muted);text-align:right;line-height:2;}
 .stat-val{color:var(--gold);font-weight:700;}
+.stat-val.blood-val{color:var(--blood);}
+
+/* 혈기 게이지 (뱀파이어 전용) */
+.blood-bar-wrap{
+  display:flex;align-items:center;gap:8px;margin-bottom:5px;
+}
+.blood-bar-track{
+  flex:1;height:9px;background:#1a0808;border-radius:4px;overflow:hidden;
+  border:1px solid #3a1020;
+}
+.blood-bar-fill{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg,#4a0010,#cc2244,#ff6688);
+  transition:width .4s;
+  box-shadow:0 0 6px #cc224488;
+}
+.blood-val{font-size:11px;color:var(--blood);width:58px;text-align:right;font-weight:700;}
+.blood-label{font-size:11px;color:var(--blood);width:24px;font-weight:700;}
 
 /* 스킬 그리드 */
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
@@ -125,6 +153,7 @@ body{
   font-family:inherit;color:var(--text);
 }
 .skill-btn:hover:not(:disabled){border-color:var(--gold);background:#161620;}
+.skill-btn.vampire-skill:hover:not(:disabled){border-color:var(--blood);background:#1a0810;}
 .skill-btn:disabled{opacity:.38;cursor:not-allowed;}
 .sk-icon{font-size:20px;flex-shrink:0;}
 .sk-info{flex:1;min-width:0;}
@@ -132,6 +161,7 @@ body{
 .sk-meta{font-size:10px;color:var(--muted);}
 .sk-cd{font-size:10px;color:var(--red);}
 .sk-preview{font-size:10px;color:var(--blue);}
+.sk-preview.blood-preview{color:var(--blood);}
 
 /* 액션 행 */
 .action-row{display:flex;gap:6px;margin-bottom:8px;}
@@ -150,6 +180,17 @@ body{
 .log-s{color:var(--gold);font-weight:700;}
 .log-h{color:var(--green);}
 .log-x{color:var(--purple);}
+.log-v{color:var(--blood);font-weight:700;}
+
+/* 흡혈 플로팅 */
+@keyframes floatHeal{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-28px)}}
+.float-heal{
+  position:fixed;
+  font-size:13px;font-weight:700;pointer-events:none;
+  color:#ff6688;
+  animation:floatHeal 1s ease forwards;z-index:30;white-space:nowrap;
+  text-shadow:0 0 8px #cc224488;
+}
 
 /* ══ 상점 ══ */
 #screen-shop{padding-top:8px;}
@@ -222,6 +263,16 @@ body{
 
 @keyframes endingGlow{0%,100%{text-shadow:0 0 20px #c9a84c88}50%{text-shadow:0 0 40px #ffd700cc,0 0 80px #c9a84c55}}
 #ending-title{animation:endingGlow 2s ease infinite;}
+
+/* 혈기 충전 글로우 */
+@keyframes bloodPulse{0%,100%{box-shadow:0 0 0 #cc224400}50%{box-shadow:0 0 14px #cc224466}}
+.blood-ready{animation:bloodPulse 1.2s ease infinite;}
+
+/* 혈기 스킬 특별 테두리 */
+.skill-btn.blood-skill-available{
+  border-color:#cc2244;
+  box-shadow:0 0 8px #cc224444;
+}
 </style>
 </head>
 <body>
@@ -257,7 +308,7 @@ body{
 
   <div class="enemy-zone" id="enemy-zone"></div>
 
-  <div class="player-card">
+  <div class="player-card" id="player-card">
     <div class="player-top">
       <div class="player-left">
         <div class="p-avatar" id="p-avatar">⚔️</div>
@@ -271,15 +322,25 @@ body{
         DEF <span class="stat-val" id="p-def">-</span>
       </div>
     </div>
-    <div class="bar-wrap">
+    <div class="bar-wrap bar-hp" id="hp-bar-wrap">
       <div class="bar-label">HP</div>
-      <div class="bar-track bar-hp"><div class="bar-fill" id="bar-hp" style="width:100%"></div></div>
+      <div class="bar-track bar-hp" id="hp-track"><div class="bar-fill" id="bar-hp" style="width:100%"></div></div>
       <div class="bar-val"><span id="p-hp">-</span>/<span id="p-mhp">-</span></div>
     </div>
-    <div class="bar-wrap">
-      <div class="bar-label">MP</div>
-      <div class="bar-track bar-mp"><div class="bar-fill" id="bar-mp" style="width:100%"></div></div>
+    <div class="bar-wrap bar-mp" id="mp-bar-wrap">
+      <div class="bar-label" id="mp-label">MP</div>
+      <div class="bar-track bar-mp" id="mp-track"><div class="bar-fill" id="bar-mp" style="width:100%"></div></div>
       <div class="bar-val"><span id="p-mp">-</span>/<span id="p-mmp">-</span></div>
+    </div>
+    <!-- 혈기 게이지 (뱀파이어 전용) -->
+    <div id="blood-bar-container" style="display:none">
+      <div class="blood-bar-wrap">
+        <div class="blood-label">🩸</div>
+        <div class="blood-bar-track" id="blood-track">
+          <div class="blood-bar-fill" id="bar-blood" style="width:0%"></div>
+        </div>
+        <div class="blood-val"><span id="p-blood">0</span>/<span id="p-mblood">100</span></div>
+      </div>
     </div>
     <div class="bar-wrap">
       <div class="bar-label">EXP</div>
@@ -398,46 +459,44 @@ const CLASSES=[
       {name:'암살',     icon:'🌑',mp:45,cd:0,maxCd:6, type:'dmg',  mult:6.0,          desc:'단일 ATK×6.0'},
     ]
   },
+  // ══ 뱀파이어 (신규) ══
+  { name:'뱀파이어', icon:'🧛', hp:110,mp:80, atk:19,def:6, hpG:16,atkG:3,defG:1,mpG:10,
+    isVampire:true,
+    // 혈기(blood) 시스템: 공격/피해 시 충전, 혈기 스킬로 소모
+    maxBlood:100, blood:0,
+    skills:[
+      // 흡혈 - 데미지의 20% 체력 흡수
+      {name:'흡혈',       icon:'🩸',mp:12,cd:0,maxCd:2, type:'drain',   mult:2.0, drainRatio:0.4, desc:'ATK×2.0, 피해의 40% 흡수'},
+      // 혈기 폭발 - 혈기 50 소모, 강력한 광역
+      {name:'혈기 폭발',  icon:'💥',mp:20,cd:0,maxCd:4, type:'blood_burst', mult:1.4, bloodCost:50, desc:'혈기50 소모 · 전체 ATK×1.4'},
+      // 박쥐 군단 - 전체 흡혈 10%
+      {name:'박쥐 군단',  icon:'🦇',mp:24,cd:0,maxCd:4, type:'drain_all',mult:1.2, drainRatio:0.3, desc:'전체 ATK×1.2, 각 30% 흡수'},
+      // 불사의 피 - 혈기 100 소모, HP 60% 회복, 쿨타임 8턴
+      {name:'불사의 피',  icon:'🌑',mp:0, cd:0,maxCd:8, type:'blood_heal', bloodCost:70, healRatio:0.60, desc:'혈기70 소모 · HP 60% 회복'},
+    ]
+  },
 ];
 
 const ENEMIES=[
-  {name:'슬라임',     icon:'🟢', hp:30,  atk:6,  def:0,  exp:14,  gold:5},   // 0
-  {name:'고블린',     icon:'👺', hp:48,  atk:11, def:2,  exp:24,  gold:9},   // 1
-  {name:'해골전사',   icon:'💀', hp:65,  atk:15, def:4,  exp:38,  gold:14},  // 2
-  {name:'오크',       icon:'👹', hp:95,  atk:19, def:6,  exp:55,  gold:21},  // 3
-  {name:'트롤',       icon:'🧟', hp:140, atk:24, def:9,  exp:80,  gold:30},  // 4
-  {name:'드래곤',     icon:'🐉', hp:230, atk:34, def:14, exp:170, gold:70},  // 5
-  {name:'다크나이트',  icon:'🗡️', hp:180, atk:28, def:11, exp:130, gold:50},  // 6
-  {name:'마왕',       icon:'👿', hp:220, atk:42, def:18, exp:300, gold:120}, // 7 (보스)
-  {name:'골렘',       icon:'🪨', hp:260, atk:22, def:20, exp:150, gold:55},  // 8
-  {name:'불사조',     icon:'🦅', hp:200, atk:36, def:12, exp:160, gold:65},  // 9
+  {name:'슬라임',     icon:'🟢', hp:30,  atk:6,  def:0,  exp:14,  gold:5},
+  {name:'고블린',     icon:'👺', hp:48,  atk:11, def:2,  exp:24,  gold:9},
+  {name:'해골전사',   icon:'💀', hp:65,  atk:15, def:4,  exp:38,  gold:14},
+  {name:'오크',       icon:'👹', hp:95,  atk:19, def:6,  exp:55,  gold:21},
+  {name:'트롤',       icon:'🧟', hp:140, atk:24, def:9,  exp:80,  gold:30},
+  {name:'드래곤',     icon:'🐉', hp:230, atk:34, def:14, exp:170, gold:70},
+  {name:'다크나이트',  icon:'🗡️', hp:180, atk:28, def:11, exp:130, gold:50},
+  {name:'마왕',       icon:'👿', hp:220, atk:42, def:18, exp:300, gold:120},
+  {name:'골렘',       icon:'🪨', hp:260, atk:22, def:20, exp:150, gold:55},
+  {name:'불사조',     icon:'🦅', hp:200, atk:36, def:12, exp:160, gold:65},
 ];
 
-// 20스테이지 구성 (5, 10, 15, 20 보스)
 const STAGE_CFG=[
-  [0,0],        // 1
-  [1,1],        // 2
-  [1,2],        // 3
-  [2,2,2],      // 4
-  [3,7],        // 5 ★중간보스 (오크+마왕)
-  [3,3,2],      // 6
-  [4,4],        // 7
-  [4,4,3],      // 8
-  [5,3],        // 9
-  [5,7],        // 10 ★보스 (드래곤+마왕)
-  [6,6],        // 11
-  [6,4,4],      // 12
-  [8,3],        // 13
-  [9,6],        // 14
-  [7,8],        // 15 ★보스 (마왕+골렘)
-  [5,5,3],      // 16
-  [6,9],        // 17
-  [8,8],        // 18
-  [5,6,9],      // 19
-  [7,7,5],      // 20 ★최종보스 (마왕×2+드래곤)
+  [0,0],[1,1],[1,2],[2,2,2],[3,7],
+  [3,3,2],[4,4],[4,4,3],[5,3],[5,7],
+  [6,6],[6,4,4],[8,3],[9,6],[7,8],
+  [5,5,3],[6,9],[8,8],[5,6,9],[7,7,5],
 ];
-
-const FINAL_STAGE=19; // 0-index 기준 20스테이지
+const FINAL_STAGE=19;
 
 const ITEMS=[
   {id:'sw1',name:'낡은 검',    icon:'🗡️',slot:'weapon',atk:5,  def:0,  cost:20},
@@ -449,7 +508,6 @@ const ITEMS=[
   {id:'rg1',name:'힘의 반지',  icon:'💍', slot:'ring',  atk:7,  def:3,  cost:55},
   {id:'am1',name:'수호 목걸이',icon:'📿', slot:'amulet',atk:4,  def:9,  cost:55},
 ];
-
 const SLOT_LABEL={weapon:'무기',armor:'방어구',ring:'반지',amulet:'목걸이'};
 
 // ══════════════ 상태 ══════════════
@@ -457,7 +515,7 @@ let classIdx=0, player=null, enemies=[], stage=0;
 let targetIdx=0, gold=0, hpPots=3, mpPots=2;
 let equipped={weapon:null,armor:null,ring:null,amulet:null};
 let owned=[];
-let buffs={};   // {atkB, defB, dodge, turns}
+let buffs={};
 let defending=false;
 let playerTurn=true, busy=false;
 let luQueue=[];
@@ -467,10 +525,10 @@ let luQueue=[];
   const row=document.getElementById('class-row');
   CLASSES.forEach((c,i)=>{
     const d=document.createElement('div');
-    d.className='cls-card'+(i===0?' sel':'');
+    d.className='cls-card'+(c.isVampire?' vampire-card':'')+(i===0?' sel':'');
     d.innerHTML=`<div class="cls-icon">${c.icon}</div>
       <div class="cls-name">${c.name}</div>
-      <div class="cls-desc">HP ${c.hp}  ATK ${c.atk}  DEF ${c.def}<br>MP ${c.mp}</div>`;
+      <div class="cls-desc">HP ${c.hp}  ATK ${c.atk}  DEF ${c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:'<br>MP '+c.mp}</div>`;
     d.onclick=()=>{
       classIdx=i;
       document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
@@ -488,19 +546,48 @@ function startGame(){
     atk:c.atk,def:c.def,lv:1,exp:0,expNext:30,
     skills:JSON.parse(JSON.stringify(c.skills)),
     hpG:c.hpG,atkG:c.atkG,defG:c.defG,mpG:c.mpG,
+    isVampire:c.isVampire||false,
+    blood: c.isVampire ? 0 : undefined,
+    maxBlood: c.isVampire ? c.maxBlood : undefined,
   };
   gold=0; hpPots=3; mpPots=2; stage=0;
   equipped={weapon:null,armor:null,ring:null,amulet:null};
   owned=[]; buffs={}; luQueue=[];
+
+  // 뱀파이어 UI 테마 설정
+  applyVampireTheme(player.isVampire);
+
   showScreen('battle');
   loadStage();
+}
+
+function applyVampireTheme(isVampire){
+  const pc=document.getElementById('player-card');
+  const bloodContainer=document.getElementById('blood-bar-container');
+  const hpTrack=document.getElementById('hp-track');
+  const mpTrack=document.getElementById('mp-track');
+  const mpLabel=document.getElementById('mp-label');
+
+  if(isVampire){
+    pc.classList.add('vampire-theme');
+    bloodContainer.style.display='block';
+    hpTrack.classList.add('vampire-bar');
+    mpTrack.classList.add('vampire-bar');
+    mpLabel.textContent='MP';
+  } else {
+    pc.classList.remove('vampire-theme');
+    bloodContainer.style.display='none';
+    hpTrack.classList.remove('vampire-bar');
+    mpTrack.classList.remove('vampire-bar');
+    mpLabel.textContent='MP';
+  }
 }
 
 // ══════════════ 스테이지 ══════════════
 function loadStage(){
   defending=false; buffs={}; busy=false; playerTurn=true; victoryPending=false; victoryDone=false;
   const cfg=STAGE_CFG[Math.min(stage, FINAL_STAGE)];
-  const sc=1+stage*0.12; // 스케일 완만하게 조정 (20스테이지 대응)
+  const sc=1+stage*0.12;
   enemies=cfg.map((ei,i)=>{
     const t=ENEMIES[ei];
     return{
@@ -514,7 +601,6 @@ function loadStage(){
     };
   });
 
-  // 보스 스테이지 표시
   const bossStages=[4,9,14,19];
   const isBoss=bossStages.includes(stage);
   const badge=document.getElementById('stage-badge');
@@ -524,11 +610,57 @@ function loadStage(){
 
   targetIdx=0;
   player.skills.forEach(s=>{if(s.cd>0)s.cd--;});
-  player.mp=Math.min(player.maxMp,player.mp+Math.floor(player.maxMp*.4));
-
   clearLog();
   addLog(`${isBoss?'👿 BOSS':'⚔'} STAGE ${stage+1} 시작! 적 ${enemies.length}마리!`, isBoss?'e':'s');
+  if(player.isVampire) addLog('🩸 공격 시 혈기가 충전됩니다!','v');
   renderAll();
+}
+
+// ══════════════ 혈기 시스템 (뱀파이어) ══════════════
+function gainBlood(amount){
+  if(!player.isVampire) return;
+  player.blood=Math.min(player.maxBlood, player.blood+amount);
+  updateHud();
+}
+
+function spendBlood(amount){
+  if(!player.isVampire) return false;
+  if(player.blood<amount) return false;
+  player.blood-=amount;
+  updateHud();
+  return true;
+}
+
+// 피해를 입을 때 혈기 소량 충전 (고통에서 힘을 얻는 뱀파이어)
+function onPlayerHit(dmg){
+  if(player.isVampire){
+    const gain=Math.max(3, Math.floor(dmg*0.3));
+    gainBlood(gain);
+    addLog(`🩸 피해로 혈기 +${gain} (${player.blood}/${player.maxBlood})`,'v');
+  }
+}
+
+// 흡혈 처리
+function drainHeal(dmg, ratio){
+  const heal=Math.max(1, Math.floor(dmg*ratio));
+  player.hp=Math.min(player.maxHp, player.hp+heal);
+  // 혈기도 충전
+  gainBlood(Math.floor(heal*0.4));
+  updateHud();
+  return heal;
+}
+
+// 흡혈 플로팅 텍스트 (플레이어 카드 위)
+function showDrainFloat(heal){
+  const pc=document.getElementById('player-card');
+  const rect=pc.getBoundingClientRect();
+  const el=document.createElement('div');
+  el.className='float-heal';
+  el.textContent=`🩸+${heal}`;
+  el.style.left=(rect.left+rect.width/2)+'px';
+  el.style.top=(rect.top+window.scrollY-10)+'px';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1000);
 }
 
 // ══════════════ 전투 액션 ══════════════
@@ -539,7 +671,14 @@ function doBasic(){
   const mpReg=Math.max(1,Math.floor(player.maxMp*.06));
   dealDmg(en, dmg);
   player.mp=Math.min(player.maxMp,player.mp+mpReg);
-  addLog(`⚔ 기본 공격 → ${en.name} ${dmg} 데미지 / MP +${mpReg}`,'p');
+  // 뱀파이어: 기본 공격에도 혈기 소량 충전
+  if(player.isVampire){
+    const bg=Math.max(1, Math.floor(dmg*0.1));
+    gainBlood(bg);
+    addLog(`⚔ 기본 공격 → ${en.name} ${dmg} 데미지 / MP+${mpReg} / 🩸혈기+${bg}`,'p');
+  } else {
+    addLog(`⚔ 기본 공격 → ${en.name} ${dmg} 데미지 / MP +${mpReg}`,'p');
+  }
   tryEndPlayerTurn();
 }
 
@@ -576,14 +715,67 @@ function useSkill(idx){
   if(!canAct()) return;
   const sk=player.skills[idx];
   if(sk.cd>0||player.mp<sk.mp) return;
+
+  // 혈기 소모 스킬 체크
+  if(sk.bloodCost&&(!player.isVampire||player.blood<sk.bloodCost)){
+    addLog(`🩸 혈기 부족! (필요: ${sk.bloodCost} / 보유: ${player.blood||0})`,'v');
+    return;
+  }
+
   player.mp=Math.max(0,player.mp-sk.mp);
   sk.cd=sk.maxCd;
 
-  if(sk.type==='dmg'||sk.type==='multi'){
+  // ── 뱀파이어 전용 스킬 ──
+  if(sk.type==='drain'){
+    // 흡혈: 단일 공격 + HP 흡수 + 혈기 충전
+    const en=getTarget(); if(!en) return;
+    const dmg=calcDmg(effAtk()*(sk.mult||1), en.def);
+    dealDmg(en, dmg);
+    const heal=drainHeal(dmg, sk.drainRatio);
+    showDrainFloat(heal);
+    gainBlood(Math.max(8, Math.floor(dmg*0.35)));
+    addLog(`🩸 ${sk.name} → ${en.name} ${dmg} 데미지 / HP +${heal} 흡수!`,'v');
+
+  } else if(sk.type==='drain_all'){
+    // 박쥐 군단: 전체 공격 + 각각 흡수
+    let totalDmg=0, totalHeal=0;
+    enemies.forEach(en=>{
+      if(en.hp<=0) return;
+      const dmg=calcDmg(effAtk()*(sk.mult||1), en.def);
+      dealDmg(en, dmg);
+      totalDmg+=dmg;
+      totalHeal+=drainHeal(dmg, sk.drainRatio);
+    });
+    showDrainFloat(totalHeal);
+    gainBlood(Math.max(12, Math.floor(totalDmg*0.25)));
+    addLog(`🦇 ${sk.name} → 전체 ${totalDmg} 데미지 / HP +${totalHeal} 흡수!`,'v');
+
+  } else if(sk.type==='blood_burst'){
+    // 혈기 폭발: 혈기 소모 + 전체 강력 공격
+    spendBlood(sk.bloodCost);
+    let tot=0;
+    enemies.forEach(en=>{
+      if(en.hp<=0) return;
+      const dmg=calcDmg(effAtk()*(sk.mult||1)+(player.blood*0.3), en.def);
+      dealDmg(en,dmg); tot+=dmg;
+    });
+    addLog(`💥 ${sk.name} → 혈기 ${sk.bloodCost} 소모! 전체 ${tot} 데미지!`,'v');
+
+  } else if(sk.type==='blood_heal'){
+    // 불사의 피: 혈기 소모 + 대규모 HP 회복
+    spendBlood(sk.bloodCost);
+    const heal=Math.floor(player.maxHp*(sk.healRatio||0.35));
+    player.hp=Math.min(player.maxHp, player.hp+heal);
+    showDrainFloat(heal);
+    updateHud();
+    addLog(`🌑 ${sk.name} → 혈기 ${sk.bloodCost} 소모! HP +${heal} 회복!`,'v');
+
+  // ── 기존 스킬 ──
+  } else if(sk.type==='dmg'||sk.type==='multi'){
     const en=getTarget(); if(!en) return;
     const hits=sk.hits||1;
     for(let h=0;h<hits;h++){
-      if(en.hp<=0) break; // 이미 죽었으면 추가 타격 없음
+      if(en.hp<=0) break;
       const dmg=calcDmg(effAtk()*(sk.mult||1)+(sk.bonus||0), en.def);
       dealDmg(en,dmg);
     }
@@ -591,6 +783,7 @@ function useSkill(idx){
     addLog(`${sk.icon} ${sk.name} → ${en.name} ${totalDmg} 데미지!`,'p');
     if(en.hp>0&&sk.poison){ en.poison={dmg:Math.floor(effAtk()*.35),turns:3}; addLog(`☠ 독 부여!`,'p'); }
     if(sk.selfBuff){ Object.assign(buffs,{defB:(buffs.defB||0)+sk.selfBuff.defB, defTurns:sk.selfBuff.t}); }
+
   } else if(sk.type==='all'){
     let tot=0;
     enemies.forEach(en=>{
@@ -599,9 +792,11 @@ function useSkill(idx){
       dealDmg(en,dmg); tot+=dmg;
     });
     addLog(`${sk.icon} ${sk.name} → 전체 공격! 총 ${tot} 데미지`,'p');
+
   } else if(sk.type==='buff'){
     Object.assign(buffs,{...sk.buff, turns:sk.buff.t});
     addLog(`${sk.icon} ${sk.name} → 버프 발동!`,'p');
+
   } else if(sk.type==='heal_mp'){
     player.mp=Math.min(player.maxMp,player.mp+(sk.healMp||0));
     addLog(`${sk.icon} ${sk.name} → MP +${sk.healMp}`,'h');
@@ -611,7 +806,6 @@ function useSkill(idx){
   tryEndPlayerTurn();
 }
 
-// 전멸이면 클리어, 아니면 적 턴으로
 function tryEndPlayerTurn(){
   if(enemies.every(e=>e.hp<=0)){
     victoryPending=false;
@@ -634,7 +828,6 @@ function onKill(en){
   addLog(`💥 ${en.name} 처치!`,'s');
   gold+=en.gold;
   gainExp(en.exp);
-  // 전멸이면 플래그 세팅 - endPlayerTurn이 적 공격 루프 건너뜀
   if(enemies.every(e=>e.hp<=0)){
     victoryPending=true;
   }
@@ -650,24 +843,20 @@ function endPlayerTurn(){
   setActionBtns();
   renderSkills();
 
-  // 버프 턴 감소
   if(buffs.turns!==undefined){ buffs.turns--; if(buffs.turns<=0){ delete buffs.atkB; delete buffs.dodge; delete buffs.turns; } }
   if(buffs.defTurns!==undefined){ buffs.defTurns--; if(buffs.defTurns<=0){ delete buffs.defB; delete buffs.defTurns; } }
 
-  // 전멸 체크 (onKill 플래그 또는 직접 확인)
   if(victoryPending || enemies.every(e=>e.hp<=0)){
     victoryPending=false;
     setTimeout(onVictory, 400);
     return;
   }
 
-  // 적 공격 순차 실행
   const alive=enemies.filter(e=>e.hp>0);
   let delay=0;
   alive.forEach(en=>{
     setTimeout(()=>{
       if(player.hp<=0) return;
-      // 독 처리
       if(en.poison){
         const pdmg=en.poison.dmg;
         en.hp-=pdmg;
@@ -678,7 +867,6 @@ function endPlayerTurn(){
           if(enemies.every(e=>e.hp<=0)){ setTimeout(onVictory,400); return; }
           return;}
       }
-      // 회피
       if(buffs.dodge&&Math.random()<buffs.dodge){
         addLog(`💨 ${en.name} 공격 회피!`,'p'); return;
       }
@@ -686,6 +874,10 @@ function endPlayerTurn(){
       const dmg=Math.max(1, en.atk-def+rnd(-2,3));
       player.hp=Math.max(0,player.hp-dmg);
       addLog(`👊 ${en.name} → ${dmg} 데미지`,'e');
+
+      // 뱀파이어: 피격 시 혈기 충전
+      onPlayerHit(dmg);
+
       const pc=document.querySelector('.player-card');
       pc.classList.remove('do-shake'); void pc.offsetWidth; pc.classList.add('do-shake');
       updateHud();
@@ -703,7 +895,6 @@ function endPlayerTurn(){
 function startPlayerTurn(){
   playerTurn=true; busy=false; defending=false;
   player.skills.forEach(s=>{if(s.cd>0)s.cd--;});
-  // 독 처리 (적)
   enemies.forEach(en=>{
     if(en.hp<=0||!en.poison) return;
     en.poison.turns--;
@@ -720,8 +911,6 @@ function onVictory(){
   victoryDone=true;
   busy=true; playerTurn=false;
   addLog(`🎉 STAGE ${stage+1} 클리어!`,'s');
-
-  // 20스테이지 클리어 = 엔딩
   if(stage===FINAL_STAGE){
     setTimeout(showEnding, 600);
   } else {
@@ -730,13 +919,14 @@ function onVictory(){
 }
 
 function showEnding(){
-  const cls=CLASSES[classIdx];
+  const bloodInfo=player.isVampire ? `<div class="r-row"><span>🩸 최종 혈기</span><span class="r-val">${player.blood}/${player.maxBlood}</span></div>` : '';
   document.getElementById('ending-card').innerHTML=`
     <div class="r-row"><span>🧙 직업</span><span class="r-val">${player.icon} ${player.name}</span></div>
     <div class="r-row"><span>⭐ 최종 레벨</span><span class="r-val">Lv ${player.lv}</span></div>
     <div class="r-row"><span>⚔ 최종 ATK</span><span class="r-val">${effAtk()}</span></div>
     <div class="r-row"><span>🛡 최종 DEF</span><span class="r-val">${effDef()}</span></div>
     <div class="r-row"><span>❤ 남은 HP</span><span class="r-val">${player.hp}/${player.maxHp}</span></div>
+    ${bloodInfo}
     <div class="r-row"><span>💰 총 골드</span><span class="r-val">${gold}G</span></div>
   `;
   showScreen('ending');
@@ -765,8 +955,8 @@ function showShop(){
     <strong>${player.name}</strong> Lv${player.lv} &nbsp;|&nbsp;
     ❤ ${player.hp}/${player.maxHp} &nbsp;
     ⚔ ATK ${effAtk()} &nbsp;
-    🛡 DEF ${effDef()} &nbsp;
-    💜 MP ${player.mp}/${player.maxMp}
+    🛡 DEF ${effDef()}
+    ${player.isVampire ? `&nbsp; 🩸 혈기 ${player.blood}/${player.maxBlood}` : `&nbsp;💜 MP ${player.mp}/${player.maxMp}`}
   `;
   renderShopGrid();
   showScreen('shop');
@@ -820,8 +1010,8 @@ function shopBuy(id){
     <strong>${player.name}</strong> Lv${player.lv} &nbsp;|&nbsp;
     ❤ ${player.hp}/${player.maxHp} &nbsp;
     ⚔ ATK ${effAtk()} &nbsp;
-    🛡 DEF ${effDef()} &nbsp;
-    💜 MP ${player.mp}/${player.maxMp}
+    🛡 DEF ${effDef()}
+    ${player.isVampire ? `&nbsp; 🩸 ${player.blood}/${player.maxBlood}` : `&nbsp;💜 MP ${player.mp}/${player.maxMp}`}
   `;
   renderShopGrid();
 }
@@ -849,7 +1039,6 @@ function shopBuyMp(){
 }
 function shopNext(){
   stage++;
-  player.mp=Math.min(player.maxMp,player.mp+Math.floor(player.maxMp*.4));
   showScreen('battle');
   loadStage();
 }
@@ -865,6 +1054,10 @@ function gainExp(exp){
     player.maxHp+=h; player.hp=Math.min(player.maxHp,player.hp+Math.floor(h/2));
     player.maxMp+=m; player.mp=Math.min(player.maxMp,player.mp+Math.floor(m/2));
     player.atk+=a; player.def+=d;
+    // 뱀파이어 레벨업 시 최대 혈기 증가
+    if(player.isVampire){
+      player.maxBlood+=10;
+    }
     luQueue.push({lv:player.lv,h,a,d,m});
     addLog(`⬆ LEVEL UP! Lv ${player.lv}`,'s');
   }
@@ -875,7 +1068,7 @@ function showLu(){
   if(!luQueue.length) return;
   const lu=luQueue.shift();
   document.getElementById('lu-lv').textContent=lu.lv;
-  document.getElementById('lu-stats').innerHTML=`❤ HP+${lu.h}&nbsp;&nbsp;⚔ ATK+${lu.a}<br>🛡 DEF+${lu.d}&nbsp;&nbsp;💜 MP+${lu.m}`;
+  document.getElementById('lu-stats').innerHTML=`❤ HP+${lu.h}&nbsp;&nbsp;⚔ ATK+${lu.a}<br>🛡 DEF+${lu.d}&nbsp;&nbsp;💜 MP+${lu.m}${player.isVampire?'<br>🩸 최대혈기+10':''}`;
   document.getElementById('lu-overlay').style.display='flex';
 }
 function closeLu(){
@@ -896,15 +1089,25 @@ function getTarget(){
   return null;
 }
 
-// 스킬 예상 데미지 계산 (표시용)
 function calcPreview(sk, en){
   if(!en||en.hp<=0) return '?';
   const atk=effAtk();
   if(sk.type==='dmg') return calcDmg(atk*(sk.mult||1)+(sk.bonus||0), en.def);
   if(sk.type==='multi') return `${calcDmg(atk*(sk.mult||1),en.def)}×${sk.hits||2}`;
+  if(sk.type==='drain'){
+    const dmg=calcDmg(atk*(sk.mult||1), en.def);
+    return `DMG:${dmg} / 흡:${Math.floor(dmg*(sk.drainRatio||0.6))}`;
+  }
+  if(sk.type==='drain_all'){
+    const alive=enemies.filter(e=>e.hp>0);
+    return `전체 ${alive.length}마리`;
+  }
   if(sk.type==='all'){
     const alive=enemies.filter(e=>e.hp>0);
     return alive.map(e=>calcDmg(atk*(sk.mult||1),e.def)).join('+');
+  }
+  if(sk.type==='blood_heal'){
+    return `HP+${Math.floor(player.maxHp*(sk.healRatio||0.35))}`;
   }
   return '-';
 }
@@ -944,19 +1147,24 @@ function renderSkills(){
   player.skills.forEach((sk,i)=>{
     const onCd=sk.cd>0;
     const noMp=player.mp<sk.mp;
-    const ok=canAct()&&!onCd&&!noMp;
+    const noBlood=sk.bloodCost&&player.blood<sk.bloodCost;
+    const ok=canAct()&&!onCd&&!noMp&&!noBlood;
     const preview=calcPreview(sk,en);
+    const isVampSkill=['drain','drain_all','blood_burst','blood_heal'].includes(sk.type);
+    const bloodReady=isVampSkill&&ok&&sk.bloodCost&&player.blood>=sk.bloodCost;
+
     const btn=document.createElement('button');
-    btn.className='skill-btn';
+    btn.className='skill-btn'+(isVampSkill?' vampire-skill':'')+(bloodReady?' blood-skill-available':'');
     btn.disabled=!ok;
     btn.innerHTML=`
       <div class="sk-icon">${sk.icon}</div>
       <div class="sk-info">
         <div class="sk-name">${sk.name}</div>
-        <div class="sk-meta">${sk.desc} · MP${sk.mp}</div>
+        <div class="sk-meta">${sk.desc} · MP${sk.mp}${sk.bloodCost?` · 🩸${sk.bloodCost}`:''}</div>
         ${onCd?`<div class="sk-cd">쿨다운 ${sk.cd}턴</div>`:
           noMp?`<div class="sk-cd">MP 부족</div>`:
-          `<div class="sk-preview">예상 DMG: ${preview}</div>`}
+          noBlood?`<div class="sk-cd">🩸 혈기 부족 (${player.blood||0}/${sk.bloodCost})</div>`:
+          `<div class="sk-preview${isVampSkill?' blood-preview':''}">${preview}</div>`}
       </div>
     `;
     btn.onclick=()=>useSkill(i);
@@ -981,14 +1189,29 @@ function updateHud(){
   document.getElementById('bar-exp').style.width=p.exp/p.expNext*100+'%';
   document.getElementById('exp-val').textContent=p.exp+'/'+p.expNext;
 
-  // 기본 공격 미리보기
+  // 혈기 게이지 업데이트
+  if(p.isVampire){
+    document.getElementById('p-blood').textContent=p.blood;
+    document.getElementById('p-mblood').textContent=p.maxBlood;
+    document.getElementById('bar-blood').style.width=(p.blood/p.maxBlood*100)+'%';
+    // 혈기 게이지 글로우
+    const bt=document.getElementById('blood-track');
+    if(p.blood>=50) bt.classList.add('blood-ready');
+    else bt.classList.remove('blood-ready');
+  }
+
   const en=getTarget();
   if(en&&en.hp>0){
     const base=Math.floor(effAtk()*.8);
     const def=Math.max(0,en.def-2);
     const mn=Math.max(1,base-def-3), mx=Math.max(1,base-def+4);
     const mpReg=Math.max(1,Math.floor(p.maxMp*.06));
-    document.getElementById('basic-preview').textContent=`DMG: ${mn}~${mx} / MP+${mpReg}`;
+    if(p.isVampire){
+      const bg=Math.max(3,Math.floor(((mn+mx)/2)*0.2));
+      document.getElementById('basic-preview').textContent=`DMG: ${mn}~${mx} / 🩸+${bg}`;
+    } else {
+      document.getElementById('basic-preview').textContent=`DMG: ${mn}~${mx} / MP+${mpReg}`;
+    }
   } else {
     document.getElementById('basic-preview').textContent='DMG: -';
   }
@@ -1036,7 +1259,11 @@ function showScreen(name){
   document.getElementById('screen-'+name).classList.add('active');
 }
 
-function goTitle(){ showScreen('title'); }
+function goTitle(){
+  showScreen('title');
+  // 테마 초기화
+  applyVampireTheme(false);
+}
 </script>
 </body>
 </html>
