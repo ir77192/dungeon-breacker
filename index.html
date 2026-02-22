@@ -700,16 +700,11 @@ const CLASSES=[
   // ══ 뱀파이어 (신규) ══
   { name:'뱀파이어', icon:'🧛', hp:120,mp:80, atk:19,def:6, hpG:18,atkG:3,defG:1,mpG:10,
     isVampire:true,
-    // 혈기(blood) 시스템: 공격/피해 시 충전, 혈기 스킬로 소모
     maxBlood:100, blood:0,
     skills:[
-      // 흡혈 - 데미지의 20% 체력 흡수
       {name:'흡혈',       icon:'🩸',mp:12,cd:0,maxCd:2, type:'drain',   mult:2.0, drainRatio:0.4, desc:'ATK×2.0, 피해의 40% 흡수'},
-      // 혈기 폭발 - 혈기 50 소모, 강력한 광역
       {name:'혈기 폭발',  icon:'💥',mp:20,cd:0,maxCd:4, type:'blood_burst', mult:1.4, bloodCost:50, desc:'혈기50 소모 · 전체 ATK×1.4'},
-      // 박쥐 군단 - 전체 흡혈 10%
       {name:'박쥐 군단',  icon:'🦇',mp:24,cd:0,maxCd:4, type:'drain_all',mult:1.2, drainRatio:0.3, desc:'전체 ATK×1.2, 각 30% 흡수'},
-      // 불사의 피 - 혈기 100 소모, HP 60% 회복, 쿨타임 8턴
       {name:'불사의 피',  icon:'🌑',mp:0, cd:0,maxCd:8, type:'blood_heal', bloodCost:70, healRatio:0.60, desc:'혈기70 소모 · HP 60% 회복'},
     ]
   },
@@ -717,15 +712,14 @@ const CLASSES=[
   { name:'메가 나이트', icon:'🛡️', hp:280,mp:0, atk:8,def:12, hpG:35,atkG:1,defG:2,mpG:0,
     isMegaKnight:true,
     skills:[
-      // 모든 스킬 mp:0 — 마나 소모 없음
       {name:'철벽 강타',  icon:'🪨',mp:0,cd:0,maxCd:2, type:'dmg',  mult:1.8,          desc:'단일 ATK×1.8 · MP무소모'},
       {name:'대지 진동',  icon:'🌍',mp:0,cd:0,maxCd:3, type:'all',  mult:0.7,          desc:'전체 ATK×0.7 · MP무소모'},
       {name:'철갑 방어',  icon:'🏰',mp:0,cd:0,maxCd:3, type:'buff', buff:{defB:15,t:3}, desc:'DEF+15 (3턴) · MP무소모'},
       {name:'맹공격',     icon:'⚡',mp:0,cd:0,maxCd:4, type:'multi',mult:1.0,hits:3,   desc:'ATK×1.0 ×3타 · MP무소모'},
     ]
   },
-  // ══ 모기 (신규) ══
-  { name:'모기', icon:'🦟', hp:60,mp:50, atk:45,def:0, hpG:6,atkG:5,defG:0,mpG:6,
+  // ══ 모기 (소폭 버프: HP 60→85, hpG 6→9) ══
+  { name:'모기', icon:'🦟', hp:1,mp:50, atk:45,def:0, hpG:0,atkG:5,defG:0,mpG:6,
     isMosquito:true,
     skills:[
       {name:'흡혈 찌르기', icon:'🩸',mp:10,cd:0,maxCd:1, type:'dmg',  mult:2.5,          desc:'ATK×2.5 · 초고속 찌르기'},
@@ -818,14 +812,12 @@ function startGame(){
   equipped={weapon:null,armor:null,ring:null,amulet:null};
   owned=[]; buffs={}; luQueue=[];
 
-  // 뱀파이어/메가나이트 UI 테마 설정
   applyVampireTheme(player.isVampire);
   const pc=document.getElementById('player-card');
   if(player.isMegaKnight){ pc.classList.add('mk-theme'); pc.classList.remove('mosquito-theme'); }
   else if(player.isMosquito){ pc.classList.add('mosquito-theme'); pc.classList.remove('mk-theme'); }
   else { pc.classList.remove('mk-theme','mosquito-theme'); }
 
-  // 하드모드 적용 알림
   if(hardMode && selectedMode==='hard') addLog('🔥 하드모드 활성화! ATK·DEF +15% 적용 중','s');
 
   showScreen('battle');
@@ -841,7 +833,6 @@ function applyVampireTheme(isVampire){
   const mpBarWrap=document.getElementById('mp-bar-wrap');
   const mpPotBtn=document.getElementById('btn-mp-pot');
 
-  // 항상 초기화
   mpBarWrap.style.display='flex';
   if(mpPotBtn) mpPotBtn.style.display='block';
 
@@ -864,10 +855,9 @@ function applyVampireTheme(isVampire){
 function loadStage(){
   defending=false; buffs={}; busy=false; playerTurn=true; victoryPending=false; victoryDone=false;
 
-  // 무한 모드: 20스테이지 이후 랜덤 강적 조합 생성
   let cfg;
   if(selectedMode==='infinite' && stage >= FINAL_STAGE){
-    const infiniteRound = stage - FINAL_STAGE + 1; // 21스테이지부터 1, 2, 3...
+    const infiniteRound = stage - FINAL_STAGE + 1;
     const pool = infiniteRound<=3 ? [4,5,6] : infiniteRound<=6 ? [5,6,7,8] : [6,7,8,9];
     const count = infiniteRound<=2 ? 2 : infiniteRound<=5 ? 3 : 3;
     cfg = Array.from({length:count}, ()=> pool[Math.floor(Math.random()*pool.length)]);
@@ -908,7 +898,7 @@ function loadStage(){
   renderAll();
 }
 
-// ══════════════ 혈기 시스템 (뱀파이어) ══════════════
+// ══════════════ 혈기 시스템 ══════════════
 function gainBlood(amount){
   if(!player.isVampire) return;
   player.blood=Math.min(player.maxBlood, player.blood+amount);
@@ -923,7 +913,6 @@ function spendBlood(amount){
   return true;
 }
 
-// 피해를 입을 때 혈기 소량 충전 (고통에서 힘을 얻는 뱀파이어)
 function onPlayerHit(dmg){
   if(player.isVampire){
     const gain=Math.max(3, Math.floor(dmg*0.3));
@@ -932,17 +921,14 @@ function onPlayerHit(dmg){
   }
 }
 
-// 흡혈 처리
 function drainHeal(dmg, ratio){
   const heal=Math.max(1, Math.floor(dmg*ratio));
   player.hp=Math.min(player.maxHp, player.hp+heal);
-  // 혈기도 충전
   gainBlood(Math.floor(heal*0.4));
   updateHud();
   return heal;
 }
 
-// 흡혈 플로팅 텍스트 (플레이어 카드 위)
 function showDrainFloat(heal){
   const pc=document.getElementById('player-card');
   const rect=pc.getBoundingClientRect();
@@ -963,7 +949,6 @@ function doBasic(){
   const mpReg=Math.max(1,Math.floor(player.maxMp*.06 * effMpRegMult()));
   dealDmg(en, dmg);
   player.mp=Math.min(player.maxMp,player.mp+mpReg);
-  // 뱀파이어: 기본 공격에도 혈기 소량 충전
   if(player.isVampire){
     const bg=Math.max(1, Math.floor(dmg*0.1));
     gainBlood(bg);
@@ -1009,7 +994,6 @@ function useSkill(idx){
   const sk=player.skills[idx];
   if(sk.cd>0||player.mp<sk.mp) return;
 
-  // 혈기 소모 스킬 체크
   if(sk.bloodCost&&(!player.isVampire||player.blood<sk.bloodCost)){
     addLog(`🩸 혈기 부족! (필요: ${sk.bloodCost} / 보유: ${player.blood||0})`,'v');
     return;
@@ -1018,9 +1002,7 @@ function useSkill(idx){
   player.mp=Math.max(0,player.mp-sk.mp);
   sk.cd=sk.maxCd;
 
-  // ── 뱀파이어 전용 스킬 ──
   if(sk.type==='drain'){
-    // 흡혈: 단일 공격 + HP 흡수 + 혈기 충전
     const en=getTarget(); if(!en) return;
     const dmg=calcDmg(effAtk()*(sk.mult||1), en.def);
     dealDmg(en, dmg);
@@ -1030,7 +1012,6 @@ function useSkill(idx){
     addLog(`🩸 ${sk.name} → ${en.name} ${dmg} 데미지 / HP +${heal} 흡수!`,'v');
 
   } else if(sk.type==='drain_all'){
-    // 박쥐 군단: 전체 공격 + 각각 흡수
     let totalDmg=0, totalHeal=0;
     enemies.forEach(en=>{
       if(en.hp<=0) return;
@@ -1044,7 +1025,6 @@ function useSkill(idx){
     addLog(`🦇 ${sk.name} → 전체 ${totalDmg} 데미지 / HP +${totalHeal} 흡수!`,'v');
 
   } else if(sk.type==='blood_burst'){
-    // 혈기 폭발: 혈기 소모 + 전체 강력 공격
     spendBlood(sk.bloodCost);
     let tot=0;
     enemies.forEach(en=>{
@@ -1055,7 +1035,6 @@ function useSkill(idx){
     addLog(`💥 ${sk.name} → 혈기 ${sk.bloodCost} 소모! 전체 ${tot} 데미지!`,'v');
 
   } else if(sk.type==='blood_heal'){
-    // 불사의 피: 혈기 소모 + 대규모 HP 회복
     spendBlood(sk.bloodCost);
     const heal=Math.floor(player.maxHp*(sk.healRatio||0.35));
     player.hp=Math.min(player.maxHp, player.hp+heal);
@@ -1063,7 +1042,6 @@ function useSkill(idx){
     updateHud();
     addLog(`🌑 ${sk.name} → 혈기 ${sk.bloodCost} 소모! HP +${heal} 회복!`,'v');
 
-  // ── 기존 스킬 ──
   } else if(sk.type==='dmg'||sk.type==='multi'){
     const en=getTarget(); if(!en) return;
     const hits=sk.hits||1;
@@ -1164,7 +1142,6 @@ function endPlayerTurn(){
       if(buffs.dodge&&Math.random()<buffs.dodge){
         addLog(`💨 ${en.name} 공격 회피!`,'p'); return;
       }
-      // 모기: 99% 확률 회피
       if(player.isMosquito&&Math.random()<0.99){
         addLog(`🦟 모기가 재빠르게 회피했다! (1% 찬스 실패)`,'p'); return;
       }
@@ -1173,7 +1150,6 @@ function endPlayerTurn(){
       player.hp=Math.max(0,player.hp-dmg);
       addLog(`👊 ${en.name} → ${dmg} 데미지`,'e');
 
-      // 뱀파이어: 피격 시 혈기 충전
       onPlayerHit(dmg);
 
       const pc=document.querySelector('.player-card');
@@ -1233,7 +1209,6 @@ function showEnding(){
     ${bloodInfo}
     <div class="r-row"><span>💰 총 골드</span><span class="r-val">${gold}G</span></div>
   `;
-  // 최초 클리어 시 해제 알림 표시
   document.getElementById('hardmode-unlock-notice').style.display = firstClear ? 'block' : 'none';
   showScreen('ending');
 }
@@ -1366,10 +1341,9 @@ function gainExp(exp){
     player.lv++;
     player.expNext=Math.floor(player.expNext*1.4);
     const h=player.hpG,a=player.atkG,d=player.defG,m=player.mpG;
-    player.maxHp+=h; player.hp=Math.min(player.maxHp,player.hp+Math.floor(h/2));
+    if(!player.isMosquito){ player.maxHp+=h; player.hp=Math.min(player.maxHp,player.hp+Math.floor(h/2)); }
     player.maxMp+=m; player.mp=Math.min(player.maxMp,player.mp+Math.floor(m/2));
     player.atk+=a; player.def+=d;
-    // 뱀파이어 레벨업 시 최대 혈기 증가
     if(player.isVampire){
       player.maxBlood+=10;
     }
@@ -1394,9 +1368,7 @@ function closeLu(){
 // ══════════════ 유틸 ══════════════
 function effAtk(){ const base=player.atk+(buffs.atkB||0)+(equipped.weapon?.atk||0)+(equipped.ring?.atk||0)+(equipped.amulet?.atk||0); return (hardMode&&selectedMode==='hard')?Math.floor(base*1.15):base; }
 function effDef(){ if(player.isMosquito) return 0; const base=player.def+(buffs.defB||0)+(equipped.armor?.def||0)+(equipped.ring?.def||0)+(equipped.amulet?.def||0); return (hardMode&&selectedMode==='hard')?Math.floor(base*1.15):base; }
-// MP 회복량 배율 (마나 결정 장착 시 +60%)
 function effMpRegMult(){ return 1+(equipped.mpreg?.mpReg||0); }
-// 최대 MP 보너스 (마나 수정구 장착 시 +40)
 function effMaxMpBonus(){ return equipped.mpmax?.mpMax||0; }
 function calcDmg(base,def){ return Math.max(1,Math.floor(base-Math.max(0,def-2)+rnd(-3,4))); }
 function rnd(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
@@ -1512,12 +1484,10 @@ function updateHud(){
   document.getElementById('bar-exp').style.width=p.exp/p.expNext*100+'%';
   document.getElementById('exp-val').textContent=p.exp+'/'+p.expNext;
 
-  // 혈기 게이지 업데이트
   if(p.isVampire){
     document.getElementById('p-blood').textContent=p.blood;
     document.getElementById('p-mblood').textContent=p.maxBlood;
     document.getElementById('bar-blood').style.width=(p.blood/p.maxBlood*100)+'%';
-    // 혈기 게이지 글로우
     const bt=document.getElementById('blood-track');
     if(p.blood>=50) bt.classList.add('blood-ready');
     else bt.classList.remove('blood-ready');
@@ -1586,12 +1556,11 @@ function showScreen(name){
 function goTitle(){
   showScreen('title');
   applyVampireTheme(false);
-  // 모드 선택 UI 갱신
   updateModeUI();
 }
 
 function selectMode(mode){
-  if(mode==='hard' && !hardMode) return; // 잠김
+  if(mode==='hard' && !hardMode) return;
   selectedMode=mode;
   updateModeUI();
 }
@@ -1602,7 +1571,6 @@ function updateModeUI(){
   const infiniteCard=document.getElementById('mode-infinite');
   if(!normalCard||!hardCard||!infiniteCard) return;
 
-  // 하드 모드 잠금 여부
   if(hardMode){
     hardCard.classList.remove('locked');
     document.getElementById('hard-desc').textContent='ATK·DEF +15% 강화된 스탯으로 도전!';
@@ -1611,7 +1579,6 @@ function updateModeUI(){
     document.getElementById('hard-desc').textContent='20스테이지 클리어 후 해제됩니다';
   }
 
-  // 선택 상태 리셋 후 적용
   normalCard.className='mode-card'+(selectedMode==='normal'?' sel-normal':'');
   hardCard.className='mode-card'+(hardMode?(selectedMode==='hard'?' sel-hard':''):'locked');
   infiniteCard.className='mode-card'+(selectedMode==='infinite'?' sel-infinite':'');
