@@ -364,7 +364,85 @@ body{
 .cc-name{font-size:12px;font-weight:700;margin-bottom:4px;}
 .cc-stat{font-size:10px;color:var(--muted);line-height:1.9;}
 
-/* ══ 치트 코드 창 ══ */
+/* ══ 캐릭터 기록 모달 ══ */
+.record-overlay{
+  position:fixed;inset:0;background:#000b;
+  display:none;align-items:center;justify-content:center;z-index:200;
+}
+.record-box{
+  background:linear-gradient(135deg,#0e0e1e,#12121e);
+  border:2px solid var(--gold);border-radius:16px;
+  padding:24px 28px;max-width:280px;width:90%;
+  box-shadow:0 0 40px #c9a84c33;
+  animation:popIn .25s ease forwards;
+}
+.record-box.vampire-rec{border-color:var(--blood);box-shadow:0 0 40px #cc224433;}
+.record-box.mk-rec{border-color:#4a9eff;box-shadow:0 0 40px #4a9eff33;}
+.record-box.mosquito-rec{border-color:#88cc44;box-shadow:0 0 40px #88cc4433;}
+.record-box.necro-rec{border-color:#50e0a0;box-shadow:0 0 40px #50e0a033;}
+.record-box.god-rec{border-color:#ffd700;box-shadow:0 0 40px #ffd70055;}
+.rec-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.rec-avatar{font-size:32px;}
+.rec-title{font-size:16px;font-weight:900;color:var(--gold);}
+.rec-subtitle{font-size:11px;color:var(--muted);}
+.rec-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #1a1a2a;}
+.rec-row:last-of-type{border-bottom:none;}
+.rec-label{color:var(--muted);}
+.rec-val{color:var(--gold);font-weight:700;}
+.rec-empty{text-align:center;color:var(--muted);font-size:12px;padding:16px 0;line-height:2;}
+.rec-close{width:100%;margin-top:14px;}
+
+/* ══ 도전과제 ══ */
+.ach-screen{padding-top:8px;}
+.ach-title{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:4px;}
+.ach-subtitle{font-size:11px;color:var(--muted);margin-bottom:14px;}
+.ach-progress-bar{height:6px;background:#1a1a28;border-radius:3px;overflow:hidden;margin-bottom:14px;}
+.ach-progress-fill{height:100%;background:linear-gradient(90deg,#5a2080,var(--purple));border-radius:3px;transition:width .4s;}
+.ach-progress-label{font-size:11px;color:var(--muted);text-align:right;margin-top:3px;margin-bottom:10px;}
+.ach-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.ach-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;
+  display:flex;align-items:center;gap:12px;transition:.2s;
+}
+.ach-card.unlocked{border-color:#5a3a00;background:#130e00;}
+.ach-card.unlocked.rare{border-color:#1a2a5a;background:#08091a;}
+.ach-card.unlocked.epic{border-color:#3a1a5a;background:#0e0818;}
+.ach-card.unlocked.legendary{border-color:#5a4a00;background:#100d00;box-shadow:0 0 12px #c9a84c22;}
+.ach-icon{font-size:28px;flex-shrink:0;width:36px;text-align:center;}
+.ach-icon.locked{filter:grayscale(1);opacity:.3;}
+.ach-info{flex:1;min-width:0;}
+.ach-name{font-size:13px;font-weight:700;color:var(--text);}
+.ach-card.unlocked .ach-name{color:var(--gold);}
+.ach-card.unlocked.rare .ach-name{color:#6aabff;}
+.ach-card.unlocked.epic .ach-name{color:#c060ff;}
+.ach-card.unlocked.legendary .ach-name{color:#ffd700;}
+.ach-desc{font-size:11px;color:var(--muted);margin-top:2px;}
+.ach-badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;flex-shrink:0;}
+.ach-badge.common{background:#2a2a1a;color:#a08020;}
+.ach-badge.rare{background:#1a2040;color:#4a80ff;}
+.ach-badge.epic{background:#2a1040;color:#a040ff;}
+.ach-badge.legendary{background:#3a2a00;color:#ffd700;}
+.ach-badge.locked-badge{background:#1a1a2a;color:#444;}
+.ach-date{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* 도전과제 달성 토스트 */
+@keyframes slideUp{0%{transform:translateY(60px);opacity:0}15%{transform:translateY(0);opacity:1}85%{transform:translateY(0);opacity:1}100%{transform:translateY(60px);opacity:0}}
+.ach-toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#1a1000,#2a1a00);
+  border:2px solid var(--gold);border-radius:12px;
+  padding:10px 18px;display:flex;align-items:center;gap:10px;
+  z-index:500;pointer-events:none;white-space:nowrap;
+  animation:slideUp 3s ease forwards;
+  box-shadow:0 4px 20px #c9a84c44;
+}
+.ach-toast-icon{font-size:22px;}
+.ach-toast-text{font-size:12px;}
+.ach-toast-title{font-weight:900;color:var(--gold);}
+.ach-toast-name{color:var(--text);}
+
+
 .cheat-panel{
   background:#0a0810;border:2px solid #2a1a4a;
   border-radius:12px;padding:14px;margin-top:12px;
@@ -453,6 +531,21 @@ body{
 <body>
 <div id="app">
 
+<!-- 캐릭터 기록 모달 -->
+<div class="record-overlay" id="record-overlay" onclick="closeRecord()">
+  <div class="record-box" id="record-box" onclick="event.stopPropagation()">
+    <div class="rec-header">
+      <div class="rec-avatar" id="rec-avatar"></div>
+      <div>
+        <div class="rec-title" id="rec-title"></div>
+        <div class="rec-subtitle">전적 기록</div>
+      </div>
+    </div>
+    <div id="rec-body"></div>
+    <button class="btn btn-gray rec-close" onclick="closeRecord()">닫기</button>
+  </div>
+</div>
+
 <!-- 레벨업 오버레이 -->
 <div class="overlay" id="lu-overlay">
   <div class="overlay-box">
@@ -491,6 +584,7 @@ body{
   <div style="display:flex;gap:8px;">
     <button class="btn btn-gold" style="flex:1;padding:14px;font-size:15px" onclick="startGame()">모험 시작!</button>
     <button class="btn btn-gray" style="padding:14px 16px;font-size:13px" onclick="showScreen('tutorial')">📖 도움말</button>
+    <button class="btn btn-gray" style="padding:14px 16px;font-size:13px" onclick="showAchievements()">🏅 업적</button>
   </div>
 
   <!-- 치트 코드 패널 -->
@@ -508,6 +602,17 @@ body{
       <button class="cheat-submit" onclick="submitCheat()">▶ 실행</button>
     </div>
     <div class="cheat-result" id="cheat-result"></div>
+  </div>
+</div>
+
+<!-- 도전과제 -->
+<div class="screen" id="screen-achievements">
+  <div class="ach-screen">
+    <div class="ach-title">🏅 도전과제</div>
+    <div class="ach-subtitle" id="ach-subtitle">달성: 0 / 0</div>
+    <div class="ach-progress-bar"><div class="ach-progress-fill" id="ach-progress-fill" style="width:0%"></div></div>
+    <div class="ach-grid" id="ach-grid"></div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
 </div>
 
@@ -983,7 +1088,205 @@ let buffs={};
 let defending=false;
 let playerTurn=true, busy=false;
 let luQueue=[];
-let zombies=[]; // 네크로맨서 좀비 배열
+let zombies=[];
+let usedPotionThisRun=false; // 네크로맨서 좀비 배열
+
+// ══════════════ 도전과제 시스템 ══════════════
+const ACHIEVEMENTS = [
+  // ── 입문 ──
+  { id:'first_clear',    icon:'🎉', name:'첫 번째 클리어',     desc:'처음으로 20스테이지를 클리어하세요.',        tier:'common',    check:()=> getTotalClears()>=1 },
+  { id:'first_blood',    icon:'⚔️', name:'첫 번째 사냥',       desc:'처음으로 적을 처치하세요.',                 tier:'common',    check:()=> getGlobalStat('kills')>=1 },
+  { id:'stage10',        icon:'🗺️', name:'중간 지점',          desc:'스테이지 10에 도달하세요.',                  tier:'common',    check:()=> getGlobalStat('maxStage')>=10 },
+  { id:'lv10',           icon:'⭐', name:'숙련자',             desc:'레벨 10에 도달하세요.',                      tier:'common',    check:()=> getGlobalStat('maxLv')>=10 },
+  // ── 희귀 ──
+  { id:'all_class',      icon:'🎭', name:'직업 탐험가',        desc:'모든 기본 직업으로 한 번씩 플레이하세요.',    tier:'rare',      check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서'].every(n=>getClassRecord(n)) },
+  { id:'hard_clear',     icon:'🔥', name:'하드 클리어',        desc:'하드 모드를 클리어하세요.',                   tier:'rare',      check:()=> getGlobalStat('hardClears')>=1 },
+  { id:'no_potion',      icon:'🚫', name:'포션 금지',          desc:'포션을 한 번도 쓰지 않고 스테이지 10 돌파.',  tier:'rare',      check:()=> getGlobalStat('noPotionStage10')>=1 },
+  { id:'zombie5',        icon:'🧟', name:'언데드 군단',        desc:'좀비를 5마리 이상 동시에 유지하세요.',         tier:'rare',      check:()=> getGlobalStat('maxZombies')>=5 },
+  { id:'mosquito_s5',    icon:'🦟', name:'살아있다!',          desc:'모기로 스테이지 5를 클리어하세요.',            tier:'rare',      check:()=> getClassStat('모기','bestStage')>=5 },
+  { id:'lv20',           icon:'💫', name:'전설의 경지',        desc:'레벨 20에 도달하세요.',                       tier:'rare',      check:()=> getGlobalStat('maxLv')>=20 },
+  // ── 에픽 ──
+  { id:'infinite_25',    icon:'♾️', name:'무한의 도전자',      desc:'무한 모드에서 스테이지 25에 도달하세요.',      tier:'epic',      check:()=> getGlobalStat('infiniteMaxStage')>=25 },
+  { id:'hard_nodeath',   icon:'🛡️', name:'무결의 기사',        desc:'하드 모드를 포션 없이 클리어하세요.',           tier:'epic',      check:()=> getGlobalStat('hardNoPotionClear')>=1 },
+  { id:'mosquito_clear', icon:'🦟', name:'1%의 기적',          desc:'모기로 20스테이지를 클리어하세요.',            tier:'epic',      check:()=> getClassStat('모기','clears')>=1 },
+  { id:'vampire_drain',  icon:'🩸', name:'피의 군주',          desc:'뱀파이어로 총 흡혈량 1000 달성.',              tier:'epic',      check:()=> getGlobalStat('totalDrain')>=1000 },
+  { id:'all_equip',      icon:'⚙️', name:'완전 무장',          desc:'모든 장비 슬롯을 채운 채로 스테이지 클리어.',  tier:'epic',      check:()=> getGlobalStat('fullEquipClear')>=1 },
+  // ── 전설 ──
+  { id:'true_god',       icon:'✨', name:'깨달은 자',          desc:'치트 코드로 신 캐릭터를 해금하세요.',          tier:'legendary', check:()=> godUnlocked },
+  { id:'all_clear',      icon:'🐉', name:'던전 브레이커',      desc:'모든 직업(신 제외)으로 20스테이지를 클리어하세요.', tier:'legendary', check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서'].every(n=>getClassStat(n,'clears')>=1) },
+  { id:'play30',         icon:'🎮', name:'진짜 플레이어',      desc:'총 30회 이상 플레이하세요.',                   tier:'legendary', check:()=> getGlobalStat('totalRuns')>=30 },
+  { id:'infinite_50',    icon:'🌌', name:'무한의 지배자',      desc:'무한 모드에서 스테이지 50에 도달하세요.',      tier:'legendary', check:()=> getGlobalStat('infiniteMaxStage')>=50 },
+];
+
+const TIER_LABEL = { common:'일반', rare:'희귀', epic:'에픽', legendary:'전설' };
+
+function getAchievementKey(id){ return 'db_ach_'+id; }
+function isAchUnlocked(id){ return !!localStorage.getItem(getAchievementKey(id)); }
+function getAchUnlockDate(id){ return localStorage.getItem(getAchievementKey(id))||''; }
+function unlockAchievement(id){
+  if(isAchUnlocked(id)) return false;
+  const now = new Date();
+  const label = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
+  localStorage.setItem(getAchievementKey(id), label);
+  return true;
+}
+
+// 글로벌 통계
+function getGlobalStat(key){ return parseInt(localStorage.getItem('db_gstat_'+key)||'0'); }
+function setGlobalStat(key,val){ localStorage.setItem('db_gstat_'+key, val); }
+function incGlobalStat(key,amt=1){ setGlobalStat(key, getGlobalStat(key)+amt); }
+
+// 캐릭터 통계 (기존 record 재활용)
+function getClassRecord(name){ return JSON.parse(localStorage.getItem('db_rec_'+name)||'null'); }
+function getClassStat(name,key){ const r=getClassRecord(name); return r?r[key]||0:0; }
+function getTotalClears(){ return CLASSES.map(c=>getClassStat(c.name,'clears')).reduce((a,b)=>a+b,0); }
+
+// 도전과제 체크 & 달성 토스트
+function checkAchievements(){
+  ACHIEVEMENTS.forEach(ach=>{
+    if(isAchUnlocked(ach.id)) return;
+    try {
+      if(ach.check()){
+        unlockAchievement(ach.id);
+        showAchToast(ach);
+      }
+    } catch(e){}
+  });
+}
+
+function showAchToast(ach){
+  const el=document.createElement('div');
+  el.className='ach-toast';
+  el.innerHTML=`<div class="ach-toast-icon">${ach.icon}</div>
+    <div class="ach-toast-text">
+      <div class="ach-toast-title">🏅 도전과제 달성!</div>
+      <div class="ach-toast-name">${ach.name}</div>
+    </div>`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(), 3100);
+}
+
+function showAchievements(){
+  const unlocked = ACHIEVEMENTS.filter(a=>isAchUnlocked(a.id)).length;
+  const total = ACHIEVEMENTS.length;
+  document.getElementById('ach-subtitle').textContent=`달성: ${unlocked} / ${total}`;
+  document.getElementById('ach-progress-fill').style.width=(unlocked/total*100)+'%';
+  const grid=document.getElementById('ach-grid');
+  grid.innerHTML='';
+  ACHIEVEMENTS.forEach(ach=>{
+    const done=isAchUnlocked(ach.id);
+    const date=getAchUnlockDate(ach.id);
+    const d=document.createElement('div');
+    d.className='ach-card'+(done?' unlocked '+ach.tier:'');
+    d.innerHTML=`
+      <div class="ach-icon${done?'':' locked'}">${ach.icon}</div>
+      <div class="ach-info">
+        <div class="ach-name">${done?ach.name:'???'}</div>
+        <div class="ach-desc">${done?ach.desc:'아직 달성하지 못한 도전과제입니다.'}</div>
+        ${done&&date?`<div class="ach-date">🗓 ${date} 달성</div>`:''}
+      </div>
+      <div class="ach-badge ${done?ach.tier:'locked-badge'}">${done?TIER_LABEL[ach.tier]:'🔒'}</div>
+    `;
+    grid.appendChild(d);
+  });
+  showScreen('achievements');
+}
+
+
+function getRecordKey(className){ return 'db_rec_'+className; }
+
+function saveRecord(isVictory){
+  const key = getRecordKey(player.name);
+  const prev = JSON.parse(localStorage.getItem(key)||'null');
+  const cur = {
+    bestStage: stage+1,
+    bestLv: player.lv,
+    totalRuns: 1,
+    clears: isVictory ? 1 : 0,
+    bestMode: selectedMode,
+    lastMode: selectedMode,
+  };
+  if(prev){
+    cur.totalRuns = prev.totalRuns + 1;
+    cur.clears = prev.clears + (isVictory ? 1 : 0);
+    cur.bestStage = Math.max(prev.bestStage, stage+1);
+    cur.bestLv = Math.max(prev.bestLv, player.lv);
+    cur.bestMode = prev.bestMode;
+    const modeScore = m => m==='hard'?3:m==='infinite'?2:1;
+    if(modeScore(selectedMode) > modeScore(prev.bestMode)) cur.bestMode = selectedMode;
+    else if(modeScore(selectedMode)===modeScore(prev.bestMode) && stage+1 >= prev.bestStage) cur.bestMode = selectedMode;
+  }
+  localStorage.setItem(key, JSON.stringify(cur));
+
+  // ── 글로벌 통계 업데이트 ──
+  incGlobalStat('totalRuns');
+  const prevMax = getGlobalStat('maxStage');
+  if(stage+1 > prevMax) setGlobalStat('maxStage', stage+1);
+  const prevLv = getGlobalStat('maxLv');
+  if(player.lv > prevLv) setGlobalStat('maxLv', player.lv);
+  if(isVictory && selectedMode==='hard') incGlobalStat('hardClears');
+  if(isVictory && selectedMode==='infinite'){
+    const prevInf = getGlobalStat('infiniteMaxStage');
+    if(stage+1 > prevInf) setGlobalStat('infiniteMaxStage', stage+1);
+  }
+  if(selectedMode==='infinite'){
+    const prevInf = getGlobalStat('infiniteMaxStage');
+    if(stage+1 > prevInf) setGlobalStat('infiniteMaxStage', stage+1);
+  }
+  // 포션 미사용 스테이지 10 돌파
+  if(stage+1>=10 && !usedPotionThisRun) incGlobalStat('noPotionStage10');
+  // 하드모드 포션 없이 클리어
+  if(isVictory && selectedMode==='hard' && !usedPotionThisRun) incGlobalStat('hardNoPotionClear');
+  // 최대 좀비 수
+  if(player.isNecro){
+    const alive=zombies.filter(z=>z.hp>0).length;
+    const prevZ=getGlobalStat('maxZombies');
+    if(alive>prevZ) setGlobalStat('maxZombies',alive);
+  }
+  // 전체 장비 착용 클리어
+  if(isVictory){
+    const slots=['weapon','armor','ring','amulet'];
+    if(slots.every(s=>equipped[s])) incGlobalStat('fullEquipClear');
+  }
+
+  // ── 도전과제 체크 ──
+  checkAchievements();
+}
+
+function showRecord(classIdx){
+  const c = CLASSES[classIdx];
+  const key = getRecordKey(c.name);
+  const rec = JSON.parse(localStorage.getItem(key)||'null');
+
+  const box = document.getElementById('record-box');
+  box.className = 'record-box'+(c.isVampire?' vampire-rec':c.isMegaKnight?' mk-rec':c.isMosquito?' mosquito-rec':c.isNecro?' necro-rec':c.isGod?' god-rec':'');
+
+  document.getElementById('rec-avatar').textContent = c.icon;
+  document.getElementById('rec-title').textContent = c.name;
+
+  const body = document.getElementById('rec-body');
+  if(!rec){
+    body.innerHTML=`<div class="rec-empty">📭 아직 기록이 없습니다.<br>이 직업으로 게임을 플레이해보세요!</div>`;
+  } else {
+    const modeLabel = rec.bestMode==='hard'?'🔥 하드':rec.bestMode==='infinite'?'♾️ 무한':'⚔️ 일반';
+    const lastLabel = rec.lastMode==='hard'?'🔥 하드':rec.lastMode==='infinite'?'♾️ 무한':'⚔️ 일반';
+    const clearRate = rec.totalRuns>0 ? Math.round(rec.clears/rec.totalRuns*100) : 0;
+    body.innerHTML=`
+      <div class="rec-row"><span class="rec-label">🏆 최고 스테이지</span><span class="rec-val">STAGE ${rec.bestStage}</span></div>
+      <div class="rec-row"><span class="rec-label">⭐ 최고 레벨</span><span class="rec-val">Lv ${rec.bestLv}</span></div>
+      <div class="rec-row"><span class="rec-label">🎮 최고 기록 모드</span><span class="rec-val">${modeLabel}</span></div>
+      <div class="rec-row"><span class="rec-label">🔄 총 플레이</span><span class="rec-val">${rec.totalRuns}회</span></div>
+      <div class="rec-row"><span class="rec-label">🎉 클리어 횟수</span><span class="rec-val">${rec.clears}회</span></div>
+      <div class="rec-row"><span class="rec-label">📊 클리어율</span><span class="rec-val">${clearRate}%</span></div>
+      <div class="rec-row"><span class="rec-label">📅 마지막 모드</span><span class="rec-val">${lastLabel}</span></div>
+    `;
+  }
+  document.getElementById('record-overlay').style.display='flex';
+}
+
+function closeRecord(){
+  document.getElementById('record-overlay').style.display='none';
+}
 
 // ══════════════ 치트 코드 상태 ══════════════
 let godUnlocked = localStorage.getItem('db_godUnlocked')==='true';
@@ -1000,6 +1303,11 @@ let cheatAttempts = 0;
       <div class="cls-name">${c.name}</div>
       <div class="cls-desc">HP ${c.isGod?'∞':c.hp}  ATK ${c.isGod?'∞':c.atk}  DEF ${c.isGod?'∞':c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:c.isMegaKnight?'<br>🛡 MP 소모 없음':c.isMosquito?'<br>💨 99% 회피 · DEF 고정 0':c.isNecro?`<br>MP ${c.mp} · 🧟 좀비 소환`:c.isGod?'<br>⚡ 불멸 · 전능 · 무한':`<br>MP ${c.mp}`}</div>`;
     d.onclick=()=>{
+      if(classIdx===i && document.querySelectorAll('.cls-card')[i]?.classList.contains('sel')){
+        // 이미 선택된 카드를 다시 클릭 → 기록 표시
+        showRecord(i);
+        return;
+      }
       classIdx=i;
       document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
       d.classList.add('sel');
@@ -1031,6 +1339,9 @@ function submitCheat(){
         <div class="cls-name">${c.name}</div>
         <div class="cls-desc">HP ∞  ATK ∞  DEF ∞<br>⚡ 불멸 · 전능 · 무한</div>`;
       d.onclick=()=>{
+        if(classIdx===idx && d.classList.contains('sel')){
+          showRecord(idx); return;
+        }
         classIdx=idx;
         document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
         d.classList.add('sel');
@@ -1069,7 +1380,7 @@ function startGame(){
   };
   gold=0; hpPots=3; mpPots=2; stage=0;
   equipped={weapon:null,armor:null,ring:null,amulet:null};
-  owned=[]; buffs={}; luQueue=[]; zombies=[];
+  owned=[]; buffs={}; luQueue=[]; zombies=[]; usedPotionThisRun=false;
 
   applyVampireTheme(player.isVampire);
   const pc=document.getElementById('player-card');
@@ -1189,6 +1500,7 @@ function drainHeal(dmg, ratio){
   const heal=Math.max(1, Math.floor(dmg*ratio));
   player.hp=Math.min(player.maxHp, player.hp+heal);
   gainBlood(Math.floor(heal*0.4));
+  incGlobalStat('totalDrain', heal);
   updateHud();
   return heal;
 }
@@ -1234,6 +1546,7 @@ function doDefend(){
 
 function useHpPot(){
   if(!canAct()||hpPots<=0) return;
+  usedPotionThisRun=true;
   const ratio = player.isMegaKnight ? 0.2 : 0.55;
   const h=Math.floor(player.maxHp*ratio);
   player.hp=Math.min(player.maxHp,player.hp+h);
@@ -1245,6 +1558,7 @@ function useHpPot(){
 
 function useMpPot(){
   if(!canAct()||mpPots<=0) return;
+  usedPotionThisRun=true;
   const h=Math.floor(player.maxMp*.5 * effMpRegMult());
   player.mp=Math.min(player.maxMp+effMaxMpBonus(),player.mp+h);
   mpPots--;
@@ -1386,9 +1700,8 @@ function onKill(en){
   addLog(`💥 ${en.name} 처치!`,'s');
   gold+=en.gold;
   gainExp(en.exp);
-  if(enemies.every(e=>e.hp<=0)){
-    victoryPending=true;
-  }
+  incGlobalStat('kills');
+  if(enemies.every(e=>e.hp<=0)) victoryPending=true;
 }
 
 let victoryPending=false;
@@ -1507,6 +1820,8 @@ function onVictory(){
   victoryDone=true;
   busy=true; playerTurn=false;
   addLog(`🎉 STAGE ${stage+1} 클리어!`,'s');
+  const isFinalClear = selectedMode!=='infinite' && stage===FINAL_STAGE;
+  saveRecord(isFinalClear);
   if(selectedMode==='infinite'){
     addLog(`♾️ 최고 기록: ${stage+1} 스테이지`,'s');
     setTimeout(showShop, 500);
@@ -1537,6 +1852,7 @@ function showEnding(){
 
 function onDefeat(){
   busy=true; playerTurn=false;
+  saveRecord(false);
   const isInfinite = selectedMode==='infinite';
   document.getElementById('r-msg').textContent= isInfinite
     ? `♾️ 무한 모드 — STAGE ${stage+1}에서 쓰러졌습니다!`
@@ -1739,6 +2055,10 @@ function renderZombies(){
   const z=document.getElementById('zombie-zone');
   if(!z) return;
   z.innerHTML='';
+  // 최대 좀비 통계 추적
+  const alive=zombies.filter(zb=>zb.hp>0).length;
+  const prevZ=getGlobalStat('maxZombies');
+  if(alive>prevZ) setGlobalStat('maxZombies',alive);
   zombies.forEach(zb=>{
     const d=document.createElement('div');
     d.className='zombie-card'+(zb.hp<=0?' zombie-dead':'');
