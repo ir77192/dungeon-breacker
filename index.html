@@ -363,6 +363,91 @@ body{
 .cc-card{background:#0a0a14;border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
 .cc-name{font-size:12px;font-weight:700;margin-bottom:4px;}
 .cc-stat{font-size:10px;color:var(--muted);line-height:1.9;}
+
+/* ══ 치트 코드 창 ══ */
+.cheat-panel{
+  background:#0a0810;border:2px solid #2a1a4a;
+  border-radius:12px;padding:14px;margin-top:12px;
+  font-family:'Courier New',monospace;
+}
+.cheat-header{
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  border-bottom:1px solid #2a1a4a;padding-bottom:8px;
+}
+.cheat-header-dots{display:flex;gap:5px;}
+.cheat-dot{width:10px;height:10px;border-radius:50%;}
+.cheat-title{font-size:11px;color:#6a5a9a;letter-spacing:2px;flex:1;text-align:center;}
+.cheat-question{
+  background:#06040e;border:1px solid #1a0a3a;border-radius:8px;
+  padding:10px 12px;margin-bottom:8px;
+}
+.cheat-q-label{font-size:10px;color:#5a4a7a;margin-bottom:4px;letter-spacing:1px;}
+.cheat-q-text{font-size:12px;color:#b090e0;font-weight:700;}
+.cheat-input-row{display:flex;gap:6px;}
+.cheat-input{
+  flex:1;background:#08060f;border:1px solid #2a1a4a;border-radius:7px;
+  padding:8px 12px;color:#d0b0ff;font-family:'Courier New',monospace;
+  font-size:13px;outline:none;transition:.2s;
+}
+.cheat-input:focus{border-color:#7a4aff;box-shadow:0 0 8px #7a4aff33;}
+.cheat-input::placeholder{color:#3a2a5a;}
+.cheat-submit{
+  background:linear-gradient(135deg,#3a1a8a,#7a4aff);color:#fff;
+  border:none;border-radius:7px;padding:8px 14px;font-size:12px;
+  font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;
+  white-space:nowrap;
+}
+.cheat-submit:hover{filter:brightness(1.2);}
+.cheat-result{
+  margin-top:8px;font-size:11px;padding:7px 10px;
+  border-radius:6px;display:none;line-height:1.6;
+}
+.cheat-result.ok{background:#0a1a08;border:1px solid #2a6a1a;color:#70e040;}
+.cheat-result.fail{background:#1a0808;border:1px solid #4a1a1a;color:#e04040;}
+.cheat-result.hint{background:#0a0820;border:1px solid #2a1a6a;color:#8060d0;}
+
+/* 네크로맨서 테마 */
+.cls-card.necro-card:hover{border-color:#50e0a0;}
+.cls-card.necro-card.sel{border-color:#50e0a0;background:#041210;box-shadow:0 0 16px #50e0a033;}
+.cls-card.necro-card .cls-name{color:#50e0a0;}
+.player-card.necro-theme{background:#040e0a;border-color:#0a2a1a;}
+
+/* 좀비 존 */
+.zombie-zone{
+  display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;
+  margin-bottom:6px;min-height:0;
+}
+.zombie-card{
+  background:#061a0e;border:2px solid #1a4a2a;
+  border-radius:8px;padding:6px 8px;text-align:center;
+  flex:0 0 auto;width:68px;position:relative;transition:.15s;
+}
+.zombie-card.zombie-dead{opacity:.2;filter:grayscale(1);pointer-events:none;}
+.z-icon{font-size:20px;}
+.z-name{font-size:9px;color:#50e0a0;margin:2px 0 1px;font-weight:700;}
+.z-hpbar{width:100%;height:3px;background:#0a1a0e;border-radius:2px;overflow:hidden;}
+.z-hpfill{height:100%;background:#50e0a0;border-radius:2px;transition:width .3s;}
+.z-hp{font-size:9px;color:#50e0a0;}
+.zombie-shield-label{font-size:10px;color:#50e0a0;font-weight:700;margin-bottom:3px;letter-spacing:1px;}
+@keyframes zombieShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.zombie-hit{animation:zombieShake .2s ease;}
+
+/* 신 직업 카드 */
+.cls-card.god-card:hover{border-color:#ffd700;}
+.cls-card.god-card.sel{
+  border-color:#ffd700;background:#100a00;
+  box-shadow:0 0 20px #ffd70055;
+}
+.cls-card.god-card .cls-name{
+  background:linear-gradient(135deg,#ffd700,#ff9900,#ffd700);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+@keyframes godPulse{0%,100%{box-shadow:0 0 20px #ffd70033}50%{box-shadow:0 0 40px #ffd70077,0 0 80px #ff990033}}
+.cls-card.god-card.sel{animation:godPulse 2s ease infinite;}
+.player-card.god-theme{
+  background:#100a00;border-color:#5a4a00;
+  box-shadow:0 0 20px #ffd70022;
+}
 </style>
 </head>
 <body>
@@ -407,6 +492,23 @@ body{
     <button class="btn btn-gold" style="flex:1;padding:14px;font-size:15px" onclick="startGame()">모험 시작!</button>
     <button class="btn btn-gray" style="padding:14px 16px;font-size:13px" onclick="showScreen('tutorial')">📖 도움말</button>
   </div>
+
+  <!-- 치트 코드 패널 -->
+  <div class="cheat-panel" style="margin-top:12px;">
+    <div class="cheat-header">
+      <div class="cheat-header-dots">
+        <div class="cheat-dot" style="background:#ff5f57"></div>
+        <div class="cheat-dot" style="background:#febc2e"></div>
+        <div class="cheat-dot" style="background:#28c840"></div>
+      </div>
+      <div class="cheat-title">💻 CHEAT TERMINAL v1.0</div>
+    </div>
+    <div class="cheat-input-row">
+      <input class="cheat-input" id="cheat-input" placeholder="코드 입력..." onkeydown="if(event.key==='Enter')submitCheat()"/>
+      <button class="cheat-submit" onclick="submitCheat()">▶ 실행</button>
+    </div>
+    <div class="cheat-result" id="cheat-result"></div>
+  </div>
 </div>
 
 <!-- 튜토리얼 -->
@@ -418,6 +520,9 @@ body{
     <div class="tut-tab" onclick="switchTutTab(1)">스탯 & 성장</div>
     <div class="tut-tab" onclick="switchTutTab(2)">직업 소개</div>
     <div class="tut-tab" onclick="switchTutTab(3)">🧛 뱀파이어</div>
+    <div class="tut-tab" onclick="switchTutTab(4)">💀 네크로</div>
+    <div class="tut-tab" onclick="switchTutTab(5)">🛡️ 메가나이트</div>
+    <div class="tut-tab" onclick="switchTutTab(6)">🦟 모기</div>
   </div>
 
   <!-- 탭0: 기본 전투 -->
@@ -526,6 +631,84 @@ body{
     </div>
   </div>
 
+  <!-- 탭4: 네크로맨서 -->
+  <div class="tut-page" id="tut-4">
+    <div class="tut-section">
+      <div class="tut-section-title">💀 네크로맨서 — 좀비 군단 지휘관</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 95 · ATK 14 · DEF 4 · MP 100<br>스스로는 약하지만 좀비를 소환해 방패 삼고 같이 싸우는 전략형 직업.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">혼자서는 버티기 어렵습니다. 최대한 빨리 좀비를 소환해 <strong>방패를 세우는 것</strong>이 핵심입니다.</div></div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🧟 좀비 시스템</div>
+      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방패 역할</strong> — 살아있는 좀비가 있으면 적의 공격을 <span class="hl-green">대신 맞습니다.</span> 네크로맨서 본인은 피해를 입지 않습니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>공격 역할</strong> — 좀비들은 매 턴 살아있는 적을 랜덤으로 공격합니다. 군단이 클수록 딜도 늘어납니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">♾️</div><div class="tut-text"><strong>스테이지 지속</strong> — 좀비는 스테이지가 넘어가도 <span class="hl">죽지 않고 유지</span>됩니다. 키울수록 강해집니다!</div></div>
+      <div class="tut-row"><div class="tut-icon">📈</div><div class="tut-text">좀비 HP는 <span class="hl">항상 90으로 고정</span>됩니다. 언제 소환해도 동일한 체력입니다.</div></div>
+      <div class="tut-tip">좀비는 쌓일수록 강력해집니다. 3~4마리가 모이면 적 공격을 한동안 버텨주면서 지속적으로 딜을 넣을 수 있습니다!</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🌟 네크로맨서 스킬</div>
+      <div class="tut-row"><div class="tut-icon">🧟</div><div class="tut-text"><strong>좀비 소환</strong> (MP 18 · 쿨3) — 좀비를 소환합니다. HP는 레벨에 비례. 방패 + 공격 역할.</div></div>
+      <div class="tut-row"><div class="tut-icon">☠️</div><div class="tut-text"><strong>저주 손가락</strong> (MP 14 · 쿨2) — ATK×2.0 단일 공격 + <span class="hl-red">독(3턴)</span> 부여.</div></div>
+      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text"><strong>시체 폭발</strong> (MP 22 · 쿨4) — 살아있는 좀비 1기를 희생해 강력한 단일 공격. 죽인 좀비 수가 많을수록 위력 상승!</div></div>
+      <div class="tut-row"><div class="tut-icon">💀</div><div class="tut-text"><strong>언데드 군단</strong> (MP 30 · 쿨5) — ATK×1.1 전체 공격. 모든 적에게 암흑의 기운을 퍼붓습니다.</div></div>
+      <div class="tut-tip">시체 폭발은 좀비가 없으면 사용 불가! MP를 낭비하지 않도록 좀비를 항상 확인하세요.</div>
+    </div>
+  </div>
+
+  <!-- 탭5: 메가나이트 -->
+  <div class="tut-page" id="tut-5">
+    <div class="tut-section">
+      <div class="tut-section-title">🛡️ 메가 나이트 — 철벽 탱커</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 280 · ATK 8 · DEF 12 · MP 없음<br>압도적인 HP와 DEF로 버티는 궁극의 탱커. MP 개념이 없어 모든 스킬을 자유롭게 사용합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">ATK가 낮아 딜이 부족합니다. 스킬을 적극 활용하고 장비로 ATK를 보완하세요.</div></div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🛡 MP 없음 시스템</div>
+      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text">모든 스킬의 <strong>MP 소모가 0</strong>입니다. 쿨다운만 기다리면 제한 없이 사용 가능합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">💧</div><div class="tut-text">MP 포션은 사용 불가입니다. 그 대신 HP 포션 효율이 일반보다 낮습니다 <span class="hl-red">(회복량 20%)</span>.</div></div>
+      <div class="tut-tip">HP가 280으로 매우 높지만 포션 효율이 낮습니다. 철갑 방어로 DEF를 쌓아 피해를 최소화하는 것이 핵심입니다.</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🌟 메가 나이트 스킬</div>
+      <div class="tut-row"><div class="tut-icon">🪨</div><div class="tut-text"><strong>철벽 강타</strong> (쿨2 · MP무소모) — ATK×1.8 단일 공격. 가장 기본적인 딜링 스킬.</div></div>
+      <div class="tut-row"><div class="tut-icon">🌍</div><div class="tut-text"><strong>대지 진동</strong> (쿨3 · MP무소모) — ATK×0.7 전체 공격. 약하지만 다수 처리에 유용.</div></div>
+      <div class="tut-row"><div class="tut-icon">🏰</div><div class="tut-text"><strong>철갑 방어</strong> (쿨3 · MP무소모) — DEF +15 (3턴). 강적 앞에서 먼저 시전하면 피해가 크게 줄어듭니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚡</div><div class="tut-text"><strong>맹공격</strong> (쿨4 · MP무소모) — ATK×1.0 ×3타. 총 3번 공격해 누적 딜이 높습니다.</div></div>
+      <div class="tut-tip">철갑 방어 → 맹공격 콤보가 핵심입니다. DEF를 높여 피해를 줄이고 맹공격으로 꾸준히 딜을 넣으세요!</div>
+    </div>
+  </div>
+
+  <!-- 탭6: 모기 -->
+  <div class="tut-page" id="tut-6">
+    <div class="tut-section">
+      <div class="tut-section-title">🦟 모기 — 극단의 도박사</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP <span class="hl-red">1</span> · ATK 45 · DEF 0 · MP 50<br>단 하나뿐인 목숨. 하지만 매 턴 <span class="hl-green">99% 확률로 회피</span>합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">HP가 1이라 단 한 번이라도 맞으면 즉사입니다. 그 1%의 확률이 언제 찾아올지 모릅니다...</div></div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">💨 99% 회피 시스템</div>
+      <div class="tut-row"><div class="tut-icon">🎲</div><div class="tut-text">적의 공격마다 <strong>99% 확률로 자동 회피</strong>합니다. DEF는 0으로 고정이며 방어구 장착 효과도 없습니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">💀</div><div class="tut-text">레벨업을 해도 <span class="hl-red">HP는 영원히 1</span>입니다. 성장하는 것은 ATK뿐입니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🧪</div><div class="tut-text">HP 포션을 써도 최대 HP가 1이라 의미가 없습니다. 골드는 무기에만 투자하세요.</div></div>
+      <div class="tut-tip">적이 3마리라면 한 턴에 회피를 3번 굴립니다. 1% × 3번 = 약 3% 확률로 맞습니다. 스테이지가 길어질수록 운이 시험받습니다... 🎰</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🌟 모기 스킬</div>
+      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>흡혈 찌르기</strong> (MP 10 · 쿨1) — ATK×2.5. 쿨다운 1턴으로 거의 매 턴 사용 가능.</div></div>
+      <div class="tut-row"><div class="tut-icon">💨</div><div class="tut-text"><strong>급습</strong> (MP 14 · 쿨2) — ATK×4.0 강타. 높은 ATK와 곱해져 엄청난 피해를 줍니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🦟</div><div class="tut-text"><strong>군집</strong> (MP 18 · 쿨3) — ATK×1.5 전체 공격. 다수의 적을 동시에 처리합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">📡</div><div class="tut-text"><strong>초음파</strong> (MP 22 · 쿨4) — ATK×6.5 단일 공격. 모기 최강 스킬. 보스에게 사용하세요.</div></div>
+      <div class="tut-tip">ATK 45 기준 초음파 한 방이 약 290 데미지! 운만 따라준다면 어떤 직업보다 강력합니다. 하지만 그 1%는 반드시 옵니다 😈</div>
+    </div>
+  </div>
+
   <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
 </div>
 
@@ -538,6 +721,12 @@ body{
   </div>
 
   <div class="enemy-zone" id="enemy-zone"></div>
+
+  <!-- 좀비 방패 존 (네크로맨서 전용) -->
+  <div id="zombie-zone-wrap" style="display:none;">
+    <div class="zombie-shield-label">🧟 좀비 방패</div>
+    <div class="zombie-zone" id="zombie-zone"></div>
+  </div>
 
   <div class="player-card" id="player-card">
     <div class="player-top">
@@ -718,6 +907,26 @@ const CLASSES=[
       {name:'맹공격',     icon:'⚡',mp:0,cd:0,maxCd:4, type:'multi',mult:1.0,hits:3,   desc:'ATK×1.0 ×3타 · MP무소모'},
     ]
   },
+  // ══ 네크로맨서 ══
+  { name:'네크로맨서', icon:'💀', hp:95,mp:100, atk:14,def:4, hpG:13,atkG:2,defG:1,mpG:12,
+    isNecro:true,
+    skills:[
+      {name:'좀비 소환',   icon:'🧟',mp:18,cd:0,maxCd:3, type:'summon_zombie', desc:'좀비 소환 (HP20·ATK5, 피해 대신 맞음)'},
+      {name:'저주 손가락', icon:'☠️',mp:14,cd:0,maxCd:2, type:'dmg', mult:2.0, poison:true, desc:'ATK×2.0 + 독(3턴)'},
+      {name:'시체 폭발',   icon:'💥',mp:22,cd:0,maxCd:4, type:'necro_explode', desc:'좀비 1기 소모 → 단일 강력 공격'},
+      {name:'언데드 군단', icon:'💀',mp:30,cd:0,maxCd:5, type:'all', mult:1.1, desc:'전체 ATK×1.1 암흑 공격'},
+    ]
+  },
+  // ══ 신 (치트 전용) ══
+  { name:'신', icon:'✨', hp:999999,mp:999999, atk:999999,def:999999, hpG:0,atkG:0,defG:0,mpG:0,
+    isGod:true,
+    skills:[
+      {name:'천벌',     icon:'⚡',mp:0,cd:0,maxCd:1, type:'all',  mult:9999, desc:'전체 즉사 · 신의 분노'},
+      {name:'신의 손',  icon:'👁',mp:0,cd:0,maxCd:1, type:'dmg',  mult:9999, desc:'단일 즉사 · MP무소모'},
+      {name:'불멸',     icon:'💫',mp:0,cd:0,maxCd:2, type:'blood_heal', bloodCost:0, healRatio:1.0, desc:'HP 100% 회복'},
+      {name:'창조',     icon:'🌌',mp:0,cd:0,maxCd:1, type:'all',  mult:99999,desc:'우주를 창조한다'},
+    ]
+  },
   // ══ 모기 (소폭 버프: HP 60→85, hpG 6→9) ══
   { name:'모기', icon:'🦟', hp:1,mp:50, atk:45,def:0, hpG:0,atkG:5,defG:0,mpG:6,
     isMosquito:true,
@@ -774,16 +983,22 @@ let buffs={};
 let defending=false;
 let playerTurn=true, busy=false;
 let luQueue=[];
+let zombies=[]; // 네크로맨서 좀비 배열
+
+// ══════════════ 치트 코드 상태 ══════════════
+let godUnlocked = localStorage.getItem('db_godUnlocked')==='true';
+let cheatAttempts = 0;
 
 // ══════════════ 타이틀 ══════════════
 (function(){
   const row=document.getElementById('class-row');
   CLASSES.forEach((c,i)=>{
+    if(c.isGod && !godUnlocked) return; // 신은 치트로만 해제
     const d=document.createElement('div');
-    d.className='cls-card'+(c.isVampire?' vampire-card':c.isMegaKnight?' mk-card':c.isMosquito?' mosquito-card':'')+(i===0?' sel':'');
+    d.className='cls-card'+(c.isVampire?' vampire-card':c.isMegaKnight?' mk-card':c.isMosquito?' mosquito-card':c.isNecro?' necro-card':c.isGod?' god-card':'')+(i===0?' sel':'');
     d.innerHTML=`<div class="cls-icon">${c.icon}</div>
       <div class="cls-name">${c.name}</div>
-      <div class="cls-desc">HP ${c.hp}  ATK ${c.atk}  DEF ${c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:c.isMegaKnight?'<br>🛡 MP 소모 없음':c.isMosquito?'<br>💨 99% 회피 · DEF 고정 0':'<br>MP '+c.mp}</div>`;
+      <div class="cls-desc">HP ${c.isGod?'∞':c.hp}  ATK ${c.isGod?'∞':c.atk}  DEF ${c.isGod?'∞':c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:c.isMegaKnight?'<br>🛡 MP 소모 없음':c.isMosquito?'<br>💨 99% 회피 · DEF 고정 0':c.isNecro?`<br>MP ${c.mp} · 🧟 좀비 소환`:c.isGod?'<br>⚡ 불멸 · 전능 · 무한':`<br>MP ${c.mp}`}</div>`;
     d.onclick=()=>{
       classIdx=i;
       document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
@@ -793,6 +1008,48 @@ let luQueue=[];
   });
   updateModeUI();
 })();
+
+function submitCheat(){
+  const input = document.getElementById('cheat-input');
+  const result = document.getElementById('cheat-result');
+  const val = input.value.trim();
+
+  if(val === '이지율'){
+    godUnlocked = true;
+    localStorage.setItem('db_godUnlocked','true');
+    result.style.display='block';
+    result.className='cheat-result ok';
+    result.innerHTML=`✅ <strong style="color:#ffd700">ACCESS GRANTED</strong><br>🌌 신(神) 캐릭터가 해제되었습니다!`;
+    input.value='';
+    const row=document.getElementById('class-row');
+    if(!document.querySelector('.god-card')){
+      const c=CLASSES.find(x=>x.isGod);
+      const idx=CLASSES.indexOf(c);
+      const d=document.createElement('div');
+      d.className='cls-card god-card';
+      d.innerHTML=`<div class="cls-icon">${c.icon}</div>
+        <div class="cls-name">${c.name}</div>
+        <div class="cls-desc">HP ∞  ATK ∞  DEF ∞<br>⚡ 불멸 · 전능 · 무한</div>`;
+      d.onclick=()=>{
+        classIdx=idx;
+        document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
+        d.classList.add('sel');
+      };
+      row.appendChild(d);
+    }
+    flashTerminal();
+  } else {
+    result.style.display='none';
+  }
+  input.value='';
+}
+
+function flashTerminal(){
+  const panel = document.querySelector('.cheat-panel');
+  panel.style.borderColor='#ffd700';
+  panel.style.boxShadow='0 0 30px #ffd70055';
+  setTimeout(()=>{panel.style.borderColor='';panel.style.boxShadow='';},1500);
+}
 
 function startGame(){
   const c=CLASSES[classIdx];
@@ -805,18 +1062,25 @@ function startGame(){
     isVampire:c.isVampire||false,
     isMegaKnight:c.isMegaKnight||false,
     isMosquito:c.isMosquito||false,
+    isGod:c.isGod||false,
+    isNecro:c.isNecro||false,
     blood: c.isVampire ? 0 : undefined,
     maxBlood: c.isVampire ? c.maxBlood : undefined,
   };
   gold=0; hpPots=3; mpPots=2; stage=0;
   equipped={weapon:null,armor:null,ring:null,amulet:null};
-  owned=[]; buffs={}; luQueue=[];
+  owned=[]; buffs={}; luQueue=[]; zombies=[];
 
   applyVampireTheme(player.isVampire);
   const pc=document.getElementById('player-card');
-  if(player.isMegaKnight){ pc.classList.add('mk-theme'); pc.classList.remove('mosquito-theme'); }
-  else if(player.isMosquito){ pc.classList.add('mosquito-theme'); pc.classList.remove('mk-theme'); }
-  else { pc.classList.remove('mk-theme','mosquito-theme'); }
+  if(player.isMegaKnight){ pc.classList.add('mk-theme'); pc.classList.remove('mosquito-theme','god-theme','necro-theme'); }
+  else if(player.isMosquito){ pc.classList.add('mosquito-theme'); pc.classList.remove('mk-theme','god-theme','necro-theme'); }
+  else if(player.isGod){ pc.classList.add('god-theme'); pc.classList.remove('mk-theme','mosquito-theme','necro-theme'); }
+  else if(player.isNecro){ pc.classList.add('necro-theme'); pc.classList.remove('mk-theme','mosquito-theme','god-theme'); }
+  else { pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme'); }
+
+  // 좀비 존 표시/숨김
+  document.getElementById('zombie-zone-wrap').style.display = player.isNecro ? 'block' : 'none';
 
   if(hardMode && selectedMode==='hard') addLog('🔥 하드모드 활성화! ATK·DEF +15% 적용 중','s');
 
@@ -994,7 +1258,7 @@ function useSkill(idx){
   const sk=player.skills[idx];
   if(sk.cd>0||player.mp<sk.mp) return;
 
-  if(sk.bloodCost&&(!player.isVampire||player.blood<sk.bloodCost)){
+  if(sk.bloodCost&&(!player.isVampire||player.blood<sk.bloodCost)&&!player.isGod){
     addLog(`🩸 혈기 부족! (필요: ${sk.bloodCost} / 보유: ${player.blood||0})`,'v');
     return;
   }
@@ -1041,6 +1305,28 @@ function useSkill(idx){
     showDrainFloat(heal);
     updateHud();
     addLog(`🌑 ${sk.name} → 혈기 ${sk.bloodCost} 소모! HP +${heal} 회복!`,'v');
+
+  } else if(sk.type==='summon_zombie'){
+    // 좀비 소환 — 레벨에 따라 HP/ATK 스케일
+    const zHp = 90;
+    const zAtk = 5 + player.lv;
+    const zId = Date.now();
+    zombies.push({id:zId, hp:zHp, maxHp:zHp, atk:zAtk});
+    addLog(`🧟 좀비 소환! (HP ${zHp} · ATK ${zAtk}) — 적 공격을 대신 맞습니다!`,'p');
+    renderZombies();
+
+  } else if(sk.type==='necro_explode'){
+    // 시체 폭발 — 살아있는 좀비 1기 소모, 강력 단일 공격
+    const aliveZ = zombies.filter(z=>z.hp>0);
+    if(aliveZ.length===0){ addLog('💥 시체 폭발 실패! 살아있는 좀비가 없습니다.','e'); sk.cd=0; player.mp+=sk.mp; return; }
+    const sacrificed = aliveZ[0];
+    sacrificed.hp=0;
+    renderZombies();
+    const en=getTarget(); if(!en) return;
+    const mult = 3.0 + (zombies.filter(z=>z.hp<=0).length * 0.3);
+    const dmg = calcDmg(effAtk()*mult, en.def);
+    dealDmg(en, dmg);
+    addLog(`💥 시체 폭발! 좀비 1기 소모 → ${en.name} ${dmg} 데미지!`,'p');
 
   } else if(sk.type==='dmg'||sk.type==='multi'){
     const en=getTarget(); if(!en) return;
@@ -1124,8 +1410,24 @@ function endPlayerTurn(){
     return;
   }
 
+  // 좀비 공격 (살아있는 좀비마다 랜덤 적 공격)
+  let zombieDelay=0;
+  const aliveZombiesAtk = zombies.filter(z=>z.hp>0);
+  aliveZombiesAtk.forEach(zb=>{
+    setTimeout(()=>{
+      const aliveEn = enemies.filter(e=>e.hp>0);
+      if(aliveEn.length===0) return;
+      const target = aliveEn[Math.floor(Math.random()*aliveEn.length)];
+      const dmg = Math.max(1, zb.atk + rnd(-1,2));
+      dealDmg(target, dmg);
+      addLog(`🧟 좀비 공격 → ${target.name} ${dmg} 데미지!`,'p');
+      if(enemies.every(e=>e.hp<=0)){ victoryPending=true; }
+    }, zombieDelay);
+    zombieDelay+=400;
+  });
+
   const alive=enemies.filter(e=>e.hp>0);
-  let delay=0;
+  let delay=zombieDelay+200;
   alive.forEach(en=>{
     setTimeout(()=>{
       if(player.hp<=0) return;
@@ -1147,6 +1449,21 @@ function endPlayerTurn(){
       }
       const def=effDef();
       const dmg=Math.max(4, en.atk-def+rnd(-2,3));
+      if(player.isGod){
+        addLog(`👊 ${en.name} 공격 → 신에게 막혔다! (0 데미지)`,'s');
+        return;
+      }
+      // 좀비가 살아있으면 대신 맞음
+      const aliveZombies = zombies.filter(z=>z.hp>0);
+      if(aliveZombies.length>0){
+        const shield = aliveZombies[0];
+        shield.hp = Math.max(0, shield.hp - dmg);
+        addLog(`🧟 좀비가 ${en.name}의 공격 ${dmg}을 대신 맞았다!${shield.hp<=0?' (좀비 사망!)':''}`, 'p');
+        const zCard = document.getElementById('z-'+shield.id);
+        if(zCard){ zCard.classList.remove('zombie-hit'); void zCard.offsetWidth; zCard.classList.add('zombie-hit'); }
+        renderZombies();
+        return;
+      }
       player.hp=Math.max(0,player.hp-dmg);
       addLog(`👊 ${en.name} → ${dmg} 데미지`,'e');
 
@@ -1162,6 +1479,11 @@ function endPlayerTurn(){
 
   setTimeout(()=>{
     if(player.hp<=0) return;
+    if(victoryPending || enemies.every(e=>e.hp<=0)){
+      victoryPending=false;
+      onVictory();
+      return;
+    }
     startPlayerTurn();
   },delay+200);
 }
@@ -1406,9 +1728,29 @@ function calcPreview(sk, en){
 // ══════════════ 렌더링 ══════════════
 function renderAll(){
   renderEnemies();
+  renderZombies();
   renderSkills();
   updateHud();
   setActionBtns();
+}
+
+function renderZombies(){
+  if(!player||!player.isNecro) return;
+  const z=document.getElementById('zombie-zone');
+  if(!z) return;
+  z.innerHTML='';
+  zombies.forEach(zb=>{
+    const d=document.createElement('div');
+    d.className='zombie-card'+(zb.hp<=0?' zombie-dead':'');
+    d.id='z-'+zb.id;
+    d.innerHTML=`
+      <div class="z-icon">🧟</div>
+      <div class="z-name">좀비</div>
+      <div class="z-hpbar"><div class="z-hpfill" style="width:${Math.max(0,zb.hp/zb.maxHp*100)}%"></div></div>
+      <div class="z-hp">${Math.max(0,zb.hp)}/${zb.maxHp}</div>
+    `;
+    z.appendChild(d);
+  });
 }
 
 function renderEnemies(){
@@ -1471,16 +1813,16 @@ function updateHud(){
   document.getElementById('p-name').textContent=p.name;
   document.getElementById('p-lv').textContent=p.lv;
   document.getElementById('hud-lv').textContent=p.lv;
-  document.getElementById('p-hp').textContent=Math.max(0,p.hp);
-  document.getElementById('p-mhp').textContent=p.maxHp;
-  document.getElementById('p-mp').textContent=p.mp;
+  document.getElementById('p-hp').textContent=player.isGod?'∞':Math.max(0,p.hp);
+  document.getElementById('p-mhp').textContent=player.isGod?'∞':p.maxHp;
+  document.getElementById('p-mp').textContent=player.isGod?'∞':p.mp;
   const totalMaxMp=p.maxMp+effMaxMpBonus();
-  document.getElementById('p-mmp').textContent=totalMaxMp;
+  document.getElementById('p-mmp').textContent=player.isGod?'∞':totalMaxMp;
   document.getElementById('mp-bar-wrap').style.display=p.isMegaKnight?'none':'flex';
-  document.getElementById('p-atk').textContent=effAtk();
-  document.getElementById('p-def').textContent=effDef();
-  document.getElementById('bar-hp').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';
-  document.getElementById('bar-mp').style.width=Math.min(100,p.mp/totalMaxMp*100)+'%';
+  document.getElementById('p-atk').textContent=player.isGod?'∞':effAtk();
+  document.getElementById('p-def').textContent=player.isGod?'∞':effDef();
+  document.getElementById('bar-hp').style.width=(player.isGod?100:Math.max(0,p.hp/p.maxHp*100))+'%';
+  document.getElementById('bar-mp').style.width=(player.isGod?100:Math.min(100,p.mp/totalMaxMp*100))+'%';
   document.getElementById('bar-exp').style.width=p.exp/p.expNext*100+'%';
   document.getElementById('exp-val').textContent=p.exp+'/'+p.expNext;
 
