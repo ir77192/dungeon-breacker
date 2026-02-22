@@ -154,6 +154,18 @@ body{
 }
 .skill-btn:hover:not(:disabled){border-color:var(--gold);background:#161620;}
 .skill-btn.vampire-skill:hover:not(:disabled){border-color:var(--blood);background:#1a0810;}
+.skill-btn.mk-skill:hover:not(:disabled){border-color:#8ecae6;background:#08121a;}
+.skill-btn.mk-skill-active{border-color:#4a9eff;box-shadow:0 0 8px #4a9eff44;}
+/* 메가 나이트 카드 테마 */
+.cls-card.mk-card:hover{border-color:#4a9eff;}
+.cls-card.mk-card.sel{border-color:#4a9eff;background:#080e18;box-shadow:0 0 16px #4a9eff33;}
+.cls-card.mk-card .cls-name{color:#4a9eff;}
+.player-card.mk-theme{background:#060c14;border-color:#1a2a3a;}
+/* 모기 테마 */
+.cls-card.mosquito-card:hover{border-color:#88cc44;}
+.cls-card.mosquito-card.sel{border-color:#88cc44;background:#0a120a;box-shadow:0 0 16px #88cc4433;}
+.cls-card.mosquito-card .cls-name{color:#88cc44;}
+.player-card.mosquito-theme{background:#060d04;border-color:#1a2a10;}
 .skill-btn:disabled{opacity:.38;cursor:not-allowed;}
 .sk-icon{font-size:20px;flex-shrink:0;}
 .sk-info{flex:1;min-width:0;}
@@ -274,7 +286,41 @@ body{
   box-shadow:0 0 8px #cc224444;
 }
 
-/* ══ 튜토리얼 ══ */
+/* ══ 하드모드 해제 배너 ══ */
+.hardmode-banner{
+  background:linear-gradient(135deg,#1a0a00,#2a1400);
+  border:2px solid #ff6600;border-radius:10px;
+  padding:10px 14px;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 0 16px #ff660033;
+}
+.hm-icon{font-size:24px;flex-shrink:0;}
+.hm-text{flex:1;}
+.hm-title{font-size:13px;font-weight:700;color:#ff8800;margin-bottom:2px;}
+.hm-desc{font-size:11px;color:#a06030;}
+.hm-badge{
+  display:inline-block;background:#ff6600;color:#111;
+  border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;
+}
+@keyframes hardGlow{0%,100%{box-shadow:0 0 16px #ff660033}50%{box-shadow:0 0 28px #ff660066,0 0 50px #ff440022}}
+.hardmode-active .hardmode-banner{animation:hardGlow 2s ease infinite;}
+/* ══ 모드 선택 ══ */
+.mode-select{display:flex;gap:8px;margin-bottom:14px;}
+.mode-card{
+  flex:1;border-radius:10px;padding:10px 12px;text-align:center;
+  cursor:pointer;transition:.2s;border:2px solid var(--border);background:var(--panel);
+}
+.mode-card.sel-infinite{border-color:#50c878;background:#091409;box-shadow:0 0 12px #50c87833;}
+.mode-card.sel-infinite .mode-name{color:#50c878;}
+.mode-card:hover:not(.locked){border-color:var(--gold);}
+.mode-card#mode-infinite:hover{border-color:#50c878;}
+.mode-card.sel-normal{border-color:var(--gold);background:#1c1808;box-shadow:0 0 12px #c9a84c33;}
+.mode-card.sel-hard{border-color:#ff6600;background:#1a0a00;box-shadow:0 0 12px #ff660033;}
+.mode-card.locked{opacity:.35;cursor:not-allowed;}
+.mode-icon{font-size:22px;margin-bottom:4px;}
+.mode-name{font-size:12px;font-weight:700;color:var(--gold);}
+.mode-card.sel-hard .mode-name,.mode-card.locked .mode-name{color:#ff8800;}
+.mode-desc{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
 #screen-tutorial{padding-top:8px;}
 .tut-title{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:14px;}
 .tut-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
@@ -337,8 +383,26 @@ body{
 <div class="screen active" id="screen-title">
   <div class="logo">DUNGEON<br>BREAKER</div>
   <div class="logo-sub">Turn Based RPG</div>
-  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">직업 선택</p>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:8px;">직업 선택</p>
   <div class="class-row" id="class-row"></div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:8px;">모드 선택</p>
+  <div class="mode-select" id="mode-select">
+    <div class="mode-card sel-normal" id="mode-normal" onclick="selectMode('normal')">
+      <div class="mode-icon">⚔️</div>
+      <div class="mode-name">일반 모드</div>
+      <div class="mode-desc">기본 난이도로<br>도전!</div>
+    </div>
+    <div class="mode-card locked" id="mode-hard" onclick="selectMode('hard')">
+      <div class="mode-icon">🔥</div>
+      <div class="mode-name">하드 모드</div>
+      <div class="mode-desc" id="hard-desc">20스테이지 클리어 후<br>해제됩니다</div>
+    </div>
+    <div class="mode-card" id="mode-infinite" onclick="selectMode('infinite')">
+      <div class="mode-icon">♾️</div>
+      <div class="mode-name" style="color:#50c878;">무한 모드</div>
+      <div class="mode-desc">끝없는 던전!<br>최고 스테이지 도전</div>
+    </div>
+  </div>
   <div style="display:flex;gap:8px;">
     <button class="btn btn-gold" style="flex:1;padding:14px;font-size:15px" onclick="startGame()">모험 시작!</button>
     <button class="btn btn-gray" style="padding:14px 16px;font-size:13px" onclick="showScreen('tutorial')">📖 도움말</button>
@@ -553,7 +617,7 @@ body{
     <div class="pot-card">
       <div class="pot-icon">🧪</div>
       <div class="pot-name">HP 포션</div>
-      <div class="pot-eff">HP 40% 즉시 회복</div>
+      <div class="pot-eff">HP 55% 즉시 회복</div>
       <div class="pot-cnt">보유 <span id="shop-hpot">0</span>개</div>
       <button class="btn btn-gold" style="width:100%;font-size:12px;padding:7px" id="shop-btn-hp" onclick="shopBuyHp()">20G 구매</button>
     </div>
@@ -588,7 +652,11 @@ body{
   <div style="text-align:center;padding-top:16px;">
     <div style="font-size:52px;margin-bottom:8px">🐉</div>
     <div id="ending-title" style="font-size:32px;font-weight:900;color:var(--gold);margin-bottom:4px">CLEAR!</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">던전을 정복했습니다!</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:12px">던전을 정복했습니다!</div>
+    <div id="hardmode-unlock-notice" style="display:none;background:linear-gradient(135deg,#1a0a00,#2a1400);border:2px solid #ff6600;border-radius:10px;padding:12px 16px;margin-bottom:12px;text-align:left;">
+      <div style="font-size:16px;font-weight:900;color:#ff8800;margin-bottom:4px">🔥 하드모드 해제!</div>
+      <div style="font-size:12px;color:#c07040;line-height:1.7">모든 캐릭터의 <strong style="color:#ff8800">ATK·DEF가 15% 증가</strong>합니다.<br>다음 게임부터 강화된 스탯으로 시작하세요!</div>
+    </div>
     <div class="result-card" id="ending-card" style="text-align:left;margin-bottom:16px"></div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:16px">
       🏆 당신은 진정한 던전 브레이커입니다!
@@ -601,24 +669,27 @@ body{
 <script>
 // ══════════════ 데이터 ══════════════
 
+let hardMode = localStorage.getItem('db_hardMode')==='true';
+let selectedMode = 'normal';
+
 const CLASSES=[
-  { name:'전사',  icon:'⚔️', hp:150,mp:40,  atk:20,def:10, hpG:22,atkG:3,defG:2,mpG:4,
+  { name:'전사',  icon:'⚔️', hp:165,mp:40,  atk:20,def:10, hpG:24,atkG:3,defG:1,mpG:4,
     skills:[
       {name:'강타',    icon:'⚔️',mp:8, cd:0,maxCd:2, type:'dmg',  mult:2.2,          desc:'단일 ATK×2.2'},
-      {name:'방패돌진', icon:'🛡',mp:10,cd:0,maxCd:3, type:'dmg',  mult:1.6,selfBuff:{defB:7,t:2}, desc:'ATK×1.6 + DEF+7 (2턴)'},
+      {name:'방패돌진', icon:'🛡',mp:10,cd:0,maxCd:2, type:'dmg',  mult:1.6,selfBuff:{defB:7,t:2}, desc:'ATK×1.6 + DEF+7 (2턴)'},
       {name:'회오리',  icon:'🌀',mp:15,cd:0,maxCd:4, type:'all',  mult:0.9,          desc:'전체 ATK×0.9'},
       {name:'전투함성', icon:'📣',mp:12,cd:0,maxCd:4, type:'buff', buff:{atkB:8,t:3}, desc:'ATK+8 (3턴)'},
     ]
   },
-  { name:'마법사', icon:'🔮', hp:90,mp:120, atk:10,def:3,  hpG:14,atkG:2,defG:1,mpG:18,
+  { name:'마법사', icon:'🔮', hp:100,mp:120, atk:10,def:3,  hpG:15,atkG:2,defG:1,mpG:18,
     skills:[
-      {name:'파이어볼', icon:'🔥',mp:14,cd:0,maxCd:1, type:'dmg', mult:2.45,bonus:6,  desc:'단일 ATK×2.45+6'},
+      {name:'파이어볼', icon:'🔥',mp:11,cd:0,maxCd:1, type:'dmg', mult:2.8,bonus:7,  desc:'단일 ATK×2.8+7'},
       {name:'블리자드', icon:'❄️',mp:22,cd:0,maxCd:4, type:'all', mult:1.8,          desc:'전체 ATK×1.8'},
       {name:'번개',    icon:'⚡',mp:28,cd:0,maxCd:5, type:'dmg', mult:5.0,bonus:12,  desc:'단일 ATK×5.0+12'},
       {name:'마나흡수', icon:'💜',mp:0, cd:0,maxCd:4, type:'heal_mp',healMp:40,       desc:'MP +40'},
     ]
   },
-  { name:'도적',  icon:'🗡️', hp:100,mp:70,  atk:18,def:5,  hpG:13,atkG:4,defG:1,mpG:9,
+  { name:'도적',  icon:'🗡️', hp:110,mp:70,  atk:18,def:5,  hpG:14,atkG:4,defG:1,mpG:9,
     skills:[
       {name:'이중찌르기',icon:'🗡️',mp:10,cd:0,maxCd:1, type:'multi',mult:1.3,hits:2, desc:'ATK×1.3 ×2타'},
       {name:'독단검',   icon:'☠️',mp:14,cd:0,maxCd:2, type:'dmg',  mult:1.6,poison:true, desc:'ATK×1.6 + 독(3턴)'},
@@ -627,7 +698,7 @@ const CLASSES=[
     ]
   },
   // ══ 뱀파이어 (신규) ══
-  { name:'뱀파이어', icon:'🧛', hp:110,mp:80, atk:19,def:6, hpG:16,atkG:3,defG:1,mpG:10,
+  { name:'뱀파이어', icon:'🧛', hp:120,mp:80, atk:19,def:6, hpG:18,atkG:3,defG:1,mpG:10,
     isVampire:true,
     // 혈기(blood) 시스템: 공격/피해 시 충전, 혈기 스킬로 소모
     maxBlood:100, blood:0,
@@ -642,6 +713,27 @@ const CLASSES=[
       {name:'불사의 피',  icon:'🌑',mp:0, cd:0,maxCd:8, type:'blood_heal', bloodCost:70, healRatio:0.60, desc:'혈기70 소모 · HP 60% 회복'},
     ]
   },
+  // ══ 메가 나이트 (신규) ══
+  { name:'메가 나이트', icon:'🛡️', hp:280,mp:0, atk:8,def:12, hpG:35,atkG:1,defG:2,mpG:0,
+    isMegaKnight:true,
+    skills:[
+      // 모든 스킬 mp:0 — 마나 소모 없음
+      {name:'철벽 강타',  icon:'🪨',mp:0,cd:0,maxCd:2, type:'dmg',  mult:1.8,          desc:'단일 ATK×1.8 · MP무소모'},
+      {name:'대지 진동',  icon:'🌍',mp:0,cd:0,maxCd:3, type:'all',  mult:0.7,          desc:'전체 ATK×0.7 · MP무소모'},
+      {name:'철갑 방어',  icon:'🏰',mp:0,cd:0,maxCd:3, type:'buff', buff:{defB:15,t:3}, desc:'DEF+15 (3턴) · MP무소모'},
+      {name:'맹공격',     icon:'⚡',mp:0,cd:0,maxCd:4, type:'multi',mult:1.0,hits:3,   desc:'ATK×1.0 ×3타 · MP무소모'},
+    ]
+  },
+  // ══ 모기 (신규) ══
+  { name:'모기', icon:'🦟', hp:60,mp:50, atk:45,def:0, hpG:6,atkG:5,defG:0,mpG:6,
+    isMosquito:true,
+    skills:[
+      {name:'흡혈 찌르기', icon:'🩸',mp:10,cd:0,maxCd:1, type:'dmg',  mult:2.5,          desc:'ATK×2.5 · 초고속 찌르기'},
+      {name:'급습',        icon:'💨',mp:14,cd:0,maxCd:2, type:'dmg',  mult:4.0,          desc:'ATK×4.0 · 순간 강타'},
+      {name:'군집',        icon:'🦟',mp:18,cd:0,maxCd:3, type:'all',  mult:1.5,          desc:'전체 ATK×1.5 · 떼공격'},
+      {name:'초음파',      icon:'📡',mp:22,cd:0,maxCd:4, type:'dmg',  mult:6.5,          desc:'ATK×6.5 · 치명적 일격'},
+    ]
+  },
 ];
 
 const ENEMIES=[
@@ -652,16 +744,16 @@ const ENEMIES=[
   {name:'트롤',       icon:'🧟', hp:140, atk:24, def:9,  exp:80,  gold:30},
   {name:'드래곤',     icon:'🐉', hp:230, atk:34, def:14, exp:170, gold:70},
   {name:'다크나이트',  icon:'🗡️', hp:180, atk:28, def:11, exp:130, gold:50},
-  {name:'마왕',       icon:'👿', hp:220, atk:42, def:18, exp:300, gold:120},
+  {name:'마왕',       icon:'👿', hp:195, atk:37, def:15, exp:300, gold:120},
   {name:'골렘',       icon:'🪨', hp:260, atk:22, def:20, exp:150, gold:55},
   {name:'불사조',     icon:'🦅', hp:200, atk:36, def:12, exp:160, gold:65},
 ];
 
 const STAGE_CFG=[
-  [0,0],[1,1],[1,2],[2,2,2],[3,7],
-  [3,3,2],[4,4],[4,4,3],[5,3],[5,7],
-  [6,6],[6,4,4],[8,3],[9,6],[7,8],
-  [5,5,3],[6,9],[8,8],[5,6,9],[7,7,5],
+  [0,0,0],[1,1],[1,2,0],[2,2,2],[3,7],
+  [3,3,2,1],[4,4],[4,4,3],[5,3,2],[4,7],
+  [6,6,3],[6,4,4],[8,3,3],[9,6],[7,8],
+  [5,5,3,3],[6,9],[8,8,4],[5,6,9],[7,5,5],
 ];
 const FINAL_STAGE=19;
 
@@ -674,13 +766,15 @@ const ITEMS=[
   {id:'ar3',name:'판금 갑옷',  icon:'🏰', slot:'armor', atk:0,  def:25, cost:150},
   {id:'rg1',name:'힘의 반지',  icon:'💍', slot:'ring',  atk:7,  def:3,  cost:55},
   {id:'am1',name:'수호 목걸이',icon:'📿', slot:'amulet',atk:4,  def:9,  cost:55},
+  {id:'mp1',name:'마나 결정',  icon:'🔷', slot:'mpreg', mpReg:0.6, cost:70, desc:'MP 회복량 +60%'},
+  {id:'mp2',name:'마나 수정구',icon:'🔮', slot:'mpmax', mpMax:40,  cost:70, desc:'최대 MP +40'},
 ];
-const SLOT_LABEL={weapon:'무기',armor:'방어구',ring:'반지',amulet:'목걸이'};
+const SLOT_LABEL={weapon:'무기',armor:'방어구',ring:'반지',amulet:'목걸이',mpreg:'MP액세서리',mpmax:'MP액세서리'};
 
 // ══════════════ 상태 ══════════════
 let classIdx=0, player=null, enemies=[], stage=0;
 let targetIdx=0, gold=0, hpPots=3, mpPots=2;
-let equipped={weapon:null,armor:null,ring:null,amulet:null};
+let equipped={weapon:null,armor:null,ring:null,amulet:null,mpreg:null,mpmax:null};
 let owned=[];
 let buffs={};
 let defending=false;
@@ -692,10 +786,10 @@ let luQueue=[];
   const row=document.getElementById('class-row');
   CLASSES.forEach((c,i)=>{
     const d=document.createElement('div');
-    d.className='cls-card'+(c.isVampire?' vampire-card':'')+(i===0?' sel':'');
+    d.className='cls-card'+(c.isVampire?' vampire-card':c.isMegaKnight?' mk-card':c.isMosquito?' mosquito-card':'')+(i===0?' sel':'');
     d.innerHTML=`<div class="cls-icon">${c.icon}</div>
       <div class="cls-name">${c.name}</div>
-      <div class="cls-desc">HP ${c.hp}  ATK ${c.atk}  DEF ${c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:'<br>MP '+c.mp}</div>`;
+      <div class="cls-desc">HP ${c.hp}  ATK ${c.atk}  DEF ${c.def}${c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`:c.isMegaKnight?'<br>🛡 MP 소모 없음':c.isMosquito?'<br>💨 99% 회피 · DEF 고정 0':'<br>MP '+c.mp}</div>`;
     d.onclick=()=>{
       classIdx=i;
       document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
@@ -703,6 +797,7 @@ let luQueue=[];
     };
     row.appendChild(d);
   });
+  updateModeUI();
 })();
 
 function startGame(){
@@ -714,6 +809,8 @@ function startGame(){
     skills:JSON.parse(JSON.stringify(c.skills)),
     hpG:c.hpG,atkG:c.atkG,defG:c.defG,mpG:c.mpG,
     isVampire:c.isVampire||false,
+    isMegaKnight:c.isMegaKnight||false,
+    isMosquito:c.isMosquito||false,
     blood: c.isVampire ? 0 : undefined,
     maxBlood: c.isVampire ? c.maxBlood : undefined,
   };
@@ -721,8 +818,15 @@ function startGame(){
   equipped={weapon:null,armor:null,ring:null,amulet:null};
   owned=[]; buffs={}; luQueue=[];
 
-  // 뱀파이어 UI 테마 설정
+  // 뱀파이어/메가나이트 UI 테마 설정
   applyVampireTheme(player.isVampire);
+  const pc=document.getElementById('player-card');
+  if(player.isMegaKnight){ pc.classList.add('mk-theme'); pc.classList.remove('mosquito-theme'); }
+  else if(player.isMosquito){ pc.classList.add('mosquito-theme'); pc.classList.remove('mk-theme'); }
+  else { pc.classList.remove('mk-theme','mosquito-theme'); }
+
+  // 하드모드 적용 알림
+  if(hardMode && selectedMode==='hard') addLog('🔥 하드모드 활성화! ATK·DEF +15% 적용 중','s');
 
   showScreen('battle');
   loadStage();
@@ -734,6 +838,12 @@ function applyVampireTheme(isVampire){
   const hpTrack=document.getElementById('hp-track');
   const mpTrack=document.getElementById('mp-track');
   const mpLabel=document.getElementById('mp-label');
+  const mpBarWrap=document.getElementById('mp-bar-wrap');
+  const mpPotBtn=document.getElementById('btn-mp-pot');
+
+  // 항상 초기화
+  mpBarWrap.style.display='flex';
+  if(mpPotBtn) mpPotBtn.style.display='block';
 
   if(isVampire){
     pc.classList.add('vampire-theme');
@@ -753,7 +863,18 @@ function applyVampireTheme(isVampire){
 // ══════════════ 스테이지 ══════════════
 function loadStage(){
   defending=false; buffs={}; busy=false; playerTurn=true; victoryPending=false; victoryDone=false;
-  const cfg=STAGE_CFG[Math.min(stage, FINAL_STAGE)];
+
+  // 무한 모드: 20스테이지 이후 랜덤 강적 조합 생성
+  let cfg;
+  if(selectedMode==='infinite' && stage >= FINAL_STAGE){
+    const infiniteRound = stage - FINAL_STAGE + 1; // 21스테이지부터 1, 2, 3...
+    const pool = infiniteRound<=3 ? [4,5,6] : infiniteRound<=6 ? [5,6,7,8] : [6,7,8,9];
+    const count = infiniteRound<=2 ? 2 : infiniteRound<=5 ? 3 : 3;
+    cfg = Array.from({length:count}, ()=> pool[Math.floor(Math.random()*pool.length)]);
+  } else {
+    cfg = STAGE_CFG[Math.min(stage, FINAL_STAGE)];
+  }
+
   const sc=1+stage*0.12;
   enemies=cfg.map((ei,i)=>{
     const t=ENEMIES[ei];
@@ -769,7 +890,9 @@ function loadStage(){
   });
 
   const bossStages=[4,9,14,19];
-  const isBoss=bossStages.includes(stage);
+  const isBoss = selectedMode!=='infinite'
+    ? bossStages.includes(stage)
+    : bossStages.includes(stage) || (stage>=FINAL_STAGE && (stage-FINAL_STAGE+1)%5===0);
   const badge=document.getElementById('stage-badge');
   badge.textContent=`STAGE ${stage+1}${isBoss?' 👿BOSS':''}`;
   badge.style.borderColor=isBoss?'#e05050':'#b8860b';
@@ -778,7 +901,9 @@ function loadStage(){
   targetIdx=0;
   player.skills.forEach(s=>{if(s.cd>0)s.cd--;});
   clearLog();
+  player.mp = player.maxMp + effMaxMpBonus();
   addLog(`${isBoss?'👿 BOSS':'⚔'} STAGE ${stage+1} 시작! 적 ${enemies.length}마리!`, isBoss?'e':'s');
+  if(selectedMode==='infinite' && stage>=FINAL_STAGE) addLog(`♾️ 무한 도전 ${stage-FINAL_STAGE+1}번째 구간!`,'s');
   if(player.isVampire) addLog('🩸 공격 시 혈기가 충전됩니다!','v');
   renderAll();
 }
@@ -835,7 +960,7 @@ function doBasic(){
   if(!canAct()) return;
   const en=getTarget(); if(!en) return;
   const dmg=calcDmg(effAtk()*0.8, en.def);
-  const mpReg=Math.max(1,Math.floor(player.maxMp*.06));
+  const mpReg=Math.max(1,Math.floor(player.maxMp*.06 * effMpRegMult()));
   dealDmg(en, dmg);
   player.mp=Math.min(player.maxMp,player.mp+mpReg);
   // 뱀파이어: 기본 공격에도 혈기 소량 충전
@@ -860,7 +985,8 @@ function doDefend(){
 
 function useHpPot(){
   if(!canAct()||hpPots<=0) return;
-  const h=Math.floor(player.maxHp*.4);
+  const ratio = player.isMegaKnight ? 0.2 : 0.55;
+  const h=Math.floor(player.maxHp*ratio);
   player.hp=Math.min(player.maxHp,player.hp+h);
   hpPots--;
   addLog(`🧪 HP 포션! +${h} 회복 (남은 ${hpPots}개)`,'h');
@@ -870,8 +996,8 @@ function useHpPot(){
 
 function useMpPot(){
   if(!canAct()||mpPots<=0) return;
-  const h=Math.floor(player.maxMp*.5);
-  player.mp=Math.min(player.maxMp,player.mp+h);
+  const h=Math.floor(player.maxMp*.5 * effMpRegMult());
+  player.mp=Math.min(player.maxMp+effMaxMpBonus(),player.mp+h);
   mpPots--;
   addLog(`💧 MP 포션! +${h} 회복 (남은 ${mpPots}개)`,'h');
   updateHud(); setActionBtns();
@@ -965,8 +1091,9 @@ function useSkill(idx){
     addLog(`${sk.icon} ${sk.name} → 버프 발동!`,'p');
 
   } else if(sk.type==='heal_mp'){
-    player.mp=Math.min(player.maxMp,player.mp+(sk.healMp||0));
-    addLog(`${sk.icon} ${sk.name} → MP +${sk.healMp}`,'h');
+    const mpHeal=Math.floor((sk.healMp||0) * effMpRegMult());
+    player.mp=Math.min(player.maxMp+effMaxMpBonus(),player.mp+mpHeal);
+    addLog(`${sk.icon} ${sk.name} → MP +${mpHeal}`,'h');
   }
 
   updateHud(); renderSkills();
@@ -1037,8 +1164,12 @@ function endPlayerTurn(){
       if(buffs.dodge&&Math.random()<buffs.dodge){
         addLog(`💨 ${en.name} 공격 회피!`,'p'); return;
       }
+      // 모기: 99% 확률 회피
+      if(player.isMosquito&&Math.random()<0.99){
+        addLog(`🦟 모기가 재빠르게 회피했다! (1% 찬스 실패)`,'p'); return;
+      }
       const def=effDef();
-      const dmg=Math.max(1, en.atk-def+rnd(-2,3));
+      const dmg=Math.max(4, en.atk-def+rnd(-2,3));
       player.hp=Math.max(0,player.hp-dmg);
       addLog(`👊 ${en.name} → ${dmg} 데미지`,'e');
 
@@ -1078,7 +1209,10 @@ function onVictory(){
   victoryDone=true;
   busy=true; playerTurn=false;
   addLog(`🎉 STAGE ${stage+1} 클리어!`,'s');
-  if(stage===FINAL_STAGE){
+  if(selectedMode==='infinite'){
+    addLog(`♾️ 최고 기록: ${stage+1} 스테이지`,'s');
+    setTimeout(showShop, 500);
+  } else if(stage===FINAL_STAGE){
     setTimeout(showEnding, 600);
   } else {
     setTimeout(showShop, 500);
@@ -1086,6 +1220,9 @@ function onVictory(){
 }
 
 function showEnding(){
+  const firstClear = !hardMode;
+  hardMode = true;
+  localStorage.setItem('db_hardMode', 'true');
   const bloodInfo=player.isVampire ? `<div class="r-row"><span>🩸 최종 혈기</span><span class="r-val">${player.blood}/${player.maxBlood}</span></div>` : '';
   document.getElementById('ending-card').innerHTML=`
     <div class="r-row"><span>🧙 직업</span><span class="r-val">${player.icon} ${player.name}</span></div>
@@ -1096,14 +1233,20 @@ function showEnding(){
     ${bloodInfo}
     <div class="r-row"><span>💰 총 골드</span><span class="r-val">${gold}G</span></div>
   `;
+  // 최초 클리어 시 해제 알림 표시
+  document.getElementById('hardmode-unlock-notice').style.display = firstClear ? 'block' : 'none';
   showScreen('ending');
 }
 
 function onDefeat(){
   busy=true; playerTurn=false;
-  document.getElementById('r-msg').textContent=`STAGE ${stage+1}에서 쓰러졌습니다...`;
+  const isInfinite = selectedMode==='infinite';
+  document.getElementById('r-msg').textContent= isInfinite
+    ? `♾️ 무한 모드 — STAGE ${stage+1}에서 쓰러졌습니다!`
+    : `STAGE ${stage+1}에서 쓰러졌습니다...`;
   document.getElementById('r-card').innerHTML=`
-    <div class="r-row"><span>도달 스테이지</span><span class="r-val">STAGE ${stage+1}</span></div>
+    <div class="r-row"><span>🎮 모드</span><span class="r-val">${isInfinite?'♾️ 무한':selectedMode==='hard'?'🔥 하드':'⚔️ 일반'}</span></div>
+    <div class="r-row"><span>${isInfinite?'🏆 최고 스테이지':'도달 스테이지'}</span><span class="r-val">STAGE ${stage+1}</span></div>
     <div class="r-row"><span>최종 레벨</span><span class="r-val">Lv ${player.lv}</span></div>
     <div class="r-row"><span>총 골드</span><span class="r-val">${gold}G</span></div>
   `;
@@ -1138,7 +1281,12 @@ function renderShopGrid(){
     const canAff=gold>=item.cost;
     const d=document.createElement('div');
     d.className='shop-item'+(isEq?' is-equipped':!canAff&&!isOwned?' no-gold':'');
-    const stats=[item.atk?`⚔+${item.atk}`:'',item.def?`🛡+${item.def}`:''].filter(Boolean).join('  ');
+    const stats=[
+      item.atk?`⚔+${item.atk}`:'',
+      item.def?`🛡+${item.def}`:'',
+      item.mpReg?`💧회복+${Math.round(item.mpReg*100)}%`:'',
+      item.mpMax?`💜최대MP+${item.mpMax}`:'',
+    ].filter(Boolean).join('  ');
     d.innerHTML=`
       <div class="si-head">
         <div class="si-icon">${item.icon}</div>
@@ -1244,8 +1392,12 @@ function closeLu(){
 }
 
 // ══════════════ 유틸 ══════════════
-function effAtk(){ return player.atk+(buffs.atkB||0)+(equipped.weapon?.atk||0)+(equipped.ring?.atk||0)+(equipped.amulet?.atk||0); }
-function effDef(){ return player.def+(buffs.defB||0)+(equipped.armor?.def||0)+(equipped.ring?.def||0)+(equipped.amulet?.def||0); }
+function effAtk(){ const base=player.atk+(buffs.atkB||0)+(equipped.weapon?.atk||0)+(equipped.ring?.atk||0)+(equipped.amulet?.atk||0); return (hardMode&&selectedMode==='hard')?Math.floor(base*1.15):base; }
+function effDef(){ if(player.isMosquito) return 0; const base=player.def+(buffs.defB||0)+(equipped.armor?.def||0)+(equipped.ring?.def||0)+(equipped.amulet?.def||0); return (hardMode&&selectedMode==='hard')?Math.floor(base*1.15):base; }
+// MP 회복량 배율 (마나 결정 장착 시 +60%)
+function effMpRegMult(){ return 1+(equipped.mpreg?.mpReg||0); }
+// 최대 MP 보너스 (마나 수정구 장착 시 +40)
+function effMaxMpBonus(){ return equipped.mpmax?.mpMax||0; }
 function calcDmg(base,def){ return Math.max(1,Math.floor(base-Math.max(0,def-2)+rnd(-3,4))); }
 function rnd(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
 function canAct(){ return playerTurn&&!busy; }
@@ -1318,16 +1470,18 @@ function renderSkills(){
     const ok=canAct()&&!onCd&&!noMp&&!noBlood;
     const preview=calcPreview(sk,en);
     const isVampSkill=['drain','drain_all','blood_burst','blood_heal'].includes(sk.type);
+    const isMkSkill=player.isMegaKnight;
     const bloodReady=isVampSkill&&ok&&sk.bloodCost&&player.blood>=sk.bloodCost;
 
     const btn=document.createElement('button');
-    btn.className='skill-btn'+(isVampSkill?' vampire-skill':'')+(bloodReady?' blood-skill-available':'');
+    btn.className='skill-btn'+(isVampSkill?' vampire-skill':isMkSkill?' mk-skill':'')+(bloodReady?' blood-skill-available':isMkSkill&&ok?' mk-skill-active':'');
     btn.disabled=!ok;
+    const mpDisplay = player.isMegaKnight ? '무소모' : `MP${sk.mp}`;
     btn.innerHTML=`
       <div class="sk-icon">${sk.icon}</div>
       <div class="sk-info">
         <div class="sk-name">${sk.name}</div>
-        <div class="sk-meta">${sk.desc} · MP${sk.mp}${sk.bloodCost?` · 🩸${sk.bloodCost}`:''}</div>
+        <div class="sk-meta">${sk.desc} · ${mpDisplay}${sk.bloodCost?` · 🩸${sk.bloodCost}`:''}</div>
         ${onCd?`<div class="sk-cd">쿨다운 ${sk.cd}턴</div>`:
           noMp?`<div class="sk-cd">MP 부족</div>`:
           noBlood?`<div class="sk-cd">🩸 혈기 부족 (${player.blood||0}/${sk.bloodCost})</div>`:
@@ -1348,11 +1502,13 @@ function updateHud(){
   document.getElementById('p-hp').textContent=Math.max(0,p.hp);
   document.getElementById('p-mhp').textContent=p.maxHp;
   document.getElementById('p-mp').textContent=p.mp;
-  document.getElementById('p-mmp').textContent=p.maxMp;
+  const totalMaxMp=p.maxMp+effMaxMpBonus();
+  document.getElementById('p-mmp').textContent=totalMaxMp;
+  document.getElementById('mp-bar-wrap').style.display=p.isMegaKnight?'none':'flex';
   document.getElementById('p-atk').textContent=effAtk();
   document.getElementById('p-def').textContent=effDef();
   document.getElementById('bar-hp').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';
-  document.getElementById('bar-mp').style.width=p.mp/p.maxMp*100+'%';
+  document.getElementById('bar-mp').style.width=Math.min(100,p.mp/totalMaxMp*100)+'%';
   document.getElementById('bar-exp').style.width=p.exp/p.expNext*100+'%';
   document.getElementById('exp-val').textContent=p.exp+'/'+p.expNext;
 
@@ -1372,7 +1528,7 @@ function updateHud(){
     const base=Math.floor(effAtk()*.8);
     const def=Math.max(0,en.def-2);
     const mn=Math.max(1,base-def-3), mx=Math.max(1,base-def+4);
-    const mpReg=Math.max(1,Math.floor(p.maxMp*.06));
+    const mpReg=Math.max(1,Math.floor(p.maxMp*.06 * effMpRegMult()));
     if(p.isVampire){
       const bg=Math.max(3,Math.floor(((mn+mx)/2)*0.2));
       document.getElementById('basic-preview').textContent=`DMG: ${mn}~${mx} / 🩸+${bg}`;
@@ -1389,7 +1545,8 @@ function setActionBtns(){
   document.getElementById('btn-basic').disabled=!ok;
   document.getElementById('btn-defend').disabled=!ok;
   document.getElementById('btn-hp-pot').disabled=!ok||hpPots<=0;
-  document.getElementById('btn-mp-pot').disabled=!ok||mpPots<=0;
+  document.getElementById('btn-mp-pot').disabled=!ok||mpPots<=0||player.isMegaKnight;
+  document.getElementById('btn-mp-pot').style.display=player.isMegaKnight?'none':'block';
   document.getElementById('hpot-cnt').textContent=hpPots+'개';
   document.getElementById('mpot-cnt').textContent=mpPots+'개';
 }
@@ -1429,6 +1586,35 @@ function showScreen(name){
 function goTitle(){
   showScreen('title');
   applyVampireTheme(false);
+  // 모드 선택 UI 갱신
+  updateModeUI();
+}
+
+function selectMode(mode){
+  if(mode==='hard' && !hardMode) return; // 잠김
+  selectedMode=mode;
+  updateModeUI();
+}
+
+function updateModeUI(){
+  const normalCard=document.getElementById('mode-normal');
+  const hardCard=document.getElementById('mode-hard');
+  const infiniteCard=document.getElementById('mode-infinite');
+  if(!normalCard||!hardCard||!infiniteCard) return;
+
+  // 하드 모드 잠금 여부
+  if(hardMode){
+    hardCard.classList.remove('locked');
+    document.getElementById('hard-desc').textContent='ATK·DEF +15% 강화된 스탯으로 도전!';
+  } else {
+    hardCard.classList.add('locked');
+    document.getElementById('hard-desc').textContent='20스테이지 클리어 후 해제됩니다';
+  }
+
+  // 선택 상태 리셋 후 적용
+  normalCard.className='mode-card'+(selectedMode==='normal'?' sel-normal':'');
+  hardCard.className='mode-card'+(hardMode?(selectedMode==='hard'?' sel-hard':''):'locked');
+  infiniteCard.className='mode-card'+(selectedMode==='infinite'?' sel-infinite':'');
 }
 
 function switchTutTab(idx){
