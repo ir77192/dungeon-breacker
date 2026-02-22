@@ -273,6 +273,50 @@ body{
   border-color:#cc2244;
   box-shadow:0 0 8px #cc224444;
 }
+
+/* ══ 튜토리얼 ══ */
+#screen-tutorial{padding-top:8px;}
+.tut-title{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:14px;}
+.tut-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.tut-tab{
+  padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  border:1px solid var(--border);background:var(--panel);color:var(--muted);
+  cursor:pointer;transition:.15s;
+}
+.tut-tab:hover{border-color:var(--gold);color:var(--text);}
+.tut-tab.active{background:#1c1808;border-color:var(--gold);color:var(--gold);}
+.tut-page{display:none;}
+.tut-page.active{display:block;}
+.tut-section{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;margin-bottom:8px;
+}
+.tut-section-title{
+  font-size:12px;font-weight:700;color:var(--gold);
+  margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.tut-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:6px 0;border-bottom:1px solid #1a1a2a;font-size:12px;line-height:1.6;
+}
+.tut-row:last-child{border-bottom:none;padding-bottom:0;}
+.tut-icon{font-size:18px;flex-shrink:0;width:24px;text-align:center;margin-top:1px;}
+.tut-text{flex:1;color:var(--muted);}
+.tut-text strong{color:var(--text);}
+.tut-text .hl{color:var(--gold);font-weight:700;}
+.tut-text .hl-red{color:var(--red);font-weight:700;}
+.tut-text .hl-blue{color:var(--blue);font-weight:700;}
+.tut-text .hl-green{color:var(--green);font-weight:700;}
+.tut-text .hl-blood{color:var(--blood);font-weight:700;}
+.tut-tip{
+  background:#0a0d18;border:1px solid #1a3a6a;border-radius:8px;
+  padding:9px 12px;margin-top:8px;font-size:11px;color:#6a9ecc;line-height:1.7;
+}
+.tut-tip::before{content:'💡 ';}
+.class-compare{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;}
+.cc-card{background:#0a0a14;border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
+.cc-name{font-size:12px;font-weight:700;margin-bottom:4px;}
+.cc-stat{font-size:10px;color:var(--muted);line-height:1.9;}
 </style>
 </head>
 <body>
@@ -295,7 +339,130 @@ body{
   <div class="logo-sub">Turn Based RPG</div>
   <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">직업 선택</p>
   <div class="class-row" id="class-row"></div>
-  <button class="btn btn-gold" style="width:100%;padding:14px;font-size:15px" onclick="startGame()">모험 시작!</button>
+  <div style="display:flex;gap:8px;">
+    <button class="btn btn-gold" style="flex:1;padding:14px;font-size:15px" onclick="startGame()">모험 시작!</button>
+    <button class="btn btn-gray" style="padding:14px 16px;font-size:13px" onclick="showScreen('tutorial')">📖 도움말</button>
+  </div>
+</div>
+
+<!-- 튜토리얼 -->
+<div class="screen" id="screen-tutorial">
+  <div class="tut-title">📖 게임 가이드</div>
+
+  <div class="tut-tabs">
+    <div class="tut-tab active" onclick="switchTutTab(0)">기본 전투</div>
+    <div class="tut-tab" onclick="switchTutTab(1)">스탯 & 성장</div>
+    <div class="tut-tab" onclick="switchTutTab(2)">직업 소개</div>
+    <div class="tut-tab" onclick="switchTutTab(3)">🧛 뱀파이어</div>
+  </div>
+
+  <!-- 탭0: 기본 전투 -->
+  <div class="tut-page active" id="tut-0">
+    <div class="tut-section">
+      <div class="tut-section-title">⚔ 전투 흐름</div>
+      <div class="tut-row"><div class="tut-icon">1️⃣</div><div class="tut-text">적 카드를 <strong>클릭</strong>해 공격 대상을 지정합니다. 빨간 테두리가 현재 타겟입니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">2️⃣</div><div class="tut-text">행동을 선택하면 <span class="hl">내 턴</span>이 끝나고 적이 차례대로 공격합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">3️⃣</div><div class="tut-text">모든 적을 처치하면 스테이지 클리어! <span class="hl">상점</span>에서 장비와 포션을 구매할 수 있습니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">4️⃣</div><div class="tut-text">HP가 0이 되면 <span class="hl-red">게임 오버</span>. 총 <span class="hl">20 스테이지</span>를 클리어하면 엔딩입니다.</div></div>
+      <div class="tut-tip">HP와 MP는 스테이지가 넘어가도 그대로 유지됩니다. 상점에서 포션을 잘 활용하세요!</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🎮 행동 선택지</div>
+      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>기본 공격</strong> — ATK×0.8 데미지. MP를 소량 회복합니다. 언제나 사용 가능.</div></div>
+      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방어</strong> — 다음 적 턴까지 DEF +8. 강적 앞에서 효과적입니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🧪</div><div class="tut-text"><strong>HP 포션</strong> — 최대 HP의 40% 즉시 회복. 상점에서 20G에 구매 가능.</div></div>
+      <div class="tut-row"><div class="tut-icon">💧</div><div class="tut-text"><strong>MP 포션</strong> — 최대 MP의 50% 즉시 회복. 상점에서 15G에 구매 가능.</div></div>
+      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text"><strong>스킬</strong> — MP를 소모해 강력한 효과 발동. 사용 후 쿨다운이 생깁니다.</div></div>
+      <div class="tut-tip">스킬 버튼에 표시되는 <span style="color:var(--blue)">"예상 DMG"</span>는 현재 타겟 기준 추정치입니다.</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">👿 보스 스테이지</div>
+      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">5, 10, 15, 20 스테이지는 <span class="hl-red">BOSS</span> 스테이지입니다. 강력한 적이 조합으로 등장합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">📈</div><div class="tut-text">스테이지가 높아질수록 모든 적의 HP·ATK·DEF가 <span class="hl">스케일 상승</span>합니다.</div></div>
+    </div>
+  </div>
+
+  <!-- 탭1: 스탯 & 성장 -->
+  <div class="tut-page" id="tut-1">
+    <div class="tut-section">
+      <div class="tut-section-title">📊 기본 스탯</div>
+      <div class="tut-row"><div class="tut-icon">❤</div><div class="tut-text"><strong>HP</strong> — 0이 되면 게임 오버. 포션이나 흡혈로 회복할 수 있습니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">💜</div><div class="tut-text"><strong>MP</strong> — 스킬 사용에 소모됩니다. 기본 공격 시 소량 회복.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>ATK</strong> — 공격력. 장비·버프로 증가. 스킬 데미지 계산의 기준입니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>DEF</strong> — 방어력. 적의 공격 데미지를 줄입니다. (실제 감소 = DEF-2)</div></div>
+      <div class="tut-tip">데미지 공식: <span class="hl">ATK × 배율 − max(0, DEF−2) + 랜덤(-3~+4)</span><br>방어력이 높을수록 유리하지만 완벽히 막을 수는 없습니다.</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">⭐ 레벨업</div>
+      <div class="tut-row"><div class="tut-icon">🔺</div><div class="tut-text">적을 처치하면 <span class="hl">경험치(EXP)</span>를 획득합니다. EXP 바가 가득 차면 레벨업!</div></div>
+      <div class="tut-row"><div class="tut-icon">💪</div><div class="tut-text">레벨업 시 <strong>HP·MP·ATK·DEF</strong>가 직업별 성장치만큼 오릅니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">📈</div><div class="tut-text">레벨업에 필요한 EXP는 매번 <span class="hl">1.4배</span>씩 증가합니다.</div></div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🛒 장비 시스템</div>
+      <div class="tut-row"><div class="tut-icon">🗡️</div><div class="tut-text"><strong>무기</strong> — ATK 증가. 낡은 검 → 강철 검 → 마법 검 순으로 강력합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방어구</strong> — DEF 증가. 가죽 갑옷 → 사슬 갑옷 → 판금 갑옷.</div></div>
+      <div class="tut-row"><div class="tut-icon">💍</div><div class="tut-text"><strong>반지·목걸이</strong> — ATK와 DEF를 동시에 올려주는 보조 장비.</div></div>
+      <div class="tut-tip">한 번 구매한 장비는 영구 보유합니다. 같은 슬롯 장비를 새로 사면 자동 교체됩니다.</div>
+    </div>
+  </div>
+
+  <!-- 탭2: 직업 소개 -->
+  <div class="tut-page" id="tut-2">
+    <div class="tut-section">
+      <div class="tut-section-title">⚔️ 전사 — 균형잡힌 탱커</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 150 · ATK 20 · DEF 10 · MP 40<br>높은 HP와 DEF로 오래 버티는 타입.</div></div>
+      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>강타</strong> · <strong>방패돌진</strong> · <strong>회오리</strong>(전체) · <strong>전투함성</strong>(ATK 버프)</div></div>
+      <div class="tut-tip">방어 + 전투함성 콤보로 ATK를 쌓은 뒤 강타로 폭딜하는 것이 효과적입니다.</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🔮 마법사 — 고화력 딜러</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 90 · ATK 10 · DEF 3 · MP 120<br>낮은 체력이지만 압도적인 스킬 데미지.</div></div>
+      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>파이어볼</strong>(ATK×3.5) · <strong>블리자드</strong>(전체) · <strong>번개</strong>(ATK×5.0) · <strong>마나흡수</strong>(MP 회복)</div></div>
+      <div class="tut-tip">HP가 낮아 맞으면 위험합니다. 포션을 넉넉히 확보하고 마나흡수로 MP를 순환시키세요.</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🗡️ 도적 — 고속 암살자</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 100 · ATK 18 · DEF 5 · MP 70<br>빠른 쿨다운과 독·회피 특수 기술.</div></div>
+      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>이중찌르기</strong>(2타) · <strong>독단검</strong>(지속 피해) · <strong>연막탄</strong>(50% 회피) · <strong>암살</strong>(ATK×6.0)</div></div>
+      <div class="tut-tip">이중찌르기는 쿨다운이 1턴으로 매우 짧습니다. 독을 걸고 연막탄으로 피해를 줄이는 것이 핵심.</div>
+    </div>
+  </div>
+
+  <!-- 탭3: 뱀파이어 -->
+  <div class="tut-page" id="tut-3">
+    <div class="tut-section">
+      <div class="tut-section-title">🧛 뱀파이어 — 흡혈 특수 직업</div>
+      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 110 · ATK 19 · DEF 6 · MP 80<br>공격과 피격으로 <span class="hl-blood">혈기</span>를 충전하는 독특한 직업.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">일반 직업 중간 수준의 스탯이지만, 흡혈로 <strong>자가 회복</strong>이 가능해 지속전에 강합니다.</div></div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🩸 혈기(Blood) 시스템</div>
+      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>혈기 게이지</strong>는 뱀파이어 전용 3번째 자원입니다. 최대 100 (레벨업 시 +10).</div></div>
+      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><span class="hl-blood">기본 공격</span> 시 피해량의 <span class="hl">10%</span> 혈기 충전.</div></div>
+      <div class="tut-row"><div class="tut-icon">🩹</div><div class="tut-text"><span class="hl-blood">피격</span> 시 받은 피해의 <span class="hl">30%</span> 혈기 충전. 맞을수록 강해집니다!</div></div>
+      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text">혈기 스킬 사용 시 소모합니다. 게이지가 <span class="hl">50 이상</span>이면 붉은 글로우가 활성화됩니다.</div></div>
+      <div class="tut-tip">혈기는 공격보다 <strong>피격 시 더 빠르게</strong> 충전됩니다. 위기 상황에 혈기가 쌓이면 불사의 피로 역전을 노리세요!</div>
+    </div>
+
+    <div class="tut-section">
+      <div class="tut-section-title">🌟 뱀파이어 스킬</div>
+      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>흡혈</strong> (MP 12 · 쿨2) — ATK×2.0 단일 공격. 피해의 <span class="hl-blood">40%</span>를 HP로 흡수.</div></div>
+      <div class="tut-row"><div class="tut-icon">🦇</div><div class="tut-text"><strong>박쥐 군단</strong> (MP 24 · 쿨4) — ATK×1.2 전체 공격. 각 적에게 입힌 피해의 <span class="hl-blood">30%</span> 흡수.</div></div>
+      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text"><strong>혈기 폭발</strong> (MP 20 · 쿨4 · <span class="hl-blood">혈기 50</span>) — 혈기를 소모해 전체에 ATK×1.4 강력 공격.</div></div>
+      <div class="tut-row"><div class="tut-icon">🌑</div><div class="tut-text"><strong>불사의 피</strong> (쿨8 · <span class="hl-blood">혈기 70</span>) — 혈기를 소모해 최대 HP의 <span class="hl-green">60%</span>를 즉시 회복!</div></div>
+      <div class="tut-tip">불사의 피는 MP 소모가 없는 대신 혈기 70이 필요합니다. 쿨타임도 길기 때문에 타이밍을 잘 골라야 합니다.</div>
+    </div>
+  </div>
+
+  <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
 </div>
 
 <!-- 전투 -->
@@ -445,7 +612,7 @@ const CLASSES=[
   },
   { name:'마법사', icon:'🔮', hp:90,mp:120, atk:10,def:3,  hpG:14,atkG:2,defG:1,mpG:18,
     skills:[
-      {name:'파이어볼', icon:'🔥',mp:14,cd:0,maxCd:2, type:'dmg', mult:3.5,bonus:8,  desc:'단일 ATK×3.5+8'},
+      {name:'파이어볼', icon:'🔥',mp:14,cd:0,maxCd:1, type:'dmg', mult:2.45,bonus:6,  desc:'단일 ATK×2.45+6'},
       {name:'블리자드', icon:'❄️',mp:22,cd:0,maxCd:4, type:'all', mult:1.8,          desc:'전체 ATK×1.8'},
       {name:'번개',    icon:'⚡',mp:28,cd:0,maxCd:5, type:'dmg', mult:5.0,bonus:12,  desc:'단일 ATK×5.0+12'},
       {name:'마나흡수', icon:'💜',mp:0, cd:0,maxCd:4, type:'heal_mp',healMp:40,       desc:'MP +40'},
@@ -1261,8 +1428,12 @@ function showScreen(name){
 
 function goTitle(){
   showScreen('title');
-  // 테마 초기화
   applyVampireTheme(false);
+}
+
+function switchTutTab(idx){
+  document.querySelectorAll('.tut-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tut-page').forEach((p,i)=>p.classList.toggle('active',i===idx));
 }
 </script>
 </body>
