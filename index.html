@@ -470,18 +470,15 @@ body{
 .cls-card.necro-card .cls-name{color:#50e0a0;}
 .player-card.necro-theme{background:#040e0a;border-color:#0a2a1a;}
 
-/* ══ 좀비 존 (수정됨) ══ */
 .zombie-zone{
   display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-start;
   margin-bottom:6px;min-height:0;align-items:flex-end;
 }
-/* 살아있는 좀비 */
 .zombie-card{
   background:#061a0e;border:2px solid #1a4a2a;
   border-radius:8px;padding:6px 8px;text-align:center;
   flex:0 0 auto;width:68px;position:relative;transition:.15s;
 }
-/* 죽은 좀비 — 묘비 형태로 작게 */
 .zombie-card.zombie-dead{
   width:28px;height:28px;
   padding:2px;
@@ -497,7 +494,6 @@ body{
   font-size:16px;line-height:1;
   display:block;
 }
-/* 죽은 좀비에서 숨길 요소들 */
 .zombie-card.zombie-dead .z-icon,
 .zombie-card.zombie-dead .z-name,
 .zombie-card.zombie-dead .z-hpbar,
@@ -512,12 +508,8 @@ body{
 .zombie-shield-label{font-size:10px;color:#50e0a0;font-weight:700;margin-bottom:3px;letter-spacing:1px;}
 @keyframes zombieShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
 .zombie-hit{animation:zombieShake .2s ease;}
-
-/* 죽은 좀비 진입 애니메이션 */
 @keyframes graveDrop{0%{transform:scale(1.3);opacity:0}100%{transform:scale(1);opacity:.55}}
 .zombie-card.zombie-dead{animation:graveDrop .3s ease forwards;}
-
-/* 좀비 수 요약 뱃지 */
 .zombie-count-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#061a0e;border:1px solid #1a4a2a;
@@ -542,7 +534,6 @@ body{
   box-shadow:0 0 20px #ffd70022;
 }
 
-/* ══ 메가나이트 분노 게이지 ══ */
 .rage-bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
 .rage-bar-track{
   flex:1;height:9px;background:#1a0808;border-radius:4px;overflow:hidden;
@@ -575,7 +566,6 @@ body{
 .cls-card.locked .cls-name{color:#666 !important;}
 .cls-lock-hint{font-size:10px;color:#888;margin-top:3px;line-height:1.3;}
 
-/* ══ 수도승 테마 ══ */
 .cls-card.monk-card:hover{border-color:#e8c87a;}
 .cls-card.monk-card.sel{
   border-color:#e8c87a;background:#130f02;
@@ -584,7 +574,6 @@ body{
 .cls-card.monk-card .cls-name{color:#e8c87a;}
 .player-card.monk-theme{background:#0e0c02;border-color:#2a2208;}
 
-/* 반사 게이지 */
 .reflect-bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
 .reflect-bar-track{
   flex:1;height:9px;background:#100e02;border-radius:4px;overflow:hidden;
@@ -598,12 +587,10 @@ body{
 .reflect-val{font-size:11px;color:#e8c87a;width:58px;text-align:right;font-weight:700;}
 .reflect-label{font-size:11px;color:#e8c87a;width:24px;font-weight:700;}
 
-/* 반사 활성 시 */
 @keyframes reflectShield{0%,100%{box-shadow:0 0 10px #e8c87a44}50%{box-shadow:0 0 28px #e8c87a99,0 0 48px #c8a03044}}
 .reflect-active{animation:reflectShield 1s ease infinite;}
 .reflect-active .p-avatar{filter:drop-shadow(0 0 8px #e8c87a);}
 
-/* 반사 발동 플로팅 */
 @keyframes reflectBlast{0%{opacity:1;transform:translateY(0) scale(1)}25%{transform:translateY(-6px) scale(1.7)}100%{opacity:0;transform:translateY(-40px) scale(.6)}}
 .float-reflect{
   position:absolute;top:-4px;left:50%;transform:translateX(-50%);
@@ -612,7 +599,6 @@ body{
   animation:reflectBlast 1.1s ease forwards;z-index:25;white-space:nowrap;
 }
 
-/* 연속 권격 타겟 선택 */
 @keyframes targetPulse{0%,100%{box-shadow:0 0 0 #e8c87a00}50%{box-shadow:0 0 14px #e8c87a99}}
 .enemy-card.target-select{
   cursor:crosshair !important;
@@ -620,11 +606,9 @@ body{
   animation:targetPulse .6s ease infinite;
 }
 
-/* 수도승 스킬 버튼 */
 .skill-btn.monk-skill:hover:not(:disabled){border-color:#e8c87a;background:#0e0c02;}
 .skill-btn.monk-skill-active{border-color:#e8c87a;box-shadow:0 0 10px #e8c87a55;}
 
-/* ══ 저격수 테마 ══ */
 .cls-card.sniper-card:hover{border-color:#7ec8a0;}
 .cls-card.sniper-card.sel{
   border-color:#7ec8a0;background:#041410;
@@ -633,7 +617,6 @@ body{
 .cls-card.sniper-card .cls-name{color:#7ec8a0;}
 .player-card.sniper-theme{background:#040e0a;border-color:#0e2a1a;}
 
-/* 헤드샷 게이지 */
 .scope-bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
 .scope-bar-track{
   flex:1;height:9px;background:#080e0a;border-radius:4px;overflow:hidden;
@@ -647,11 +630,9 @@ body{
 .scope-val{font-size:11px;color:#7ec8a0;width:58px;text-align:right;font-weight:700;}
 .scope-label{font-size:11px;color:#7ec8a0;width:24px;font-weight:700;}
 
-/* 조준 충전 시 글로우 */
 @keyframes scopePulse{0%,100%{box-shadow:0 0 0 #7ec8a000}50%{box-shadow:0 0 16px #7ec8a055}}
 .scope-ready{animation:scopePulse 1s ease infinite;}
 
-/* 헤드샷 발동 시 플로팅 */
 @keyframes headshotBlast{0%{opacity:1;transform:translateY(0) scale(1)}30%{transform:translateY(-8px) scale(1.5)}100%{opacity:0;transform:translateY(-34px) scale(.7)}}
 .float-headshot{
   position:absolute;top:-4px;left:50%;transform:translateX(-50%);
@@ -661,7 +642,6 @@ body{
   letter-spacing:1px;
 }
 
-/* 위장 상태 표시 */
 .camo-active{
   border-color:#7ec8a0 !important;
   box-shadow:0 0 10px #7ec8a055 !important;
@@ -669,11 +649,9 @@ body{
 @keyframes camoFlicker{0%,100%{opacity:1}50%{opacity:.6}}
 .camo-active .p-avatar{animation:camoFlicker 2s ease infinite;}
 
-/* 저격수 스킬 버튼 */
 .skill-btn.sniper-skill:hover:not(:disabled){border-color:#7ec8a0;background:#060e08;}
 .skill-btn.sniper-skill-ready{border-color:#7ec8a0;box-shadow:0 0 8px #7ec8a044;}
 
-/* ══ 폭탄병 테마 ══ */
 .cls-card.bomb-card:hover{border-color:#ff6600;}
 .cls-card.bomb-card.sel{
   border-color:#ff6600;background:#140800;
@@ -681,7 +659,6 @@ body{
 }
 .cls-card.bomb-card .cls-name{color:#ff8c00;}
 .player-card.bomb-theme{background:#0e0600;border-color:#3a1800;}
-/* 폭탄 폭발 게이지 */
 .fuse-bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
 .fuse-bar-track{
   flex:1;height:9px;background:#1a0800;border-radius:4px;overflow:hidden;
@@ -694,19 +671,15 @@ body{
 }
 .fuse-val{font-size:11px;color:#ff8c00;width:58px;text-align:right;font-weight:700;}
 .fuse-label{font-size:11px;color:#ff8c00;width:24px;font-weight:700;}
-/* 도화선 충전 시 폭탄 글로우 */
 @keyframes fusePulse{0%,100%{box-shadow:0 0 0 #ff660000}50%{box-shadow:0 0 16px #ff660066}}
 .fuse-ready{animation:fusePulse 1s ease infinite;}
-/* 기본 공격 전체 공격 표시 */
 .all-attack-badge{
   display:inline-block;background:#331100;border:1px solid #ff6600;
   border-radius:4px;padding:1px 5px;font-size:9px;color:#ff8c00;font-weight:700;
   margin-left:4px;
 }
-/* 폭탄병 스킬 버튼 강조 */
 .skill-btn.bomb-skill:hover:not(:disabled){border-color:#ff6600;background:#180a00;}
 .skill-btn.bomb-skill-ready{border-color:#ff6600;box-shadow:0 0 8px #ff660044;}
-/* 폭발 플로팅 텍스트 */
 @keyframes bombBlast{0%{opacity:1;transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.3)}100%{opacity:0;transform:translateY(-28px) scale(.8)}}
 .float-bomb{
   position:absolute;top:2px;left:50%;transform:translateX(-50%);
@@ -714,6 +687,11 @@ body{
   color:#ff8c00;text-shadow:0 0 8px #ff660088;
   animation:bombBlast .9s ease forwards;z-index:20;white-space:nowrap;
 }
+
+/* 고블린 카드 스타일 */
+.cls-card.goblin-card:hover{border-color:#88cc44;}
+.cls-card.goblin-card.sel{border-color:#88cc44;background:#0a120a;box-shadow:0 0 16px #88cc4433;}
+.cls-card.goblin-card .cls-name{color:#88cc44;}
 </style>
 </head>
 <body>
@@ -816,235 +794,78 @@ body{
   <div class="tut-page active" id="tut-0">
     <div class="tut-section">
       <div class="tut-section-title">⚔ 전투 흐름</div>
-      <div class="tut-row"><div class="tut-icon">1️⃣</div><div class="tut-text">적 카드를 <strong>클릭</strong>해 공격 대상을 지정합니다. 빨간 테두리가 현재 타겟입니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">2️⃣</div><div class="tut-text">행동을 선택하면 <span class="hl">내 턴</span>이 끝나고 적이 차례대로 공격합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">3️⃣</div><div class="tut-text">모든 적을 처치하면 스테이지 클리어! <span class="hl">상점</span>에서 장비와 포션을 구매할 수 있습니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">4️⃣</div><div class="tut-text">HP가 0이 되면 <span class="hl-red">게임 오버</span>. 총 <span class="hl">20 스테이지</span>를 클리어하면 엔딩입니다.</div></div>
-      <div class="tut-tip">HP와 MP는 스테이지가 넘어가도 그대로 유지됩니다. 상점에서 포션을 잘 활용하세요!</div>
+      <div class="tut-row"><div class="tut-icon">1️⃣</div><div class="tut-text">적 카드를 <strong>클릭</strong>해 공격 대상을 지정합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">2️⃣</div><div class="tut-text">행동을 선택하면 <span class="hl">내 턴</span>이 끝나고 적이 공격합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">3️⃣</div><div class="tut-text">모든 적을 처치하면 스테이지 클리어! <span class="hl">상점</span>을 이용하세요.</div></div>
+      <div class="tut-row"><div class="tut-icon">4️⃣</div><div class="tut-text">HP가 0이 되면 <span class="hl-red">게임 오버</span>. 총 <span class="hl">20 스테이지</span> 클리어가 목표!</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🎮 행동 선택지</div>
-      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>기본 공격</strong> — ATK×0.8 데미지. MP를 소량 회복합니다. 언제나 사용 가능.</div></div>
-      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방어</strong> — 다음 적 턴까지 DEF +8. 강적 앞에서 효과적입니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🧪</div><div class="tut-text"><strong>HP 포션</strong> — 최대 HP의 40% 즉시 회복. 상점에서 20G에 구매 가능.</div></div>
-      <div class="tut-row"><div class="tut-icon">💧</div><div class="tut-text"><strong>MP 포션</strong> — 최대 MP의 50% 즉시 회복. 상점에서 15G에 구매 가능.</div></div>
-      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text"><strong>스킬</strong> — MP를 소모해 강력한 효과 발동. 사용 후 쿨다운이 생깁니다.</div></div>
-      <div class="tut-tip">스킬 버튼에 표시되는 <span style="color:var(--blue)">"예상 DMG"</span>는 현재 타겟 기준 추정치입니다.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">👿 보스 스테이지</div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">5, 10, 15, 20 스테이지는 <span class="hl-red">BOSS</span> 스테이지입니다. 강력한 적이 조합으로 등장합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">📈</div><div class="tut-text">스테이지가 높아질수록 모든 적의 HP·ATK·DEF가 <span class="hl">스케일 상승</span>합니다.</div></div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-1">
     <div class="tut-section">
       <div class="tut-section-title">📊 기본 스탯</div>
-      <div class="tut-row"><div class="tut-icon">❤</div><div class="tut-text"><strong>HP</strong> — 0이 되면 게임 오버. 포션이나 흡혈로 회복할 수 있습니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">💜</div><div class="tut-text"><strong>MP</strong> — 스킬 사용에 소모됩니다. 기본 공격 시 소량 회복.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>ATK</strong> — 공격력. 장비·버프로 증가. 스킬 데미지 계산의 기준입니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>DEF</strong> — 방어력. 적의 공격 데미지를 줄입니다. (실제 감소 = DEF-2)</div></div>
-      <div class="tut-tip">데미지 공식: <span class="hl">ATK × 배율 − max(0, DEF−2) + 랜덤(-3~+4)</span><br>방어력이 높을수록 유리하지만 완벽히 막을 수는 없습니다.</div>
+      <div class="tut-row"><div class="tut-icon">❤</div><div class="tut-text"><strong>HP</strong> — 0이 되면 게임 오버.</div></div>
+      <div class="tut-row"><div class="tut-icon">💜</div><div class="tut-text"><strong>MP</strong> — 스킬 사용에 소모.</div></div>
+      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>ATK</strong> — 공격력.</div></div>
+      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>DEF</strong> — 방어력.</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">⭐ 레벨업</div>
-      <div class="tut-row"><div class="tut-icon">🔺</div><div class="tut-text">적을 처치하면 <span class="hl">경험치(EXP)</span>를 획득합니다. EXP 바가 가득 차면 레벨업!</div></div>
-      <div class="tut-row"><div class="tut-icon">💪</div><div class="tut-text">레벨업 시 <strong>HP·MP·ATK·DEF</strong>가 직업별 성장치만큼 오릅니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">📈</div><div class="tut-text">레벨업에 필요한 EXP는 매번 <span class="hl">1.4배</span>씩 증가합니다.</div></div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🛒 장비 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🗡️</div><div class="tut-text"><strong>무기</strong> — ATK 증가. 낡은 검 → 강철 검 → 마법 검 순으로 강력합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방어구</strong> — DEF 증가. 가죽 갑옷 → 사슬 갑옷 → 판금 갑옷.</div></div>
-      <div class="tut-row"><div class="tut-icon">💍</div><div class="tut-text"><strong>반지·목걸이</strong> — ATK와 DEF를 동시에 올려주는 보조 장비.</div></div>
-      <div class="tut-tip">한 번 구매한 장비는 영구 보유합니다. 같은 슬롯 장비를 새로 사면 자동 교체됩니다.</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-2">
     <div class="tut-section">
-      <div class="tut-section-title">⚔️ 전사 — 균형잡힌 탱커</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 150 · ATK 20 · DEF 10 · MP 40<br>높은 HP와 DEF로 오래 버티는 타입.</div></div>
-      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>강타</strong> · <strong>방패돌진</strong> · <strong>회오리</strong>(전체) · <strong>전투함성</strong>(ATK 버프)</div></div>
-      <div class="tut-tip">방어 + 전투함성 콤보로 ATK를 쌓은 뒤 강타로 폭딜하는 것이 효과적입니다.</div>
+      <div class="tut-section-title">⚔️ 기본 직업들</div>
+      <div class="tut-row"><div class="tut-icon">⚔️</div><div class="tut-text"><strong>전사</strong> — HP 165 · 균형형 탱커</div></div>
+      <div class="tut-row"><div class="tut-icon">🔮</div><div class="tut-text"><strong>마법사</strong> — HP 100 · 고화력 딜러</div></div>
+      <div class="tut-row"><div class="tut-icon">🗡️</div><div class="tut-text"><strong>도적</strong> — HP 110 · 고속 암살자</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🔮 마법사 — 고화력 딜러</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 90 · ATK 10 · DEF 3 · MP 120<br>낮은 체력이지만 압도적인 스킬 데미지.</div></div>
-      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>파이어볼</strong>(ATK×3.5) · <strong>블리자드</strong>(전체) · <strong>번개</strong>(ATK×5.0) · <strong>마나흡수</strong>(MP 회복)</div></div>
-      <div class="tut-tip">HP가 낮아 맞으면 위험합니다. 포션을 넉넉히 확보하고 마나흡수로 MP를 순환시키세요.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🗡️ 도적 — 고속 암살자</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 100 · ATK 18 · DEF 5 · MP 70<br>빠른 쿨다운과 독·회피 특수 기술.</div></div>
-      <div class="tut-row"><div class="tut-icon">🌟</div><div class="tut-text"><strong>이중찌르기</strong>(2타) · <strong>독단검</strong>(지속 피해) · <strong>연막탄</strong>(50% 회피) · <strong>암살</strong>(ATK×6.0)</div></div>
-      <div class="tut-tip">이중찌르기는 쿨다운이 1턴으로 매우 짧습니다. 독을 걸고 연막탄으로 피해를 줄이는 것이 핵심.</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-3">
     <div class="tut-section">
       <div class="tut-section-title">🧛 뱀파이어 — 흡혈 특수 직업</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 110 · ATK 19 · DEF 6 · MP 80<br>공격과 피격으로 <span class="hl-blood">혈기</span>를 충전하는 독특한 직업.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">일반 직업 중간 수준의 스탯이지만, 흡혈로 <strong>자가 회복</strong>이 가능해 지속전에 강합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text">공격/피격으로 혈기 충전. 혈기 스킬로 흡혈 및 대량 회복.</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🩸 혈기(Blood) 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>혈기 게이지</strong>는 뱀파이어 전용 3번째 자원입니다. 최대 100 (레벨업 시 +10).</div></div>
-      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><span class="hl-blood">기본 공격</span> 시 피해량의 <span class="hl">10%</span> 혈기 충전.</div></div>
-      <div class="tut-row"><div class="tut-icon">🩹</div><div class="tut-text"><span class="hl-blood">피격</span> 시 받은 피해의 <span class="hl">30%</span> 혈기 충전. 맞을수록 강해집니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text">혈기 스킬 사용 시 소모합니다. 게이지가 <span class="hl">50 이상</span>이면 붉은 글로우가 활성화됩니다.</div></div>
-      <div class="tut-tip">혈기는 공격보다 <strong>피격 시 더 빠르게</strong> 충전됩니다. 위기 상황에 혈기가 쌓이면 불사의 피로 역전을 노리세요!</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 뱀파이어 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>흡혈</strong> (MP 12 · 쿨2) — ATK×2.0 단일 공격. 피해의 <span class="hl-blood">40%</span>를 HP로 흡수.</div></div>
-      <div class="tut-row"><div class="tut-icon">🦇</div><div class="tut-text"><strong>박쥐 군단</strong> (MP 24 · 쿨4) — ATK×1.2 전체 공격. 각 적에게 입힌 피해의 <span class="hl-blood">30%</span> 흡수.</div></div>
-      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text"><strong>혈기 폭발</strong> (MP 20 · 쿨4 · <span class="hl-blood">혈기 50</span>) — 혈기를 소모해 전체에 ATK×1.4 강력 공격.</div></div>
-      <div class="tut-row"><div class="tut-icon">🌑</div><div class="tut-text"><strong>불사의 피</strong> (쿨8 · <span class="hl-blood">혈기 70</span>) — 혈기를 소모해 최대 HP의 <span class="hl-green">60%</span>를 즉시 회복!</div></div>
-      <div class="tut-tip">불사의 피는 MP 소모가 없는 대신 혈기 70이 필요합니다. 쿨타임도 길기 때문에 타이밍을 잘 골라야 합니다.</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-4">
     <div class="tut-section">
-      <div class="tut-section-title">💀 네크로맨서 — 좀비 군단 지휘관</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 95 · ATK 14 · DEF 4 · MP 100<br>스스로는 약하지만 좀비를 소환해 방패 삼고 같이 싸우는 전략형 직업.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">혼자서는 버티기 어렵습니다. 최대한 빨리 좀비를 소환해 <strong>방패를 세우는 것</strong>이 핵심입니다.</div></div>
+      <div class="tut-section-title">💀 네크로맨서 — 좀비 군단</div>
+      <div class="tut-row"><div class="tut-icon">🧟</div><div class="tut-text">좀비를 소환해 방패 삼고 같이 싸우는 전략형 직업.</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🧟 좀비 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>방패 역할</strong> — 살아있는 좀비가 있으면 적의 공격을 <span class="hl-green">대신 맞습니다.</span></div></div>
-      <div class="tut-row"><div class="tut-icon">⚔</div><div class="tut-text"><strong>공격 역할</strong> — 좀비들은 매 턴 살아있는 적을 랜덤으로 공격합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">♾️</div><div class="tut-text"><strong>스테이지 지속</strong> — 좀비는 스테이지가 넘어가도 <span class="hl">죽지 않고 유지</span>됩니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🪦</div><div class="tut-text"><strong>죽은 좀비</strong> — 쓰러진 좀비는 작은 <span class="hl">묘비(🪦)</span>로 표시됩니다. 시체 폭발에 카운트됩니다!</div></div>
-      <div class="tut-tip">좀비는 쌓일수록 강력해집니다. 3~4마리가 모이면 적 공격을 한동안 버텨줍니다!</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 네크로맨서 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🧟</div><div class="tut-text"><strong>좀비 소환</strong> (MP 18 · 쿨3) — 좀비를 소환합니다. HP는 레벨에 비례. 방패 + 공격 역할.</div></div>
-      <div class="tut-row"><div class="tut-icon">☠️</div><div class="tut-text"><strong>저주 손가락</strong> (MP 14 · 쿨2) — ATK×2.0 단일 공격 + <span class="hl-red">독(3턴)</span> 부여.</div></div>
-      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text"><strong>시체 폭발</strong> (MP 22 · 쿨4) — 살아있는 좀비 1기를 희생해 강력한 단일 공격.</div></div>
-      <div class="tut-row"><div class="tut-icon">💀</div><div class="tut-text"><strong>언데드 군단</strong> (MP 30 · 쿨5) — ATK×1.1 전체 공격.</div></div>
-      <div class="tut-tip">시체 폭발은 좀비가 없으면 사용 불가! 쓰러진 묘비들이 많을수록 위력도 올라갑니다.</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-5">
     <div class="tut-section">
       <div class="tut-section-title">🛡️ 메가 나이트 — 철벽 탱커</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 280 · ATK <span class="hl-green">18</span> · DEF 12 · MP 없음<br>압도적인 HP와 DEF로 버티며, 이제 <span class="hl-green">강화된 공격력</span>으로 딜도 챙기는 탱커.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">갑옷이 잘 맞지 않아 방어구·반지·목걸이의 DEF 효율이 <span class="hl-red">50% 감소</span>합니다. 기본 DEF와 분노를 활용하세요!</div></div>
+      <div class="tut-row"><div class="tut-icon">💢</div><div class="tut-text">MP 없음. 피격받을수록 분노 충전. 분노 100 시 내려찍기!</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🛡 MP 없음 시스템</div>
-      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text">모든 스킬의 <strong>MP 소모가 0</strong>입니다. 쿨다운만 기다리면 제한 없이 사용 가능합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">💧</div><div class="tut-text">MP 포션은 사용 불가입니다. HP 포션 효율이 일반보다 낮습니다 <span class="hl-red">(회복량 20%)</span>.</div></div>
-      <div class="tut-tip">HP가 280으로 매우 높지만 포션 효율이 낮습니다. 적의 공격을 버티며 분노를 쌓고 내려찍기로 역전하세요.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">😤 분노(Rage) 시스템</div>
-      <div class="tut-row"><div class="tut-icon">💢</div><div class="tut-text"><strong>분노 게이지</strong>는 메가나이트 전용 자원입니다. <span class="hl-red">피격받을수록</span> 자동으로 충전됩니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🩹</div><div class="tut-text">피해량의 <span class="hl">50%</span>만큼 분노가 충전됩니다. 많이 맞을수록 강해집니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text">분노 <span class="hl-red">100</span> 달성 시 <span class="hl-red">내려찍기</span>가 해금됩니다. 게이지가 붉게 빛나기 시작하면 필살기 타이밍!</div></div>
-      <div class="tut-tip">메가나이트는 맞으면서 분노를 쌓고 내려찍기로 폭딜하는 타입입니다. 죽지 않을 만큼 버티면서 분노를 키우세요!</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 메가 나이트 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🪨</div><div class="tut-text"><strong>철벽 강타</strong> (쿨2 · MP무소모) — ATK×<span class="hl-green">2.4</span> 단일 공격.</div></div>
-      <div class="tut-row"><div class="tut-icon">🌍</div><div class="tut-text"><strong>대지 진동</strong> (쿨3 · MP무소모) — ATK×<span class="hl-green">0.9</span> 전체 공격.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚡</div><div class="tut-text"><strong>맹공격</strong> (쿨4 · MP무소모) — ATK×<span class="hl-green">1.3</span> ×3타.</div></div>
-      <div class="tut-row"><div class="tut-icon">💢</div><div class="tut-text"><strong>내려찍기</strong> (쿨<span class="hl-red">15</span> · <span class="hl-red">분노 100</span> 소모) — 전체에 ATK×8.0 압도적 폭딜! 단, 쿨타임이 매우 깁니다.</div></div>
-      <div class="tut-tip">내려찍기는 ATK 18 기준 전체에 약 140+ 데미지! 보스 스테이지 진입 전 분노를 <span class="hl-red">100</span> 꽉 채워두세요.</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-6">
     <div class="tut-section">
       <div class="tut-section-title">🦟 모기 — 극단의 도박사</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP <span class="hl-red">1</span> · ATK 45 · DEF 0 · MP 50<br>단 하나뿐인 목숨. 하지만 매 턴 <span class="hl-green">99% 확률로 회피</span>합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">HP가 1이라 단 한 번이라도 맞으면 즉사입니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">💨</div><div class="tut-text">HP 1이지만 99% 회피. ATK 45의 고화력. 한 번 맞으면 즉사!</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">💨 99% 회피 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🎲</div><div class="tut-text">적의 공격마다 <strong>99% 확률로 자동 회피</strong>합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">💀</div><div class="tut-text">레벨업을 해도 <span class="hl-red">HP는 영원히 1</span>입니다.</div></div>
-      <div class="tut-tip">적이 3마리라면 한 턴에 회피를 3번 굴립니다. 1% × 3번 = 약 3% 확률로 맞습니다. 🎰</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 모기 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🩸</div><div class="tut-text"><strong>흡혈 찌르기</strong> (MP 10 · 쿨1) — ATK×2.5.</div></div>
-      <div class="tut-row"><div class="tut-icon">💨</div><div class="tut-text"><strong>급습</strong> (MP 14 · 쿨2) — ATK×4.0 강타.</div></div>
-      <div class="tut-row"><div class="tut-icon">🦟</div><div class="tut-text"><strong>군집</strong> (MP 18 · 쿨3) — ATK×1.5 전체 공격.</div></div>
-      <div class="tut-row"><div class="tut-icon">📡</div><div class="tut-text"><strong>초음파</strong> (MP 22 · 쿨4) — ATK×6.5 단일 공격.</div></div>
-      <div class="tut-tip">ATK 45 기준 초음파 한 방이 약 290 데미지! 운만 따라준다면 어떤 직업보다 강력합니다 😈</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-7">
     <div class="tut-section">
       <div class="tut-section-title">💣 폭탄병 — 전체 공격 전문가</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP <span class="hl-green">155</span> · ATK <span class="hl-green">20</span> · DEF 5 · MP 60<br><span class="hl">기본 공격을 포함한 모든 공격이 전체 공격</span>입니다. 적이 많을수록 강해집니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">ATK가 낮은 편이라 단일 딜은 약합니다. 다수의 적을 상대할 때 진가를 발휘합니다.</div></div>
+      <div class="tut-row"><div class="tut-icon">💣</div><div class="tut-text">모든 공격이 전체 공격. 도화선 충전 후 연쇄 폭발!</div></div>
     </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🧨 도화선(Fuse) 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🧨</div><div class="tut-text"><strong>도화선 게이지</strong>는 폭탄병 전용 3번째 자원입니다. 최대 100 (레벨업마다 +5).</div></div>
-      <div class="tut-row"><div class="tut-icon">💣</div><div class="tut-text">공격 스킬을 사용할 때마다 <span class="hl">도화선이 자동으로 충전</span>됩니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🔥</div><div class="tut-text">도화선이 <span class="hl">70 이상</span>이면 연쇄 폭발 스킬이 해금됩니다. 게이지가 빛나기 시작하면 필살기 타이밍!</div></div>
-      <div class="tut-tip">기본 공격도 도화선을 충전합니다. 전투 초반에는 기본 공격과 스킬을 번갈아 써서 도화선을 빠르게 쌓으세요.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 폭탄병 스킬 (전부 전체 공격!)</div>
-      <div class="tut-row"><div class="tut-icon">💣</div><div class="tut-text"><strong>수류탄</strong> (MP 10 · 쿨2) — 전체 ATK×1.0 · <span class="hl">도화선 +20</span>. 빠른 도화선 충전.</div></div>
-      <div class="tut-row"><div class="tut-icon">🎇</div><div class="tut-text"><strong>클러스터</strong> (MP 16 · 쿨3) — 전체 ATK×1.4 · <span class="hl">도화선 +30</span>. 핵심 딜 스킬.</div></div>
-      <div class="tut-row"><div class="tut-icon">💨</div><div class="tut-text"><strong>연막 폭탄</strong> (MP 14 · 쿨3) — 전체 ATK×0.7 + 자신 <span class="hl">DEF +12 (2턴)</span>. 생존용 스킬.</div></div>
-      <div class="tut-row"><div class="tut-icon">🔥</div><div class="tut-text"><strong>연쇄 폭발</strong> (MP 22 · 쿨5 · <span class="hl">도화선 70</span>) — 도화선 소모! 전체에 ATK×2.2를 <span class="hl">2연속</span> 폭발.</div></div>
-      <div class="tut-tip">연쇄 폭발은 적 3마리 기준으로 총 6회 공격이 들어갑니다. 보스 스테이지에서 몰아넣고 터뜨리면 극강의 폭딜!</div>
-    </div>
+    <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-8">
     <div class="tut-section">
       <div class="tut-section-title">🎯 저격수 — 정밀 헤드샷 딜러</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 105 · ATK 22 · DEF 4 · MP 65<br>강력한 단일 딜과 <span class="hl-green">30% 헤드샷</span>, 기본 <span class="hl">10% 위장 회피</span>를 갖춘 정밀 딜러.</div></div>
-      <div class="tut-row"><div class="tut-icon">⚠</div><div class="tut-text">HP와 DEF가 낮습니다. 위장 스킬과 회피를 활용해 피해를 줄이는 것이 핵심입니다.</div></div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🪖 기본 위장 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🎲</div><div class="tut-text">아무런 버프 없이도 <strong>매 공격마다 10% 확률로 자동 회피</strong>합니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">🪖</div><div class="tut-text">위장 강화 스킬을 쓰면 회피율이 추가 50% 상승해 최대 <span class="hl">60% 회피</span>가 됩니다!</div></div>
-      <div class="tut-tip">위장 강화 + 방어 콤보로 적의 공격을 최대한 흘려내세요. 저격수는 맞으면 위험합니다.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🎯 헤드샷 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🔫</div><div class="tut-text"><strong>저격총</strong> 사용 시 매번 <span class="hl">30% 확률</span>로 헤드샷이 발동해 데미지가 <span class="hl">2배</span>가 됩니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">🔍</div><div class="tut-text"><strong>저격 조준</strong> 스킬 사용 후 다음 저격총은 <span class="hl-green">100% 헤드샷 보장</span>입니다.</div></div>
-      <div class="tut-tip">ATK 22 기준 저격총 기본 데미지 약 66, 헤드샷 시 약 132! 보스 앞에서 저격 조준 → 저격총 콤보를 노리세요.</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 저격수 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🔫</div><div class="tut-text"><strong>저격총</strong> (MP 14 · <span class="hl-red">쿨2</span>) — ATK×3.0 강력 단일 공격. <span class="hl">30% 헤드샷 → 데미지 2배!</span></div></div>
-      <div class="tut-row"><div class="tut-icon">🥤</div><div class="tut-text"><strong>에너지드링크</strong> (MP 12 · 쿨4) — 최대 HP의 <span class="hl-green">30% 즉시 회복</span>.</div></div>
-      <div class="tut-row"><div class="tut-icon">✈️</div><div class="tut-text"><strong>공중지원</strong> (MP 20 · 쿨4) — 전체 ATK×1.6 공습. 다수의 적을 한번에 처리!</div></div>
-      <div class="tut-row"><div class="tut-icon">🚀</div><div class="tut-text"><strong>자주포 지원</strong> (MP 28 · 쿨6) — 단일 ATK×6.0 포격. <span class="hl-green">항상 헤드샷</span> → 실질 ATK×<span class="hl-green">12.0</span>!</div></div>
-      <div class="tut-tip">저격총(쿨2)과 자주포(쿨6)를 번갈아 쓰며 딜을 넣고, 피가 위험하면 에너지드링크로 버티세요!</div>
+      <div class="tut-row"><div class="tut-icon">🔫</div><div class="tut-text">30% 헤드샷(2배 데미지). 기본 10% 회피. 저격 조준으로 확정 헤드샷!</div></div>
     </div>
     <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
   <div class="tut-page" id="tut-9">
     <div class="tut-section">
       <div class="tut-section-title">🧘 수도승 — 반격의 현자</div>
-      <div class="tut-row"><div class="tut-icon">📋</div><div class="tut-text">HP 140 · ATK 15 · DEF 8 · MP 60<br>균형 잡힌 스탯과 <span class="hl">반사</span> 능력으로 적의 공격을 역이용하는 전략형 직업.</div></div>
-      <div class="tut-row"><div class="tut-icon">💡</div><div class="tut-text">반사 중에는 <span class="hl-green">받는 피해가 0</span>이 되고, 공격이 그대로 적에게 돌아갑니다!</div></div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌀 반사(Reflect) 시스템</div>
-      <div class="tut-row"><div class="tut-icon">🔄</div><div class="tut-text"><strong>반사</strong> 스킬 사용 시 <span class="hl-green">다음 1턴</span> 동안 적의 모든 공격이 그대로 반사됩니다.</div></div>
-      <div class="tut-row"><div class="tut-icon">💥</div><div class="tut-text">반사 데미지는 <strong>적의 ATK</strong>를 기반으로 계산됩니다. 강한 적일수록 더 큰 피해가 돌아갑니다!</div></div>
-      <div class="tut-row"><div class="tut-icon">✨</div><div class="tut-text">반사 중에는 플레이어 카드가 <span class="hl">황금빛</span>으로 빛납니다.</div></div>
-      <div class="tut-tip">보스의 강력한 공격을 반사로 역이용하면 한 턴에 막대한 피해를 줄 수 있습니다!</div>
-    </div>
-    <div class="tut-section">
-      <div class="tut-section-title">🌟 수도승 스킬</div>
-      <div class="tut-row"><div class="tut-icon">🌀</div><div class="tut-text"><strong>반사</strong> (MP 18 · 쿨5) — 다음 <span class="hl-green">1턴</span> 모든 공격을 반사!</div></div>
-      <div class="tut-row"><div class="tut-icon">🌪️</div><div class="tut-text"><strong>선풍격</strong> (MP 12 · 쿨2) — 전체 ATK×0.8 공격. 다수의 적을 동시에 처리!</div></div>
-      <div class="tut-row"><div class="tut-icon">👊</div><div class="tut-text"><strong>연속 권격</strong> (MP 10 · 쿨3) — 단일 적에게 ATK×1.2 <span class="hl-green">×3타</span> 연속 공격!</div></div>
-      <div class="tut-row"><div class="tut-icon">🛡</div><div class="tut-text"><strong>철벽수련</strong> (MP 14 · 쿨3) — DEF <span class="hl-green">+18</span> (3턴). 버티기가 필요할 때 사용하세요.</div></div>
-      <div class="tut-tip">반사(쿨5) 대기 중엔 연속 권격으로 딜을 넣고, 강적이 오면 반사로 역이용하세요!</div>
+      <div class="tut-row"><div class="tut-icon">🌀</div><div class="tut-text">반사 스킬로 적의 공격을 그대로 되돌려 줍니다!</div></div>
     </div>
     <button class="btn btn-gray" style="width:100%;padding:13px;font-size:13px;margin-top:4px" onclick="showScreen('title')">← 타이틀로 돌아가기</button>
   </div>
@@ -1101,7 +922,6 @@ body{
         <div class="blood-val"><span id="p-blood">0</span>/<span id="p-mblood">100</span></div>
       </div>
     </div>
-    <!-- 도화선 게이지 (폭탄병 전용) -->
     <div id="fuse-bar-container" style="display:none">
       <div class="fuse-bar-wrap">
         <div class="fuse-label">🧨</div>
@@ -1111,7 +931,6 @@ body{
         <div class="fuse-val"><span id="p-fuse">0</span>/<span id="p-mfuse">100</span></div>
       </div>
     </div>
-    <!-- 분노 게이지 (메가나이트 전용) -->
     <div id="rage-bar-container" style="display:none">
       <div class="rage-bar-wrap">
         <div class="rage-label">😤</div>
@@ -1200,7 +1019,7 @@ body{
     <div style="font-size:13px;color:var(--muted);margin-bottom:12px">던전을 정복했습니다!</div>
     <div id="hardmode-unlock-notice" style="display:none;background:linear-gradient(135deg,#1a0a00,#2a1400);border:2px solid #ff6600;border-radius:10px;padding:12px 16px;margin-bottom:12px;text-align:left;">
       <div style="font-size:16px;font-weight:900;color:#ff8800;margin-bottom:4px">🔥 하드모드 해제!</div>
-      <div style="font-size:12px;color:#c07040;line-height:1.7">모든 캐릭터의 <strong style="color:#ff8800">ATK·DEF가 15% 증가</strong>합니다.<br>다음 게임부터 강화된 스탯으로 시작하세요!</div>
+      <div style="font-size:12px;color:#c07040;line-height:1.7">모든 캐릭터의 <strong style="color:#ff8800">ATK·DEF가 15% 증가</strong>합니다.</div>
     </div>
     <div class="result-card" id="ending-card" style="text-align:left;margin-bottom:16px"></div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:16px">🏆 당신은 진정한 던전 브레이커입니다!</div>
@@ -1256,7 +1075,7 @@ const CLASSES=[
       {name:'철벽 강타',  icon:'🪨',mp:0,cd:0,maxCd:2,  type:'dmg',   mult:2.4,           desc:'단일 ATK×2.4 · MP무소모'},
       {name:'대지 진동',  icon:'🌍',mp:0,cd:0,maxCd:3,  type:'all',   mult:0.9,           desc:'전체 ATK×0.9 · MP무소모'},
       {name:'맹공격',     icon:'⚡',mp:0,cd:0,maxCd:4,  type:'multi', mult:1.3, hits:3,   desc:'ATK×1.3 ×3타 · MP무소모'},
-      {name:'내려찍기',   icon:'💢',mp:0,cd:0,maxCd:15, type:'mk_smash', mult:8.0, rageCost:100, desc:'분노 100 소모 · 전체 ATK×8.0 · 쿨15턴'},
+      {name:'내려찍기',   icon:'💢',mp:0,cd:0,maxCd:15, type:'mk_smash', mult:8.0, rageCost:100, desc:'분노 100 소모 · 전체 ATK×8.0'},
     ]
   },
   { name:'네크로맨서', icon:'💀', hp:95,mp:100, atk:14,def:4, hpG:13,atkG:2,defG:1,mpG:12,
@@ -1277,14 +1096,13 @@ const CLASSES=[
       {name:'창조',     icon:'🌌',mp:0,cd:0,maxCd:1, type:'all',  mult:99999,desc:'우주를 창조한다'},
     ]
   },
-  // ══ 고블린 (치트 전용) ══
   { name:'고블린', icon:'👺', hp:3,mp:1, atk:1,def:0, hpG:0,atkG:0,defG:0,mpG:0,
     isGoblin:true,
     skills:[
-      {name:'쓰레기 투척', icon:'🗑',mp:1,cd:0,maxCd:0, type:'dmg', mult:0.01, desc:'ATK×0.01 · 거의 0데미지'},
+      {name:'쓰레기 투척', icon:'🗑',mp:1,cd:0,maxCd:0, type:'dmg', mult:0.01, desc:'ATK×0.01'},
       {name:'도망',        icon:'🏃',mp:1,cd:0,maxCd:0, type:'buff', buff:{defB:0,t:1}, desc:'아무것도 안됨'},
       {name:'구걸',        icon:'🙏',mp:1,cd:0,maxCd:0, type:'dmg', mult:0.005,desc:'너무 약해서 적이 비웃는다'},
-      {name:'꽥',          icon:'😱',mp:1,cd:0,maxCd:0, type:'all',  mult:0.001,desc:'전체 ATK×0.001 · 사실상 0'},
+      {name:'꽥',          icon:'😱',mp:1,cd:0,maxCd:0, type:'all',  mult:0.001,desc:'전체 ATK×0.001'},
     ]
   },
   { name:'모기', icon:'🦟', hp:1,mp:50, atk:45,def:0, hpG:0,atkG:5,defG:0,mpG:6,
@@ -1296,37 +1114,32 @@ const CLASSES=[
       {name:'초음파',      icon:'📡',mp:22,cd:0,maxCd:4, type:'dmg',  mult:6.5,          desc:'ATK×6.5 · 치명적 일격'},
     ]
   },
-  // ══ 수도승 ══
   { name:'수도승', icon:'🧘', hp:140,mp:60, atk:15,def:8, hpG:18,atkG:2,defG:2,mpG:8,
     isMonk:true,
     skills:[
-      {name:'반사',     icon:'🌀',mp:18,cd:0,maxCd:5, type:'monk_reflect', t:1,         desc:'다음 1턴 동안 받는 공격 전부 반사'},
-      {name:'선풍격',   icon:'🌪️',mp:12,cd:0,maxCd:2, type:'all',  mult:0.8,            desc:'전체 ATK×0.8 선풍 공격'},
-      {name:'연속 권격',  icon:'👊',mp:10,cd:0,maxCd:3, type:'monk_combo', mult:1.2, hits:3,   desc:'ATK×1.2 × 3타 — 각 타마다 대상 선택'},
-      {name:'철벽수련', icon:'🛡',mp:14,cd:0,maxCd:3, type:'buff', buff:{defB:18,t:3},  desc:'DEF+18 (3턴) · 극한 방어 수련'},
+      {name:'반사',       icon:'🌀',mp:18,cd:0,maxCd:5, type:'monk_reflect', t:1,       desc:'다음 1턴 동안 받는 공격 전부 반사'},
+      {name:'선풍격',     icon:'🌪️',mp:12,cd:0,maxCd:2, type:'all',  mult:0.8,          desc:'전체 ATK×0.8 선풍 공격'},
+      {name:'연속 권격',  icon:'👊',mp:10,cd:0,maxCd:3, type:'monk_combo', mult:1.2, hits:3, desc:'ATK×1.2 × 3타 — 각 타마다 대상 선택'},
+      {name:'철벽수련',   icon:'🛡',mp:14,cd:0,maxCd:3, type:'buff', buff:{defB:18,t:3},desc:'DEF+18 (3턴)'},
     ]
   },
-  // ══ 저격수 ══
-  // 기본 10% 위장 회피, 헤드샷(30% 확률 2배 데미지), 공중지원(전체)
   { name:'저격수', icon:'🎯', hp:105,mp:65, atk:22,def:4, hpG:16,atkG:4,defG:1,mpG:8,
     isSniper:true,
-    baseDodge:0.10, // 기본 10% 위장 회피
+    baseDodge:0.10,
     skills:[
-      {name:'저격총',       icon:'🔫',mp:14,cd:0,maxCd:2, type:'sniper_shot',   mult:3.0, headshotChance:0.30, desc:'ATK×3.0 (30% 헤드샷→×2) · 쿨2'},
-      {name:'에너지드링크', icon:'🥤',mp:12,cd:0,maxCd:4, type:'sniper_drink',                                desc:'HP 30% 즉시 회복 · 쿨4'},
-      {name:'공중지원',     icon:'✈️',mp:20,cd:0,maxCd:4, type:'all',            mult:1.6,                    desc:'전체 ATK×1.6 공습 · 쿨4'},
-      {name:'자주포 지원',  icon:'🚀',mp:28,cd:0,maxCd:6, type:'sniper_shot',    mult:6.0, headshotChance:1.0,   desc:'단일 ATK×6.0 포격 · 항상 헤드샷! · 쿨6'},
+      {name:'저격총',       icon:'🔫',mp:14,cd:0,maxCd:2, type:'sniper_shot',   mult:3.0, headshotChance:0.30, desc:'ATK×3.0 (30% 헤드샷→×2)'},
+      {name:'에너지드링크', icon:'🥤',mp:12,cd:0,maxCd:4, type:'sniper_drink',                                desc:'HP 30% 즉시 회복'},
+      {name:'공중지원',     icon:'✈️',mp:20,cd:0,maxCd:4, type:'all',            mult:1.6,                    desc:'전체 ATK×1.6 공습'},
+      {name:'자주포 지원',  icon:'🚀',mp:28,cd:0,maxCd:6, type:'sniper_shot',    mult:6.0, headshotChance:1.0,   desc:'단일 ATK×6.0 · 항상 헤드샷!'},
     ]
   },
-  // ══ 폭탄병 (버프됨) ══
-  // HP: 130 → 155, ATK: 16 → 20, hpG: 18 → 22, atkG: 2 → 3
   { name:'폭탄병', icon:'💣', hp:155,mp:60, atk:20,def:5, hpG:22,atkG:3,defG:1,mpG:8,
     isBomber:true,
     maxFuse:100, fuse:0,
     skills:[
       {name:'수류탄',    icon:'💣',mp:10,cd:0,maxCd:2, type:'bomb_all', mult:1.0, fuseGain:20, desc:'전체 ATK×1.0 · 도화선+20'},
       {name:'클러스터',  icon:'🎇',mp:16,cd:0,maxCd:3, type:'bomb_all', mult:1.4, fuseGain:30, desc:'전체 ATK×1.4 · 도화선+30'},
-      {name:'연막 폭탄', icon:'💨',mp:14,cd:0,maxCd:3, type:'bomb_smoke', mult:0.7, fuseGain:15, desc:'전체 ATK×0.7 + 자신 DEF+12(2턴)'},
+      {name:'연막 폭탄', icon:'💨',mp:14,cd:0,maxCd:3, type:'bomb_smoke', mult:0.7, fuseGain:15, desc:'전체 ATK×0.7 + DEF+12(2턴)'},
       {name:'연쇄 폭발', icon:'🔥',mp:22,cd:0,maxCd:5, type:'bomb_chain', mult:2.2, fuseCost:70, fuseGain:0, desc:'도화선 70 소모 · 전체 ATK×2.2 ×2연속'},
     ]
   },
@@ -1381,42 +1194,41 @@ let usedPotionThisRun=false;
 
 // ══════════════ 도전과제 시스템 ══════════════
 const ACHIEVEMENTS = [
-  { id:'first_clear',    icon:'🎉', name:'첫 번째 클리어',       desc:'처음으로 20스테이지를 클리어하세요.',                      tier:'common',    check:()=> getTotalClears()>=1 },
-  { id:'first_blood',    icon:'⚔️', name:'첫 번째 사냥',         desc:'처음으로 적을 처치하세요.',                               tier:'common',    check:()=> getGlobalStat('kills')>=1 },
-  { id:'stage10',        icon:'🗺️', name:'중간 지점',            desc:'스테이지 10에 도달하세요.',                               tier:'common',    check:()=> getGlobalStat('maxStage')>=10 },
-  { id:'lv10',           icon:'⭐', name:'숙련자',               desc:'레벨 10에 도달하세요.',                                   tier:'common',    check:()=> getGlobalStat('maxLv')>=10 },
-  { id:'all_class',      icon:'🎭', name:'직업 탐험가',          desc:'모든 기본 직업으로 한 번씩 플레이하세요.',                 tier:'rare',      check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서','폭탄병','저격수'].every(n=>getClassRecord(n)) },
-  { id:'hard_clear',     icon:'🔥', name:'하드 클리어',          desc:'하드 모드를 클리어하세요.',                               tier:'rare',      check:()=> getGlobalStat('hardClears')>=1 },
-  { id:'no_potion',      icon:'🚫', name:'포션 금지',            desc:'포션을 한 번도 쓰지 않고 스테이지 10 돌파.',              tier:'rare',      check:()=> getGlobalStat('noPotionStage10')>=1 },
-  { id:'zombie5',        icon:'🧟', name:'언데드 군단',          desc:'좀비를 5마리 이상 동시에 유지하세요.',                    tier:'rare',      check:()=> getGlobalStat('maxZombies')>=5 },
-  { id:'mosquito_s5',    icon:'🦟', name:'살아있다!',            desc:'모기로 스테이지 5를 클리어하세요.',                       tier:'rare',      check:()=> getClassStat('모기','bestStage')>=5 },
-  { id:'lv20',           icon:'💫', name:'전설의 경지',          desc:'레벨 20에 도달하세요.',                                   tier:'rare',      check:()=> getGlobalStat('maxLv')>=20 },
-  { id:'infinite_25',    icon:'♾️', name:'무한의 도전자',        desc:'무한 모드에서 스테이지 25에 도달하세요.',                 tier:'epic',      check:()=> getGlobalStat('infiniteMaxStage')>=25 },
-  { id:'hard_nodeath',   icon:'🛡️', name:'무결의 기사',          desc:'하드 모드를 포션 없이 클리어하세요.',                     tier:'epic',      check:()=> getGlobalStat('hardNoPotionClear')>=1 },
-  { id:'mosquito_clear', icon:'🦟', name:'1%의 기적',            desc:'모기로 20스테이지를 클리어하세요.',                       tier:'epic',      check:()=> getClassStat('모기','clears')>=1 },
-  { id:'vampire_drain',  icon:'🩸', name:'피의 군주',            desc:'뱀파이어로 총 흡혈량 1000 달성.',                         tier:'epic',      check:()=> getGlobalStat('totalDrain')>=1000 },
-  { id:'all_equip',      icon:'⚙️', name:'완전 무장',            desc:'모든 장비 슬롯을 채운 채로 스테이지 클리어.',             tier:'epic',      check:()=> getGlobalStat('fullEquipClear')>=1 },
-  { id:'true_god',       icon:'✨', name:'깨달은 자',            desc:'치트 코드로 신 캐릭터를 해금하세요.',                     tier:'legendary', check:()=> godUnlocked },
-  { id:'all_clear',      icon:'🐉', name:'던전 브레이커',        desc:'모든 직업(신 제외)으로 20스테이지를 클리어하세요.',       tier:'legendary', check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서','폭탄병','저격수'].every(n=>getClassStat(n,'clears')>=1) },
-  { id:'play30',         icon:'🎮', name:'진짜 플레이어',        desc:'총 30회 이상 플레이하세요.',                              tier:'legendary', check:()=> getGlobalStat('totalRuns')>=30 },
-  { id:'infinite_50',    icon:'🌌', name:'무한의 지배자',        desc:'무한 모드에서 스테이지 50에 도달하세요.',                 tier:'legendary', check:()=> getGlobalStat('infiniteMaxStage')>=50 },
-  { id:'bomber_chain',   icon:'🔥', name:'폭탄광',              desc:'폭탄병으로 연쇄 폭발을 총 5회 이상 사용하세요.',          tier:'epic',      check:()=> getGlobalStat('bomberChainCount')>=5 },
-  { id:'bomber_clear',   icon:'💣', name:'폭발적인 마무리',      desc:'폭탄병으로 20스테이지를 클리어하세요.',                   tier:'epic',      check:()=> getClassStat('폭탄병','clears')>=1 },
-  { id:'meme_bomb_overkill', icon:'🤯', name:'이거 너무한 거 아냐?', desc:'폭탄병 기본공격으로 전체 적에게 동시에 100+ 데미지를 입히세요.', tier:'meme', check:()=> getGlobalStat('bomberOverkill')>=1 },
-  { id:'meme_slime_loss', icon:'🟢', name:'슬라임한테 졌다고?',   desc:'슬라임에게 게임 오버를 당하세요. 부끄럽지 않나요?',      tier:'meme', check:()=> getGlobalStat('lostToSlime')>=1 },
-  { id:'meme_defend_spam', icon:'🛡️', name:'방어가 최고야!',      desc:'한 전투에서 방어를 5번 이상 사용하세요.',                 tier:'meme', check:()=> getGlobalStat('maxDefendInBattle')>=5 },
-  { id:'meme_no_skill',   icon:'🤡', name:'스킬이 뭔지 몰라요',   desc:'스킬을 한 번도 쓰지 않고 스테이지 5까지 도달하세요.',    tier:'meme', check:()=> getGlobalStat('noSkillStage5')>=1 },
-  { id:'meme_mosquito_streak', icon:'🎰', name:'오늘의 럭키 모기', desc:'모기로 10턴 연속으로 회피에 성공하세요.',                tier:'meme', check:()=> getGlobalStat('mosquitoStreak')>=10 },
-  { id:'meme_zombie_cemetery', icon:'🪦', name:'좀비 묘지 주인',   desc:'한 게임에서 좀비를 10마리 이상 잃으세요.',               tier:'meme', check:()=> getGlobalStat('zombieDead')>=10 },
-  { id:'meme_potion_hoarder', icon:'🏺', name:'포션 수집가',       desc:'포션을 10개 이상 보유하세요.',                           tier:'meme', check:()=> getGlobalStat('maxPotionOwned')>=10 },
-  { id:'meme_rich_die', icon:'💸', name:'부자로 죽기',             desc:'골드 200G 이상 보유한 채로 게임 오버.',                  tier:'meme', check:()=> getGlobalStat('richDeath')>=1 },
-  { id:'meme_god_slime', icon:'😇', name:'신도 슬라임은 무서워',   desc:'신 캐릭터로 슬라임에게 기본 공격 5번 이상 사용.',        tier:'meme', check:()=> getGlobalStat('godVsSlime')>=5 },
-  { id:'meme_lv1_boss',  icon:'💀', name:'무모한 도전자',          desc:'레벨 1인 채로 보스 스테이지(5스테이지)에 진입하세요.',   tier:'meme', check:()=> getGlobalStat('lv1BossEntry')>=1 },
-  { id:'meme_necro_rip',  icon:'⚰️', name:'내 소중한 좀비...',     desc:'소환한 직후 다음 턴에 좀비가 바로 사망하는 경험을 하세요.',tier:'meme', check:()=> getGlobalStat('zombieInstaDead')>=1 },
-  // ── 저격수 전용 업적 ──
-  { id:'sniper_headshot5', icon:'🎯', name:'헤드헌터',            desc:'한 게임에서 헤드샷을 5번 이상 성공하세요.',                tier:'rare',   check:()=> getGlobalStat('sniperHeadshotGame5')>=1 },
-  { id:'sniper_clear',     icon:'🔫', name:'원거리 정복자',       desc:'저격수로 20스테이지를 클리어하세요.',                      tier:'epic',   check:()=> getClassStat('저격수','clears')>=1 },
-  { id:'meme_sniper_miss', icon:'💨', name:'30% 믿었는데...',     desc:'저격 조준(100% 보장) 없이 저격총을 10번 연속 헤드샷 미스.' , tier:'meme',  check:()=> getGlobalStat('sniperMissStreak')>=10 },
+  { id:'first_clear',    icon:'🎉', name:'첫 번째 클리어',    desc:'처음으로 20스테이지를 클리어하세요.',        tier:'common',    check:()=> getTotalClears()>=1 },
+  { id:'first_blood',    icon:'⚔️', name:'첫 번째 사냥',      desc:'처음으로 적을 처치하세요.',                  tier:'common',    check:()=> getGlobalStat('kills')>=1 },
+  { id:'stage10',        icon:'🗺️', name:'중간 지점',         desc:'스테이지 10에 도달하세요.',                  tier:'common',    check:()=> getGlobalStat('maxStage')>=10 },
+  { id:'lv10',           icon:'⭐', name:'숙련자',            desc:'레벨 10에 도달하세요.',                      tier:'common',    check:()=> getGlobalStat('maxLv')>=10 },
+  { id:'all_class',      icon:'🎭', name:'직업 탐험가',       desc:'모든 기본 직업으로 플레이하세요.',            tier:'rare',      check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서','폭탄병','저격수'].every(n=>getClassRecord(n)) },
+  { id:'hard_clear',     icon:'🔥', name:'하드 클리어',       desc:'하드 모드를 클리어하세요.',                   tier:'rare',      check:()=> getGlobalStat('hardClears')>=1 },
+  { id:'no_potion',      icon:'🚫', name:'포션 금지',         desc:'포션 없이 스테이지 10 돌파.',                 tier:'rare',      check:()=> getGlobalStat('noPotionStage10')>=1 },
+  { id:'zombie5',        icon:'🧟', name:'언데드 군단',       desc:'좀비를 5마리 이상 동시에 유지하세요.',        tier:'rare',      check:()=> getGlobalStat('maxZombies')>=5 },
+  { id:'mosquito_s5',    icon:'🦟', name:'살아있다!',         desc:'모기로 스테이지 5를 클리어하세요.',           tier:'rare',      check:()=> getClassStat('모기','bestStage')>=5 },
+  { id:'lv20',           icon:'💫', name:'전설의 경지',       desc:'레벨 20에 도달하세요.',                       tier:'rare',      check:()=> getGlobalStat('maxLv')>=20 },
+  { id:'infinite_25',    icon:'♾️', name:'무한의 도전자',     desc:'무한 모드에서 스테이지 25에 도달하세요.',     tier:'epic',      check:()=> getGlobalStat('infiniteMaxStage')>=25 },
+  { id:'hard_nodeath',   icon:'🛡️', name:'무결의 기사',       desc:'하드 모드를 포션 없이 클리어하세요.',         tier:'epic',      check:()=> getGlobalStat('hardNoPotionClear')>=1 },
+  { id:'mosquito_clear', icon:'🦟', name:'1%의 기적',         desc:'모기로 20스테이지를 클리어하세요.',           tier:'epic',      check:()=> getClassStat('모기','clears')>=1 },
+  { id:'vampire_drain',  icon:'🩸', name:'피의 군주',         desc:'뱀파이어로 총 흡혈량 1000 달성.',             tier:'epic',      check:()=> getGlobalStat('totalDrain')>=1000 },
+  { id:'all_equip',      icon:'⚙️', name:'완전 무장',         desc:'모든 장비 슬롯을 채운 채로 클리어.',          tier:'epic',      check:()=> getGlobalStat('fullEquipClear')>=1 },
+  { id:'true_god',       icon:'✨', name:'깨달은 자',         desc:'치트 코드로 신 캐릭터를 해금하세요.',         tier:'legendary', check:()=> godUnlocked },
+  { id:'all_clear',      icon:'🐉', name:'던전 브레이커',     desc:'모든 직업(신 제외)으로 20스테이지 클리어.',   tier:'legendary', check:()=> ['전사','마법사','도적','뱀파이어','메가 나이트','모기','네크로맨서','폭탄병','저격수'].every(n=>getClassStat(n,'clears')>=1) },
+  { id:'play30',         icon:'🎮', name:'진짜 플레이어',     desc:'총 30회 이상 플레이하세요.',                  tier:'legendary', check:()=> getGlobalStat('totalRuns')>=30 },
+  { id:'infinite_50',    icon:'🌌', name:'무한의 지배자',     desc:'무한 모드에서 스테이지 50에 도달하세요.',     tier:'legendary', check:()=> getGlobalStat('infiniteMaxStage')>=50 },
+  { id:'bomber_chain',   icon:'🔥', name:'폭탄광',           desc:'폭탄병으로 연쇄 폭발을 5회 이상 사용.',       tier:'epic',      check:()=> getGlobalStat('bomberChainCount')>=5 },
+  { id:'bomber_clear',   icon:'💣', name:'폭발적인 마무리',   desc:'폭탄병으로 20스테이지를 클리어하세요.',       tier:'epic',      check:()=> getClassStat('폭탄병','clears')>=1 },
+  { id:'meme_bomb_overkill', icon:'🤯', name:'이거 너무한 거 아냐?', desc:'폭탄병 공격으로 전체에 100+ 데미지.', tier:'meme', check:()=> getGlobalStat('bomberOverkill')>=1 },
+  { id:'meme_slime_loss',    icon:'🟢', name:'슬라임한테 졌다고?',  desc:'슬라임에게 게임 오버.',                tier:'meme', check:()=> getGlobalStat('lostToSlime')>=1 },
+  { id:'meme_defend_spam',   icon:'🛡️', name:'방어가 최고야!',      desc:'한 전투에서 방어를 5번 이상 사용.',    tier:'meme', check:()=> getGlobalStat('maxDefendInBattle')>=5 },
+  { id:'meme_no_skill',      icon:'🤡', name:'스킬이 뭔지 몰라요',  desc:'스킬 없이 스테이지 5까지.',            tier:'meme', check:()=> getGlobalStat('noSkillStage5')>=1 },
+  { id:'meme_mosquito_streak', icon:'🎰', name:'오늘의 럭키 모기',  desc:'모기로 10턴 연속 회피.',               tier:'meme', check:()=> getGlobalStat('mosquitoStreak')>=10 },
+  { id:'meme_zombie_cemetery', icon:'🪦', name:'좀비 묘지 주인',    desc:'한 게임에서 좀비를 10마리 이상 잃기.',  tier:'meme', check:()=> getGlobalStat('zombieDead')>=10 },
+  { id:'meme_potion_hoarder',  icon:'🏺', name:'포션 수집가',       desc:'포션을 10개 이상 보유.',               tier:'meme', check:()=> getGlobalStat('maxPotionOwned')>=10 },
+  { id:'meme_rich_die',        icon:'💸', name:'부자로 죽기',        desc:'골드 200G 보유 채로 게임 오버.',        tier:'meme', check:()=> getGlobalStat('richDeath')>=1 },
+  { id:'meme_god_slime',       icon:'😇', name:'신도 슬라임은 무서워', desc:'신으로 슬라임에게 기본공격 5번 이상.', tier:'meme', check:()=> getGlobalStat('godVsSlime')>=5 },
+  { id:'meme_lv1_boss',        icon:'💀', name:'무모한 도전자',      desc:'레벨1로 보스 스테이지 진입.',          tier:'meme', check:()=> getGlobalStat('lv1BossEntry')>=1 },
+  { id:'meme_necro_rip',       icon:'⚰️', name:'내 소중한 좀비...',  desc:'소환 직후 좀비가 바로 사망.',          tier:'meme', check:()=> getGlobalStat('zombieInstaDead')>=1 },
+  { id:'sniper_headshot5',     icon:'🎯', name:'헤드헌터',          desc:'한 게임에서 헤드샷 5번 이상.',          tier:'rare',   check:()=> getGlobalStat('sniperHeadshotGame5')>=1 },
+  { id:'sniper_clear',         icon:'🔫', name:'원거리 정복자',     desc:'저격수로 20스테이지를 클리어.',          tier:'epic',   check:()=> getClassStat('저격수','clears')>=1 },
+  { id:'meme_sniper_miss',     icon:'💨', name:'30% 믿었는데...', desc:'저격총 10번 연속 헤드샷 미스.',         tier:'meme',  check:()=> getGlobalStat('sniperMissStreak')>=10 },
 ];
 
 const TIER_LABEL = { common:'일반', rare:'희귀', epic:'에픽', legendary:'전설', meme:'😂 유머' };
@@ -1443,12 +1255,7 @@ function getTotalClears(){ return CLASSES.map(c=>getClassStat(c.name,'clears')).
 function checkAchievements(){
   ACHIEVEMENTS.forEach(ach=>{
     if(isAchUnlocked(ach.id)) return;
-    try {
-      if(ach.check()){
-        unlockAchievement(ach.id);
-        showAchToast(ach);
-      }
-    } catch(e){}
+    try { if(ach.check()){ unlockAchievement(ach.id); showAchToast(ach); } } catch(e){}
   });
 }
 
@@ -1497,14 +1304,7 @@ function getRecordKey(className){ return 'db_rec_'+className; }
 function saveRecord(isVictory){
   const key = getRecordKey(player.name);
   const prev = JSON.parse(localStorage.getItem(key)||'null');
-  const cur = {
-    bestStage: stage+1,
-    bestLv: player.lv,
-    totalRuns: 1,
-    clears: isVictory ? 1 : 0,
-    bestMode: selectedMode,
-    lastMode: selectedMode,
-  };
+  const cur = { bestStage: stage+1, bestLv: player.lv, totalRuns: 1, clears: isVictory ? 1 : 0, bestMode: selectedMode, lastMode: selectedMode };
   if(prev){
     cur.totalRuns = prev.totalRuns + 1;
     cur.clears = prev.clears + (isVictory ? 1 : 0);
@@ -1516,36 +1316,25 @@ function saveRecord(isVictory){
     else if(modeScore(selectedMode)===modeScore(prev.bestMode) && stage+1 >= prev.bestStage) cur.bestMode = selectedMode;
   }
   localStorage.setItem(key, JSON.stringify(cur));
-
   incGlobalStat('totalRuns');
   const prevMax = getGlobalStat('maxStage');
   if(stage+1 > prevMax) setGlobalStat('maxStage', stage+1);
   const prevLv = getGlobalStat('maxLv');
   if(player.lv > prevLv) setGlobalStat('maxLv', player.lv);
   if(isVictory && selectedMode==='hard') incGlobalStat('hardClears');
-  if(selectedMode==='infinite'){
-    const prevInf = getGlobalStat('infiniteMaxStage');
-    if(stage+1 > prevInf) setGlobalStat('infiniteMaxStage', stage+1);
-  }
+  if(selectedMode==='infinite'){ const prevInf = getGlobalStat('infiniteMaxStage'); if(stage+1 > prevInf) setGlobalStat('infiniteMaxStage', stage+1); }
   if(stage+1>=10 && !usedPotionThisRun) incGlobalStat('noPotionStage10');
   if(isVictory && selectedMode==='hard' && !usedPotionThisRun) incGlobalStat('hardNoPotionClear');
-  if(player.isNecro){
-    const alive=zombies.filter(z=>z.hp>0).length;
-    const prevZ=getGlobalStat('maxZombies');
-    if(alive>prevZ) setGlobalStat('maxZombies',alive);
-  }
-  if(isVictory){
-    const slots=['weapon','armor','ring','amulet'];
-    if(slots.every(s=>equipped[s])) incGlobalStat('fullEquipClear');
-  }
+  if(player.isNecro){ const alive=zombies.filter(z=>z.hp>0).length; const prevZ=getGlobalStat('maxZombies'); if(alive>prevZ) setGlobalStat('maxZombies',alive); }
+  if(isVictory){ const slots=['weapon','armor','ring','amulet']; if(slots.every(s=>equipped[s])) incGlobalStat('fullEquipClear'); }
   if(!isVictory && gold>=200) incGlobalStat('richDeath');
   if(stage+1>=5 && !skillUsedThisRun) incGlobalStat('noSkillStage5');
-
   checkAchievements();
 }
 
 function showRecord(classIdx){
   const c = CLASSES[classIdx];
+  if(!c) return;
   const key = getRecordKey(c.name);
   const rec = JSON.parse(localStorage.getItem(key)||'null');
   const box = document.getElementById('record-box');
@@ -1578,11 +1367,11 @@ let godUnlocked = localStorage.getItem('db_godUnlocked')==='true';
 let goblinUnlocked = localStorage.getItem('db_goblinUnlocked')==='true';
 
 // ══════════════ 저격수 전용 변수 ══════════════
-let sniperAimReady = false;   // 저격 조준 발동 여부 (다음 공격 헤드샷 100%)
-let sniperHeadshotCount = 0;  // 이번 게임 헤드샷 횟수
+let sniperAimReady = false;
+let sniperHeadshotCount = 0;
 
 // ══════════════ 수도승 전용 변수 ══════════════
-let monkReflectTurns = 0;     // 반사 남은 턴 수
+let monkReflectTurns = 0;
 
 // ══════════════ 유머 업적 추적 변수 ══════════════
 let defendCountInBattle = 0;
@@ -1591,118 +1380,97 @@ let mosquitoStreakCount = 0;
 let zombieJustSummoned = false;
 let zombieDeadThisRun = 0;
 
-// ══════════════ 타이틀 ══════════════
-(function(){
-  const row=document.getElementById('class-row');
-  CLASSES.forEach((c,i)=>{
+// ══════════════ 직업 카드 렌더링 함수 (버그 수정) ══════════════
+// ✅ 수정: IIFE 대신 명시적 함수로 분리 → 치트 해금 후 재호출 가능
+function renderClassRow(){
+  const row = document.getElementById('class-row');
+  row.innerHTML = ''; // 기존 카드 전부 지우고 다시 그리기
+  CLASSES.forEach((c, i) => {
     if(c.isGod && !godUnlocked) return;
     if(c.isGoblin && !goblinUnlocked) return;
-    const locked = false;
-    const d=document.createElement('div');
-    d.className='cls-card'
-      +(c.isVampire?' vampire-card':c.isMegaKnight?' mk-card':c.isMosquito?' mosquito-card':c.isNecro?' necro-card':c.isGod?' god-card':c.isBomber?' bomb-card':c.isSniper?' sniper-card':c.isMonk?' monk-card':'')
-      +(i===0?' sel':'')
-      +(locked?' locked':'');
-    d.innerHTML=`<div class="cls-icon">${locked?'🔒':c.icon}</div>
+    const isSel = (i === classIdx);
+    const d = document.createElement('div');
+    d.className = 'cls-card'
+      + (c.isVampire  ? ' vampire-card'  : '')
+      + (c.isMegaKnight ? ' mk-card'     : '')
+      + (c.isMosquito ? ' mosquito-card' : '')
+      + (c.isNecro    ? ' necro-card'    : '')
+      + (c.isGod      ? ' god-card'      : '')
+      + (c.isGoblin   ? ' goblin-card'   : '')
+      + (c.isBomber   ? ' bomb-card'     : '')
+      + (c.isSniper   ? ' sniper-card'   : '')
+      + (c.isMonk     ? ' monk-card'     : '')
+      + (isSel        ? ' sel'           : '');
+    d.innerHTML = `<div class="cls-icon">${c.icon}</div>
       <div class="cls-name">${c.name}</div>
-      <div class="cls-desc">${locked
-        ? `<span class="cls-lock-hint">일반모드 20스테이지<br>클리어 후 해금</span>`
-        : `HP ${c.isGod?'∞':c.hp}  ATK ${c.isGod?'∞':c.atk}  DEF ${c.isGod?'∞':c.def}${
-            c.isVampire?`<br>MP ${c.mp} · 🩸 혈기 시스템`
-            :c.isMegaKnight?'<br>🛡 MP 소모 없음'
-            :c.isMosquito?'<br>💨 99% 회피 · DEF 고정 0'
-            :c.isNecro?`<br>MP ${c.mp} · 🧟 좀비 소환`
-            :c.isGod?'<br>⚡ 불멸 · 전능 · 무한'
-            :c.isBomber?`<br>MP ${c.mp} · 💣 전체공격 전문`
-            :c.isSniper?`<br>MP ${c.mp} · 🎯 헤드샷 · 10%회피`
-            :c.isMonk?`<br>MP ${c.mp} · 🌀 반사 · 균형형`
-            :`<br>MP ${c.mp}`
-          }`
-      }</div>`;
-    d.onclick=()=>{
-      if(locked) return;
-      if(classIdx===i && document.querySelectorAll('.cls-card')[i]?.classList.contains('sel')){
+      <div class="cls-desc">HP ${c.isGod?'∞':c.hp}  ATK ${c.isGod?'∞':c.atk}  DEF ${c.isGod?'∞':c.def}${
+          c.isVampire    ? `<br>MP ${c.mp} · 🩸 혈기 시스템`
+          : c.isMegaKnight ? '<br>🛡 MP 소모 없음'
+          : c.isMosquito  ? '<br>💨 99% 회피 · DEF 고정 0'
+          : c.isNecro     ? `<br>MP ${c.mp} · 🧟 좀비 소환`
+          : c.isGod       ? '<br>⚡ 불멸 · 전능 · 무한'
+          : c.isGoblin    ? `<br>MP ${c.mp}`
+          : c.isBomber    ? `<br>MP ${c.mp} · 💣 전체공격 전문`
+          : c.isSniper    ? `<br>MP ${c.mp} · 🎯 헤드샷 · 10%회피`
+          : c.isMonk      ? `<br>MP ${c.mp} · 🌀 반사 · 균형형`
+          : `<br>MP ${c.mp}`
+        }</div>`;
+    d.onclick = () => {
+      // 이미 선택된 카드를 다시 클릭하면 전적 보기
+      if(classIdx === i && d.classList.contains('sel')){
         showRecord(i); return;
       }
-      classIdx=i;
-      document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
+      classIdx = i;
+      document.querySelectorAll('.cls-card').forEach(x => x.classList.remove('sel'));
       d.classList.add('sel');
     };
     row.appendChild(d);
   });
   updateModeUI();
-})();
+}
+// 페이지 로드 시 최초 렌더링
+renderClassRow();
 
 function submitCheat(){
   const input = document.getElementById('cheat-input');
   const result = document.getElementById('cheat-result');
   const val = input.value.trim();
+  input.value = '';
+
   if(val === '이지율'){
     godUnlocked = true;
     localStorage.setItem('db_godUnlocked','true');
     result.style.display='block';
     result.className='cheat-result ok';
     result.innerHTML=`✅ <strong style="color:#ffd700">ACCESS GRANTED</strong><br>🌌 신(神) 캐릭터가 해제되었습니다!`;
-    input.value='';
-    const row=document.getElementById('class-row');
-    if(!document.querySelector('.god-card')){
-      const c=CLASSES.find(x=>x.isGod);
-      const idx=CLASSES.indexOf(c);
-      const d=document.createElement('div');
-      d.className='cls-card god-card';
-      d.innerHTML=`<div class="cls-icon">${c.icon}</div>
-        <div class="cls-name">${c.name}</div>
-        <div class="cls-desc">HP ∞  ATK ∞  DEF ∞<br>⚡ 불멸 · 전능 · 무한</div>`;
-      d.onclick=()=>{
-        if(classIdx===idx && d.classList.contains('sel')){ showRecord(idx); return; }
-        classIdx=idx;
-        document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
-        d.classList.add('sel');
-      };
-      row.appendChild(d);
-    }
+    // ✅ 수정: 동적 카드 추가 대신 전체 재렌더링
+    renderClassRow();
     flashTerminal();
     checkAchievements();
+
   } else if(val === '이서율'){
     goblinUnlocked = true;
     localStorage.setItem('db_goblinUnlocked','true');
     result.style.display='block';
     result.className='cheat-result fail';
-    result.innerHTML=`👺 <strong style="color:#88cc44">고블린</strong> 해금...<br>🗑 이게 뭐야 진짜로`;
-    input.value='';
-    const row=document.getElementById('class-row');
-    if(!document.querySelector('.goblin-card')){
-      const c=CLASSES.find(x=>x.isGoblin);
-      const idx=CLASSES.indexOf(c);
-      const d=document.createElement('div');
-      d.className='cls-card goblin-card';
-      d.innerHTML=`<div class="cls-icon">👺</div>
-        <div class="cls-name" style="color:#88cc44">고블린</div>
-        <div class="cls-desc">HP 3  ATK 1  DEF 0<br>🗑 완전 쓰레기 · 왜 씀?</div>`;
-      d.onclick=()=>{
-        if(classIdx===idx && d.classList.contains('sel')){ showRecord(idx); return; }
-        classIdx=idx;
-        document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
-        d.classList.add('sel');
-      };
-      row.appendChild(d);
-    }
-    // 패널 초록 대신 구린 초록으로 깜빡임
+    result.innerHTML=`✅ <strong style="color:#88cc44">고블린</strong> 해금!<br>👺 고블린 캐릭터가 해제되었습니다!`;
+    // ✅ 수정: 동적 카드 추가 대신 전체 재렌더링
+    renderClassRow();
     const panel = document.querySelector('.cheat-panel');
     panel.style.borderColor='#556633';
     panel.style.boxShadow='0 0 20px #88cc4433';
-    setTimeout(()=>{panel.style.borderColor='';panel.style.boxShadow='';},1500);
+    setTimeout(()=>{ panel.style.borderColor=''; panel.style.boxShadow=''; }, 1500);
+
   } else {
     result.style.display='none';
   }
-  input.value='';
 }
 
 function flashTerminal(){
   const panel = document.querySelector('.cheat-panel');
   panel.style.borderColor='#ffd700';
   panel.style.boxShadow='0 0 30px #ffd70055';
-  setTimeout(()=>{panel.style.borderColor='';panel.style.boxShadow='';},1500);
+  setTimeout(()=>{ panel.style.borderColor=''; panel.style.boxShadow=''; }, 1500);
 }
 
 function startGame(){
@@ -1740,20 +1508,20 @@ function startGame(){
 
   applyVampireTheme(player.isVampire);
   const pc=document.getElementById('player-card');
-  if(player.isMegaKnight){ pc.classList.add('mk-theme'); pc.classList.remove('mosquito-theme','god-theme','necro-theme','bomb-theme','sniper-theme','monk-theme'); }
-  else if(player.isMosquito){ pc.classList.add('mosquito-theme'); pc.classList.remove('mk-theme','god-theme','necro-theme','bomb-theme','sniper-theme','monk-theme'); }
-  else if(player.isGod){ pc.classList.add('god-theme'); pc.classList.remove('mk-theme','mosquito-theme','necro-theme','bomb-theme','sniper-theme','monk-theme'); }
-  else if(player.isNecro){ pc.classList.add('necro-theme'); pc.classList.remove('mk-theme','mosquito-theme','god-theme','bomb-theme','sniper-theme','monk-theme'); }
-  else if(player.isBomber){ pc.classList.add('bomb-theme'); pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme','sniper-theme','monk-theme'); }
-  else if(player.isSniper){ pc.classList.add('sniper-theme'); pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme','bomb-theme','monk-theme'); }
-  else if(player.isMonk){ pc.classList.add('monk-theme'); pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme','bomb-theme','sniper-theme'); }
-  else { pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme','bomb-theme','sniper-theme','monk-theme'); }
+  pc.classList.remove('mk-theme','mosquito-theme','god-theme','necro-theme','bomb-theme','sniper-theme','monk-theme','vampire-theme');
+  if(player.isMegaKnight) pc.classList.add('mk-theme');
+  else if(player.isMosquito) pc.classList.add('mosquito-theme');
+  else if(player.isGod) pc.classList.add('god-theme');
+  else if(player.isNecro) pc.classList.add('necro-theme');
+  else if(player.isBomber) pc.classList.add('bomb-theme');
+  else if(player.isSniper) pc.classList.add('sniper-theme');
+  else if(player.isMonk) pc.classList.add('monk-theme');
+  else if(player.isVampire) pc.classList.add('vampire-theme');
 
   document.getElementById('fuse-bar-container').style.display = player.isBomber ? 'block' : 'none';
   document.getElementById('rage-bar-container').style.display = player.isMegaKnight ? 'block' : 'none';
   document.getElementById('zombie-zone-wrap').style.display = player.isNecro ? 'block' : 'none';
   if(hardMode && selectedMode==='hard') addLog('🔥 하드모드 활성화! ATK·DEF +15% 적용 중','s');
-  if(player.isGoblin) addLog('👺 고블린으로 플레이 중... 왜요?','e');
 
   showScreen('battle');
   loadStage();
@@ -1794,7 +1562,7 @@ function loadStage(){
   if(selectedMode==='infinite' && stage >= FINAL_STAGE){
     const infiniteRound = stage - FINAL_STAGE + 1;
     const pool = infiniteRound<=3 ? [4,5,6] : infiniteRound<=6 ? [5,6,7,8] : [6,7,8,9];
-    const count = infiniteRound<=2 ? 2 : infiniteRound<=5 ? 3 : 3;
+    const count = infiniteRound<=2 ? 2 : 3;
     cfg = Array.from({length:count}, ()=> pool[Math.floor(Math.random()*pool.length)]);
   } else {
     cfg = STAGE_CFG[Math.min(stage, FINAL_STAGE)];
@@ -1880,7 +1648,7 @@ function spendBlood(amount){
   updateHud();
   return true;
 }
-// ══════════════ 분노(Rage) 시스템 — 메가나이트 전용 ══════════════
+// ══════════════ 분노(Rage) 시스템 ══════════════
 function gainRage(amount){
   if(!player.isMegaKnight) return;
   player.rage = Math.min(player.maxRage, player.rage + amount);
@@ -1964,7 +1732,7 @@ function doBasic(){
     gainFuse(fuseGain);
     if(aliveEn.length>0 && tot/aliveEn.length>=100) incGlobalStat('bomberOverkill');
     checkAchievements();
-    addLog(`💣 수류탄 투척 → 전체 공격! 총 ${tot} 데미지 / 🧨도화선+${fuseGain}`,'p');
+    addLog(`💣 투척 공격 → 전체 공격! 총 ${tot} 데미지 / 🧨도화선+${fuseGain}`,'p');
     tryEndPlayerTurn();
     return;
   }
@@ -2045,7 +1813,6 @@ function useSkill(idx){
   }
 
   skillUsedThisRun = true;
-
   player.mp=Math.max(0,player.mp-sk.mp);
   sk.cd=sk.maxCd;
 
@@ -2104,14 +1871,12 @@ function useSkill(idx){
     }
     addLog(`🔥 연쇄 폭발! 도화선 ${sk.fuseCost} 소모 → 전체 2연속 폭발! 총 ${grand} 데미지!!!`,'p');
     incGlobalStat('bomberChainCount');
-    incGlobalStat('bomberChainTotal', grand);
     checkAchievements();
     updateHud(); renderSkills();
     tryEndPlayerTurn();
     return;
   }
 
-  // ── 저격수 스킬 ──
   if(sk.type==='sniper_shot'){
     const en=getTarget(); if(!en) return;
     const chance = sk.headshotChance !== undefined ? sk.headshotChance : 0.30;
@@ -2125,11 +1890,9 @@ function useSkill(idx){
       sniperHeadshotCount++;
       incGlobalStat('sniperHeadshots');
       setGlobalStat('sniperMissStreak', 0);
-      if(sniperHeadshotCount>=5){
-        incGlobalStat('sniperHeadshotGame5');
-      }
+      if(sniperHeadshotCount>=5){ incGlobalStat('sniperHeadshotGame5'); }
       checkAchievements();
-      addLog(`🔫 저격총 → ${en.name} 🎯헤드샷!! ${finalDmg} 데미지! (기본 ${baseDmg}의 2배!)`,'p');
+      addLog(`🔫 저격총 → ${en.name} 🎯헤드샷!! ${finalDmg} 데미지!`,'p');
     } else {
       incGlobalStat('sniperMissStreak');
       checkAchievements();
@@ -2139,34 +1902,15 @@ function useSkill(idx){
     tryEndPlayerTurn();
     return;
 
-  } else if(sk.type==='sniper_camo'){
-    const bonus = sk.camoBonus || 0.50;
-    buffs.dodge = (buffs.dodge||0) + bonus;
-    buffs.turns = sk.t || 3;
-    const pc = document.getElementById('player-card');
-    pc.classList.add('camo-active');
-    setTimeout(()=>pc.classList.remove('camo-active'), (sk.t||3)*2000);
-    addLog(`🪖 위장 강화! 회피율 +${Math.round(bonus*100)}% (${sk.t}턴) — 현재 총 회피율: ${Math.round(((player.baseDodge||0)+(buffs.dodge||0))*100)}%`,'p');
-    updateHud(); renderSkills();
-    tryEndPlayerTurn();
-    return;
-
-  } else if(sk.type==='sniper_aim'){
-    sniperAimReady = true;
-    addLog(`🔍 저격 조준! — 다음 저격총 공격이 반드시 🎯헤드샷!`,'p');
-    updateHud(); renderSkills();
-    tryEndPlayerTurn();
-    return;
   } else if(sk.type==='sniper_drink'){
     const heal = Math.floor(player.maxHp * 0.30);
     player.hp = Math.min(player.maxHp, player.hp + heal);
-    addLog(`🥤 에너지드링크! HP +${heal} 회복 (${player.hp}/${player.maxHp})`,'p');
+    addLog(`🥤 에너지드링크! HP +${heal} 회복`,'p');
     updateHud(); renderSkills();
     tryEndPlayerTurn();
     return;
   }
 
-  // ── 수도승 연속 권격 ──
   if(sk.type==='monk_combo'){
     const totalHits = sk.hits || 3;
     const dmgPerHit = sk.mult || 1.2;
@@ -2182,7 +1926,6 @@ function useSkill(idx){
       }
       const alive = enemies.filter(e=>e.hp>0);
       if(alive.length===0){ addLog(`👊 남은 적이 없다!`,'p'); updateHud(); renderSkills(); tryEndPlayerTurn(); return; }
-
       addLog(`👊 ${hitsDone+1}타 — 공격할 적을 선택하세요!`,'s');
       document.querySelectorAll('.enemy-card').forEach(card=>{
         const enId = parseInt(card.id.replace('en-',''));
@@ -2204,7 +1947,6 @@ function useSkill(idx){
     return;
   }
 
-  // ── 수도승 반사 ──
   if(sk.type==='monk_reflect'){
     monkReflectTurns = sk.t || 1;
     addLog(`🌀 반사 준비! 다음 ${monkReflectTurns}턴 동안 모든 공격을 반사한다!`,'p');
@@ -2215,7 +1957,6 @@ function useSkill(idx){
     return;
   }
 
-  // ── 메가나이트 내려찍기 ──
   if(sk.type==='mk_smash'){
     const rageCost = sk.rageCost || 80;
     if(player.rage < rageCost){
@@ -2307,13 +2048,13 @@ function useSkill(idx){
   } else if(sk.type==='dmg'||sk.type==='multi'){
     const en=getTarget(); if(!en) return;
     const hits=sk.hits||1;
+    let td=0;
     for(let h=0;h<hits;h++){
       if(en.hp<=0) break;
       const dmg=calcDmg(effAtk()*(sk.mult||1)+(sk.bonus||0), en.def);
-      dealDmg(en,dmg);
+      dealDmg(en,dmg); td+=dmg;
     }
-    const totalDmg=calcPreview(sk,en);
-    addLog(`${sk.icon} ${sk.name} → ${en.name} ${totalDmg} 데미지!`,'p');
+    addLog(`${sk.icon} ${sk.name} → ${en.name} ${td} 데미지!`,'p');
     if(en.hp>0&&sk.poison){ en.poison={dmg:Math.floor(effAtk()*.35),turns:3}; addLog(`☠ 독 부여!`,'p'); }
     if(sk.selfBuff){ Object.assign(buffs,{defB:(buffs.defB||0)+sk.selfBuff.defB, defTurns:sk.selfBuff.t}); }
 
@@ -2378,15 +2119,7 @@ function endPlayerTurn(){
 
   if(buffs.turns!==undefined){ buffs.turns--; if(buffs.turns<=0){ delete buffs.atkB; delete buffs.dodge; delete buffs.turns; } }
   if(buffs.defTurns!==undefined){ buffs.defTurns--; if(buffs.defTurns<=0){ delete buffs.defB; delete buffs.defTurns; } }
-  if(player.isMonk && monkReflectTurns>0){
-    monkReflectTurns--;
-    if(monkReflectTurns<=0){
-      monkReflectTurns=0;
-      document.querySelector('.player-card')?.classList.remove('reflect-active');
-      addLog(`🌀 반사 효과가 끝났다.`,'s');
-    }
-    updateHud();
-  }
+  // ✅ 수정: 반사 감소는 적 턴이 끝난 후 startPlayerTurn()에서 처리 (여기서 하면 즉시 소멸됨)
 
   if(victoryPending || enemies.every(e=>e.hp<=0)){
     victoryPending=false;
@@ -2432,16 +2165,15 @@ function endPlayerTurn(){
       if(buffs.dodge&&Math.random()<buffs.dodge){
         addLog(`💨 ${en.name} 공격 회피!`,'p'); return;
       }
-      // 저격수 기본 위장 10% 회피 (버프 회피와 별개)
       if(player.isSniper && !buffs.dodge && Math.random()<(player.baseDodge||0.10)){
-        addLog(`🪖 위장! ${en.name}의 공격을 회피했다! (기본 10%)`,'p'); return;
+        addLog(`🪖 위장! ${en.name}의 공격을 회피! (기본 10%)`,'p'); return;
       }
       if(player.isMosquito&&Math.random()<0.99){
         mosquitoStreakCount++;
         const prev=getGlobalStat('mosquitoStreak');
         if(mosquitoStreakCount>prev) setGlobalStat('mosquitoStreak',mosquitoStreakCount);
         checkAchievements();
-        addLog(`🦟 모기가 재빠르게 회피했다! (연속 ${mosquitoStreakCount}회)`,'p');
+        addLog(`🦟 모기가 재빠르게 회피! (연속 ${mosquitoStreakCount}회)`,'p');
         return;
       }
       mosquitoStreakCount=0;
@@ -2452,13 +2184,12 @@ function endPlayerTurn(){
         addLog(`👊 ${en.name} 공격 → 신에게 막혔다! (0 데미지)`,'s');
         return;
       }
-      // ── 수도승 반사 ──
       if(player.isMonk && monkReflectTurns > 0){
         const reflectDmg = Math.max(1, en.atk - Math.floor(effDef()*0.3));
         en.hp = Math.max(0, en.hp - reflectDmg);
         showReflectFloat(en.id, reflectDmg);
         renderEnemies();
-        addLog(`🌀 반사!! ${en.name}의 공격(${dmg})이 되돌아갔다! ${reflectDmg} 반사 데미지!`,'p');
+        addLog(`🌀 반사!! ${en.name}의 공격이 되돌아갔다! ${reflectDmg} 반사 데미지!`,'p');
         if(en.hp<=0) onKill(en);
         updateHud();
         return;
@@ -2483,7 +2214,6 @@ function endPlayerTurn(){
       player.hp=Math.max(0,player.hp-dmg);
       addLog(`👊 ${en.name} → ${dmg} 데미지`,'e');
       onPlayerHit(dmg);
-      if(player.isBomber) incGlobalStat('bomberSelfDmg', dmg);
 
       if(en.name==='슬라임' && player.hp<=0) incGlobalStat('lostToSlime');
 
@@ -2514,6 +2244,16 @@ function startPlayerTurn(){
     en.poison.turns--;
     if(en.poison.turns<=0) en.poison=null;
   });
+  // ✅ 수정: 반사 효과는 적 턴이 끝난 후 여기서 감소 (적 공격을 실제로 반사한 뒤 소멸)
+  if(player.isMonk && monkReflectTurns > 0){
+    monkReflectTurns--;
+    if(monkReflectTurns <= 0){
+      monkReflectTurns = 0;
+      document.querySelector('.player-card')?.classList.remove('reflect-active');
+      addLog(`🌀 반사 효과가 끝났다.`,'s');
+    }
+    updateHud();
+  }
   setTurnBadge(true);
   renderAll();
   addLog('── 내 턴','s');
@@ -2723,10 +2463,10 @@ function effAtk(){ const base=player.atk+(buffs.atkB||0)+(equipped.weapon?.atk||
 function effDef(){
   if(player.isMosquito) return 0;
   const armorDef = equipped.armor?.def || 0;
-  const mkArmorBonus = player.isMegaKnight ? -Math.floor(armorDef * 0.5) : 0; // 메가나이트: 방어구 DEF 50% 감소
+  const mkArmorBonus = player.isMegaKnight ? -Math.floor(armorDef * 0.5) : 0;
   const ringDef = equipped.ring?.def || 0;
   const amuletDef = equipped.amulet?.def || 0;
-  const mkAccessBonus = player.isMegaKnight ? -Math.floor((ringDef + amuletDef) * 0.5) : 0; // 반지·목걸이 DEF도 50% 감소
+  const mkAccessBonus = player.isMegaKnight ? -Math.floor((ringDef + amuletDef) * 0.5) : 0;
   const base = player.def + (buffs.defB||0) + armorDef + mkArmorBonus + ringDef + mkAccessBonus + amuletDef;
   return (hardMode&&selectedMode==='hard') ? Math.floor(base*1.15) : base;
 }
@@ -2759,9 +2499,7 @@ function calcPreview(sk, en){
     const alive=enemies.filter(e=>e.hp>0);
     return alive.map(e=>calcDmg(atk*(sk.mult||1),e.def)).join('+');
   }
-  if(sk.type==='blood_heal'){
-    return `HP+${Math.floor(player.maxHp*(sk.healRatio||0.35))}`;
-  }
+  if(sk.type==='blood_heal') return `HP+${Math.floor(player.maxHp*(sk.healRatio||0.35))}`;
   if(sk.type==='sniper_shot'){
     const dmg = calcDmg(effAtk()*(sk.mult||1), en.def);
     const hs = Math.floor(dmg*2);
@@ -2769,25 +2507,20 @@ function calcPreview(sk, en){
     const aimStr = (chance >= 1.0) ? '🎯항상→' : sniperAimReady ? '🔍조준중→' : `${Math.round(chance*100)}%→`;
     return `${aimStr}헤드샷 ${hs}`;
   }
-  if(sk.type==='sniper_camo') return `회피+${Math.round((sk.camoBonus||0.5)*100)}%`;
-  if(sk.type==='monk_combo') return `${calcDmg(atk*(sk.mult||1.2),en.def)} × ${sk.hits||3}타 (타겟 선택)`;
-  if(sk.type==='monk_reflect') return monkReflectTurns>0 ? `🌀반사중 (${monkReflectTurns}턴)` : `다음 ${sk.t||1}턴 공격 반사`;
   if(sk.type==='sniper_drink') return `HP +${Math.floor(player.maxHp*0.30)} 회복`;
-  if(sk.type==='sniper_aim') return sniperAimReady ? '✅조준완료!' : '다음 저격 헤드샷';
+  if(sk.type==='monk_combo') return `${calcDmg(atk*(sk.mult||1.2),en.def)} × ${sk.hits||3}타`;
+  if(sk.type==='monk_reflect') return monkReflectTurns>0 ? `🌀반사중 (${monkReflectTurns}턴)` : `다음 ${sk.t||1}턴 반사`;
   if(sk.type==='mk_smash'){
     const alive=enemies.filter(e=>e.hp>0);
-    const perEn=alive.map(e=>calcDmg(effAtk()*(sk.mult||8.0),e.def));
-    return `전체: ${perEn.join('+')}`;
+    return `전체: ${alive.map(e=>calcDmg(effAtk()*(sk.mult||8.0),e.def)).join('+')}`;
   }
   if(sk.type==='bomb_all'||sk.type==='bomb_smoke'){
     const alive=enemies.filter(e=>e.hp>0);
-    const perEn=alive.map(e=>calcDmg(atk*(sk.mult||1),e.def));
-    return `전체: ${perEn.join('+')}`;
+    return `전체: ${alive.map(e=>calcDmg(atk*(sk.mult||1),e.def)).join('+')}`;
   }
   if(sk.type==='bomb_chain'){
     const alive=enemies.filter(e=>e.hp>0);
-    const perEn=alive.map(e=>calcDmg(atk*(sk.mult||1),e.def)*2);
-    return `×2연속: ${perEn.join('+')}`;
+    return `×2연속: ${alive.map(e=>calcDmg(atk*(sk.mult||1),e.def)*2).join('+')}`;
   }
   return '-';
 }
@@ -2814,9 +2547,7 @@ function renderZombies(){
   if(badge){
     badge.textContent = `🟢 ${aliveCount}마리 생존`;
     badge.style.display = zombies.length>0 ? 'inline-flex' : 'none';
-    if(deadCount>0){
-      badge.textContent += `  🪦 ${deadCount}마리 사망`;
-    }
+    if(deadCount>0) badge.textContent += `  🪦 ${deadCount}마리 사망`;
   }
 
   zombies.filter(zb=>zb.hp>0).forEach(zb=>{
@@ -2876,7 +2607,7 @@ function renderSkills(){
     const isMkSkill=player.isMegaKnight;
     const isMonkSkill=player.isMonk;
     const isBombSkill=['bomb_all','bomb_smoke','bomb_chain'].includes(sk.type);
-    const isSniperSkill=['sniper_shot','sniper_camo','sniper_aim'].includes(sk.type);
+    const isSniperSkill=['sniper_shot','sniper_camo','sniper_aim','sniper_drink'].includes(sk.type);
     const bloodReady=isVampSkill&&ok&&sk.bloodCost&&player.blood>=sk.bloodCost;
     const fuseReady=isBombSkill&&ok&&sk.fuseCost&&player.fuse>=sk.fuseCost;
     const noFuse=sk.fuseCost&&player.fuse<sk.fuseCost;
@@ -2962,7 +2693,9 @@ function updateHud(){
   const en=getTarget();
   const basicBtn=document.getElementById('btn-basic');
   if(p.isBomber){
-    basicBtn.innerHTML='💣 투척공격<br><span id="basic-preview" style="font-size:10px;color:#ff8c00">전체 DMG: -</span>';
+    if(!basicBtn.querySelector('[data-bomber]')){
+      basicBtn.innerHTML='💣 투척공격<br><span data-bomber style="font-size:10px;color:#ff8c00">전체 DMG: -</span>';
+    }
   } else if(!basicBtn.querySelector('#basic-preview')){
     basicBtn.innerHTML='⚔ 기본공격<br><span id="basic-preview" style="font-size:10px;color:var(--blue)">DMG: -</span>';
   }
@@ -2973,7 +2706,7 @@ function updateHud(){
     const mpReg=Math.max(1,Math.floor(p.maxMp*.06 * effMpRegMult()));
     if(p.isBomber){
       const allPrev=enemies.filter(e=>e.hp>0).map(e=>calcDmg(base,Math.max(0,e.def-2))).join('+');
-      const bpEl=document.getElementById('basic-preview');
+      const bpEl=basicBtn.querySelector('[data-bomber]');
       if(bpEl) bpEl.textContent=`전체: ${allPrev}`;
     } else if(p.isVampire){
       const bg=Math.max(3,Math.floor(((mn+mx)/2)*0.2));
@@ -2983,9 +2716,6 @@ function updateHud(){
       const bpEl=document.getElementById('basic-preview');
       if(bpEl) bpEl.textContent=`DMG: ${mn}~${mx} / MP+${mpReg}`;
     }
-  } else {
-    const bpEl=document.getElementById('basic-preview');
-    if(bpEl) bpEl.textContent=p.isBomber?'전체 DMG: -':'DMG: -';
   }
 }
 
