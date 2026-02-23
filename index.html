@@ -1277,6 +1277,16 @@ const CLASSES=[
       {name:'창조',     icon:'🌌',mp:0,cd:0,maxCd:1, type:'all',  mult:99999,desc:'우주를 창조한다'},
     ]
   },
+  // ══ 고블린 (치트 전용) ══
+  { name:'고블린', icon:'👺', hp:3,mp:1, atk:1,def:0, hpG:0,atkG:0,defG:0,mpG:0,
+    isGoblin:true,
+    skills:[
+      {name:'쓰레기 투척', icon:'🗑',mp:1,cd:0,maxCd:0, type:'dmg', mult:0.01, desc:'ATK×0.01 · 거의 0데미지'},
+      {name:'도망',        icon:'🏃',mp:1,cd:0,maxCd:0, type:'buff', buff:{defB:0,t:1}, desc:'아무것도 안됨'},
+      {name:'구걸',        icon:'🙏',mp:1,cd:0,maxCd:0, type:'dmg', mult:0.005,desc:'너무 약해서 적이 비웃는다'},
+      {name:'꽥',          icon:'😱',mp:1,cd:0,maxCd:0, type:'all',  mult:0.001,desc:'전체 ATK×0.001 · 사실상 0'},
+    ]
+  },
   { name:'모기', icon:'🦟', hp:1,mp:50, atk:45,def:0, hpG:0,atkG:5,defG:0,mpG:6,
     isMosquito:true,
     skills:[
@@ -1565,6 +1575,7 @@ function closeRecord(){ document.getElementById('record-overlay').style.display=
 
 // ══════════════ 치트 코드 ══════════════
 let godUnlocked = localStorage.getItem('db_godUnlocked')==='true';
+let goblinUnlocked = localStorage.getItem('db_goblinUnlocked')==='true';
 
 // ══════════════ 저격수 전용 변수 ══════════════
 let sniperAimReady = false;   // 저격 조준 발동 여부 (다음 공격 헤드샷 100%)
@@ -1585,6 +1596,7 @@ let zombieDeadThisRun = 0;
   const row=document.getElementById('class-row');
   CLASSES.forEach((c,i)=>{
     if(c.isGod && !godUnlocked) return;
+    if(c.isGoblin && !goblinUnlocked) return;
     const locked = false;
     const d=document.createElement('div');
     d.className='cls-card'
@@ -1651,6 +1663,35 @@ function submitCheat(){
     }
     flashTerminal();
     checkAchievements();
+  } else if(val === '이서율'){
+    goblinUnlocked = true;
+    localStorage.setItem('db_goblinUnlocked','true');
+    result.style.display='block';
+    result.className='cheat-result fail';
+    result.innerHTML=`👺 <strong style="color:#88cc44">고블린</strong> 해금...<br>🗑 이게 뭐야 진짜로`;
+    input.value='';
+    const row=document.getElementById('class-row');
+    if(!document.querySelector('.goblin-card')){
+      const c=CLASSES.find(x=>x.isGoblin);
+      const idx=CLASSES.indexOf(c);
+      const d=document.createElement('div');
+      d.className='cls-card goblin-card';
+      d.innerHTML=`<div class="cls-icon">👺</div>
+        <div class="cls-name" style="color:#88cc44">고블린</div>
+        <div class="cls-desc">HP 3  ATK 1  DEF 0<br>🗑 완전 쓰레기 · 왜 씀?</div>`;
+      d.onclick=()=>{
+        if(classIdx===idx && d.classList.contains('sel')){ showRecord(idx); return; }
+        classIdx=idx;
+        document.querySelectorAll('.cls-card').forEach(x=>x.classList.remove('sel'));
+        d.classList.add('sel');
+      };
+      row.appendChild(d);
+    }
+    // 패널 초록 대신 구린 초록으로 깜빡임
+    const panel = document.querySelector('.cheat-panel');
+    panel.style.borderColor='#556633';
+    panel.style.boxShadow='0 0 20px #88cc4433';
+    setTimeout(()=>{panel.style.borderColor='';panel.style.boxShadow='';},1500);
   } else {
     result.style.display='none';
   }
@@ -1676,6 +1717,7 @@ function startGame(){
     isMegaKnight:c.isMegaKnight||false,
     isMosquito:c.isMosquito||false,
     isGod:c.isGod||false,
+    isGoblin:c.isGoblin||false,
     isNecro:c.isNecro||false,
     isBomber:c.isBomber||false,
     isSniper:c.isSniper||false,
@@ -1711,6 +1753,7 @@ function startGame(){
   document.getElementById('rage-bar-container').style.display = player.isMegaKnight ? 'block' : 'none';
   document.getElementById('zombie-zone-wrap').style.display = player.isNecro ? 'block' : 'none';
   if(hardMode && selectedMode==='hard') addLog('🔥 하드모드 활성화! ATK·DEF +15% 적용 중','s');
+  if(player.isGoblin) addLog('👺 고블린으로 플레이 중... 왜요?','e');
 
   showScreen('battle');
   loadStage();
